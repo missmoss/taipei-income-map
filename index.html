@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="UTF-8">
+
+            <title>A Day in Taipei Metro</title>
+            <style>
+                #map{ width: 100%; height: 100vh;}
+                div.legend {
+                    position: absolute;
+                    text-align: left;
+                    width: 85px;
+                    height: 160px;
+                    right: 5%;
+                    top: 10px;
+                    padding: 2px;
+                    font: 12px sans-serif;
+                    background: rgba(25,25,25,0.2);
+                    border: 0px;      
+                    border-radius: 8px;           
+                    pointer-events: none;         
+                }
+                div.clock {
+                    position: absolute;
+                    text-align: left;
+                    left: 5%;
+                    top: 10px;
+                    border: 0px;
+                }
+            .subdist {
+                stroke: white;
+                stroke-width: 0.5;
+            }
+            div.tooltip {
+                position: absolute;
+                text-align: center;
+                width: 80px;
+                height: 28px;
+                padding: 2px;
+                font: 12px sans-serif;
+                background: white;
+                border: 0px;      
+                border-radius: 8px;           
+                pointer-events: none;         
+            }
+                </style>
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <meta property="og:image" content="https://farm4.staticflickr.com/3728/11730442194_6d0086e1c4_o_d.jpg">
+                <meta property="og:description" content="This is a visualization of entry and exit at each station in Taipei Metro"/>
+                <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+                    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' 'type='text/css'>
+                        <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+                        <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+                        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+                        <link rel="stylesheet" type="text/css" href="stylesheets/jquery.fullPage.css" />
+                        <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+                        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+                        <script src="http://d3js.org/topojson.v1.min.js"></script>
+                        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+                        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+                        <script src="http://d3js.org/d3.v3.min.js"></script>
+                        <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+                        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+                        <script type="text/javascript" src="stylesheets/jquery.fullPage.js"></script>
+                        <script>
+                            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+                        
+                        ga('create', 'UA-79159343-1', 'auto');
+                        ga('send', 'pageview');
+                        
+                            </script>
+                        <script>
+                            $(document).ready(function() {
+                                $('#fullpage').fullpage();
+                            });
+                        </script>
+                        </head>
+                        
+            <body>
+                <div id="fullpage">
+                    <!--
+                    <div class="section">
+                        <section class="page-header">
+                        <h1 class="project-name">A Day in Taipei Metro</h1>
+                        <h2 class="project-tagline">台北捷運一日進出站流量</h2>
+                        </section>
+                    </div>
+                    -->
+                    <div class="section">
+                        
+                        <div id="map"></div>
+                        
+                    </div>
+                    <div class="section">
+                        <section class="main-content">
+                        <h3>Project Description</h3>
+                        <p>This is a visualization of entry and exit at each station in Taipei Metro by hour on Monday November 2nd, 2015. </p>
+                        <p>From 05:00 to 07:00 we can see passengers entered peripheral stations and exited from stations in center area of the city from 08:00 to 09:00. At 17:00 passengers in center of the city started to enter stations, whreas exit numbers in these stations are still high. Taipei Main Staion, as the transit center of all kinds of transportation, is always the largest circle on the map.</p>
+                        
+                        </section>
+                        </div>
+                        <div class="section">
+                        <section class="main-content">
+                        <h3>Data Source</h3>
+                        Taipei Metro Flow: <a href="http://data.taipei/">Open Data Taipei</a></br>
+                        Taipei Metro Station Information: <a href="https://github.com/repeat" class="user-mention">@repeat</a>/<a href="https://github.com/repeat/taipei-metro-stations">taipei-metro-stations</a>
+                        <h3>Inspired By</h3>
+                        Oliver O'Brien <a href="https://youtu.be/QQV3UHsZ_u4">Oyster Card Touch Ins and Touch Outs (Map Animation)</a></br>
+                        Mike Barry and Brian Card <a href="http://mbtaviz.github.io/">Visualizing MBTA Data</a>
+                        <footer class="site-footer">
+                        <span class="site-footer-owner"><a href="https://github.com/missmoss/taipei-mrt-viz">Taipei-mrt-viz</a> is maintained by <a href="https://github.com/missmoss">missmoss</a>.</span>
+                        <span class="site-footer-credits">The front photo is via courtesy of <a href="https://www.flickr.com/photos/lipon/11730442194/">liponan</a>.</span>
+                        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>. Special thanks to liponan, kn, Naichun, Ira and Jeffrey.</span>
+                        </footer>
+                        
+                        </section>
+                        </div>
+                    </div>
+                        
+                        <script>
+                        /* Set up Leaflet.js map */
+                        var northEast = L.latLng(25.3,121.8),
+                        southWest = L.latLng(24.9023253,121.26019),
+                        bounds = L.latLngBounds(southWest, northEast);
+                        
+                        var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+                        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+                        subdomain: 'abcd'
+                        });
+                        
+                        var map = L.map('map', {
+                        scrollWheelZoom: false,
+                        doubleClickZoom: false,
+                        center: [25.0600789,121.5171921],
+                        zoom: 12,
+                        zoomControl: false,
+                        maxBounds: bounds
+                        });
+                        
+                        map.addLayer(layer);
+                        
+                        /* Initialize the SVG layer */
+                        map._initPathRoot()
+                        
+                        /* Set up svg and some elements for charts */
+                        
+                        /* svg1 for Heatmap */
+                        /* We simply pick up the SVG from the map object */
+                        
+                        var svg1 = d3.select("#map").select("svg");
+                        g = svg1.append("g");
+                         
+                        
+                        var timediv = d3.select("#map").append("div")
+                        .attr("class", "clock")
+                        .append("svg");
+                        
+                        var div = d3.select("#map").append("div")
+                        .attr("class", "legend");
+                        
+                        var clock = timediv.append("text")
+                        .attr("fill", "#6C6C6C")
+                        .attr("x", 10)
+                        .attr("y", 40)
+                        .style("font-size", 32)
+                        .text("00:00");
+                        
+                        var tooltip = d3.select("body")
+                        .append("div")
+                        .attr("class", "tooltip")
+                        .style("opacity", 0);
+
+                        
+                        var svg2 = d3.select(map.getPanes().overlayPane).append("svg"),
+                        g2 = svg2.append("g").attr("class", "dist");
+                        /*
+                        svg3 = d3.select(map.getPanes().overlayPane).append("svg").attr("width", screen.width).attr("height", screen.height),
+                        g = svg3.append("g");
+                        */
+                        d3.json("twnsub2.json", function(collection) {
+                            /*
+                            collection = topojson.feature(collection, collection.objects.Village_NLSC_121_1050219)
+                            
+                            for (idx=collection.length - 1;idx>=0;idx--) {
+                                var city = collection[idx].properties.C_Name
+                                if (city != "臺北市" && city != "新北市") {
+                                    delete collection[idx];
+                                }
+                            }
+                             */
+                            var incomeMedian = collection.features.map(function(item) {
+                                    return parseInt(item.properties.INCOME_MEDIAN);
+                            }
+                            )
+                            
+                            var extent = d3.extent(incomeMedian);
+                            console.log(extent);
+                            
+                            var fillColor = d3.scale.linear()
+                            .range(["#3ED8FF","#E84593"])
+                            .domain(extent);
+                            
+                            var transform = d3.geo.transform({point: projectPoint}),
+                            path = d3.geo.path().projection(transform);
+                            
+                            var feature = g2.selectAll(".subdist")
+                            .data(collection.features)
+                            .enter().append("path")
+                            .attr("class", "subdist")
+                            .attr("fill", function(d) {
+                                
+                                // Get data value
+                                var value = d.properties.INCOME_MEDIAN;
+                                
+                                if (value) {
+                                    //If value exists…
+                                    return fillColor(value);
+                                } else {
+                                    //If value is undefined…
+                                    return "white";
+                                }
+                            })
+                            .on("mouseover", function(d) {
+                                d3.select(this)
+                                .style("opacity", 0.75);
+                                tooltip.transition()
+                                .duration(200)
+                                .style("opacity", .9);
+                                tooltip.text(function () {
+                                    return d.properties.TOWN+'\n'+
+                                    d.properties.VILLAGE+'\n'+
+                                    d.properties.INCOME_MEDIAN+',000 元';
+                                })
+                                .style("left", (d3.event.pageX) + "px")
+                                .style("top", (d3.event.pageY - 28) + "px");
+                            })
+                            .on("mouseout", function(d) {
+                                d3.select(this)
+                                .style("opacity", 0.3);
+                                tooltip.transition()
+                                .duration(500)
+                                .style("opacity", 0);   
+                            })
+                            .style("opacity", 0.3);
+                            
+                            //d3 code stolen from http://bost.ocks.org/mike/leaflet/#init
+                            
+                            map.on("viewreset", reset);
+                            reset();
+                            function reset() {
+                            var topobounds = path.bounds(collection),
+                                topLeft = topobounds[0],
+                                bottomRight = topobounds[1];
+                                
+                                svg2.attr("width", bottomRight[0] - topLeft[0])
+                                .attr("height", bottomRight[1] - topLeft[1])
+                                .style("left", topLeft[0] + "px")
+                                .style("top", topLeft[1] + "px");
+                                g2.attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
+                                
+                                feature.attr("d", path)
+                                .on("end", drawUpperLayer());
+                            }
+                            
+                            function projectPoint(x, y) {
+                                var point = map.latLngToLayerPoint(new L.LatLng(y, x));
+                                this.stream.point(point.x, point.y);
+                            }
+                             
+                    
+                        });
+                        
+                        //twnsublatlng.json Village_NLSC_121_1050219 25.0853403,121.4231634
+                        function drawUpperLayer() {
+                        
+                        d3.csv("taipei.csv", function(data) {
+                        
+                        var transform = d3.geo.transform({point: projectPoint}),
+                        d3path = d3.geo.path().projection(transform);
+                        
+                        function projectPoint(x, y) {
+                            var point = map.latLngToLayerPoint(new L.LatLng(x, y));
+                            this.stream.point(point.x, point.y);
+                        }
+                        
+                        var lines = {"1":{
+                            color: "brown",
+                            geoLineString: {
+                                type: "LineString",
+                                coordinates: []
+                                }},
+                            "2": {
+                            color: "red",
+                            geoLineString: {
+                                type: "LineString",
+                                coordinates: []
+                                }},
+                            "3": {
+                            color: "green",
+                            geoLineString: {
+                                type: "LineString",
+                                coordinates: []
+                                }},
+                            "4": {
+                            color: "orange",
+                            geoLineString: {
+                                type: "LineString",
+                                coordinates: []
+                                }},
+                            "4-1": {
+                                color: "orange",
+                                geoLineString: {
+                                    type: "LineString",
+                                    coordinates: []
+                                }},
+                            "5": {
+                            color: "blue",
+                            geoLineString: {
+                                type: "LineString",
+                                coordinates: []
+                                }},
+                            "n": {
+                            color: "red",
+                            geoLineString: {
+                                type: "LineString",
+                                coordinates: []
+                                }},
+                            "s": {
+                            color: "green",
+                            geoLineString: {
+                                type: "LineString",
+                                coordinates: []
+                                }}
+                            };
+                        
+                        data.forEach(function(d) {
+                            lines[d.line_no].geoLineString.coordinates.push(
+                            [parseFloat(d.lat), parseFloat(d.lon)]);
+                        });
+                        
+                        var keys = d3.keys(lines).filter(function(key, d) {
+                            return key;
+                        });
+                        
+                        var lines2 = [];
+                        
+                        keys.forEach(function(key) {
+                            var tmpdata = lines[key];
+                            tmpdata['line_no'] = key;
+                            lines2.push(tmpdata);
+                        });
+                        
+                        var linePath = g.selectAll(".lineConnect")
+                        .data(lines2)
+                        .enter()
+                        .append("path")
+                        .attr("class", "lineConnect")
+                        .attr("id", function(d) {return d.line_no; })
+                        .attr("stroke", function(d) { return d.color; })
+                        .attr("fill", "None")
+                        .style("opacity", 1)
+                        .attr("d", function(d) { return d3path(d.geoLineString); });
+                        
+                        map.on("viewreset", updateMap);
+                        updateMap();
+                        
+                        function updateMap() {
+                            linePath.attr("transform",
+                                function(d) {
+                                    d.x = map.latLngToLayerPoint(d.LatLng).x;
+                                    d.y = map.latLngToLayerPoint(d.LatLng).y;
+                                    return "translate("+d.x +","+d.y +")";
+                                }
+                            )};
+                        
+                        
+                        }); //end of d3.csv("taipei.csv")
+                        
+                        /* Load data, process and draw functions */
+                        d3.csv("mrtflow_Nov2_2015.csv", function(data) {
+                        
+                        data.forEach(function(d) {
+                        d.LatLng = new L.LatLng(d.lat, d.lon);
+                        });
+                        
+                        
+                        var radScale = d3.scale.sqrt().domain([10,5000]).rangeRound([3,15]);
+                        
+                        var legend = [10, 100, 1000, 10000];
+                        
+                        var padding = 10
+                        
+                        div = div.append("svg");
+                        
+                        div.append("text")
+                        .attr("x", 5)
+                        .attr("y", 18)
+                        .attr("fill", "#6C6C6C")
+                        .style("font-size", 14)
+                        .text("Legend");
+                        
+                        div.append("circle")
+                        .attr("cx", 22)
+                        .attr("cy", 30)
+                        .attr("r", 5)
+                        .attr("fill", "#FFE11A")
+                        .style("opacity", 0.7);
+                        div.append("text")
+                        .attr("x", 45)
+                        .attr("y", 35)
+                        .style("font-size", 12)
+                        .text("entry");
+                        div.append("circle")
+                        .attr("cx", 22)
+                        .attr("cy", 45)
+                        .attr("r", 5)
+                        .attr("fill", "#5bc0de")
+                        .style("opacity", 0.7);
+                        div.append("text")
+                        .attr("x", 45)
+                        .attr("y", 50)
+                        .style("font-size", 12)
+                        .text("exit");
+                        
+                        div.selectAll(".legend")
+                        .data(legend)
+                        .enter()
+                        .append("circle")
+                        .attr("cx", 22)
+                        .attr("cy", function(d,i) { return 60+i*10+radScale(d-1)*2; })
+                        .attr("r", function(d) { return radScale(d);} )
+                        .attr("fill", "#5bc0de")
+                        .style("opacity", 0.7);
+                        
+                        div.selectAll(".legendtext")
+                        .data(legend)
+                        .enter()
+                        .append("text")
+                        .attr("x", 45)
+                        .attr("y", function(d,i) { return 67+i*10+radScale(d-1)*2;})
+                        .text(function(d) { return d;});
+                        
+                        var pauseButton = timediv.append("path")
+                        .attr("class", "player")
+                        .attr("id", "pause")
+                        .attr("d", "m42,48L42,64L57,64L57,48L52,48L52,64L47,64L47,48z")
+                        .attr("fill", "#6C6C6C")
+                        .on("mouseover", function(){
+                            d3.select(this)
+                            .attr("fill", "#5bc0de");
+                        })
+                        .on("mouseout", function(){
+                            d3.select(this)
+                            .attr("fill", "#6C6C6C");
+                        })
+                        .on("click", stopTimer);
+                        
+                        var forwardButton = timediv.append("path")
+                        .attr("class", "player")
+                        .attr("id", "forward")
+                        .attr("d", "m70,48L80,56L80,48L90,56L80,64L80,56L70,64z")
+                        .attr("fill", "#6C6C6C")
+                        .on("mouseover", function(){
+                            d3.select(this)
+                            .attr("fill", "#5bc0de");
+                        })
+                        .on("mouseout", function(){
+                            d3.select(this)
+                            .attr("fill", "#6C6C6C");
+                        })
+                        .on("click", forwardTimer);
+                        
+                        var backwardButton = timediv.append("path")
+                        .attr("class", "player")
+                        .attr("id", "backward")
+                        .attr("d", "m30,48L20,56L20,48L10,56L20,64L20,56L30,64z")
+                        .attr("fill", "#6C6C6C")
+                        .on("mouseover", function(){
+                            d3.select(this)
+                            .attr("fill", "#5bc0de");
+                        })
+                        .on("mouseout", function(){
+                            d3.select(this)
+                            .attr("fill", "#6C6C6C");
+                        })
+                        .on("click", backwardTimer);
+                        
+                        
+                        var i = 0;
+                        var timer = setInterval(clockRunner, 1000);
+                        
+                        function clockRunner() {
+                        
+                        if (i < 19) {
+                            var h = i + 5;
+                            }
+                            else {
+                            var h = i - 19;
+                            }
+                            
+                            var h1 = parseInt(h / 10),h2 = h % 10;
+                            
+                            clock.text(h1+""+ h2+":00")
+                            .transition()
+                            .duration(50);
+                            
+                            d3.selectAll("#hour")
+                            .remove();
+                            draw(h);
+                            
+                            i++;
+                            if (i > 21) {
+                                stopTimer();
+                            };
+                            };
+                        
+
+                        
+                        function stopTimer() {
+                            clearInterval(timer);
+                            
+                            d3.select("#pause")
+                            .remove();
+                            
+                            var playButton = timediv.append("path")
+                            .attr("class", "player")
+                            .attr("id", "play")
+                            .attr("d", "M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z")
+                            .attr("transform", "translate(38,45)")
+                            //.attr("d", "m44,47L55,53L55,47L58,47L58,63L55,63L55,58L44,63z")
+                            .attr("stroke", "#6C6C6C")
+                            .attr("stroke-width", 1.1)
+                            .attr("fill", "#6C6C6C")
+                            .on("mouseover", function(){
+                                d3.select(this)
+                                .attr("fill", "#5bc0de")
+                                .attr("stroke", "#5bc0de");
+                            })
+                            .on("mouseout", function(){
+                                d3.select(this)
+                                .attr("fill", "#6C6C6C")
+                                .attr("stroke", "#6C6C6C");
+                            })
+                            .on("click", restartTimer);
+                        };
+                        
+                        function restartTimer() {
+                            i = 0;
+                            timer = setInterval(clockRunner, 1000);
+                            
+                            d3.select("#play")
+                            .remove();
+                            
+                            var pauseButton = timediv.append("path")
+                            .attr("class", "player")
+                            .attr("id", "pause")
+                            .attr("d", "m42,47L42,63L57,63L57,47L52,47L52,63L47,63L47,47z")
+                            .attr("fill", "#6C6C6C")
+                            .on("mouseover", function(){
+                                d3.select(this)
+                                .attr("fill", "#5bc0de");
+                            })
+                            .on("mouseout", function(){
+                                d3.select(this)
+                                .attr("fill", "#6C6C6C");
+                            })
+                            .on("click", stopTimer);
+                        };
+                        
+                        function forwardTimer() {
+                            if (i < 22) {
+                                clockRunner();
+                            }
+                        }
+
+                        function backwardTimer() {
+                            if (i > 0) {
+                                i = i - 2;
+                                console.log(i);
+                                clockRunner();
+                            }
+                        }
+                            function draw(h) {
+                            
+                            hData = data.filter(function(d) {
+                            return d.hour == h;
+                            })
+                            
+                            function color(input) {
+                            if (input === "in") {
+                            return "#FFE11A";
+                            }
+                            else if (input === "out") {
+                            return "#5bc0de";
+                            }
+                            else {
+                            return "steelblue";
+                            }
+                            }
+                            
+                            var canvas = g.selectAll("circle")
+                            .data(hData)
+                            .enter();
+                            
+                            var feature = canvas.append("circle")
+                            .style("opacity", .6)
+                            .attr("fill", function(d) {return color(d.direction);})
+                            .attr("r", function(d) {return radScale(d.flow); })
+                            .attr("class", "circle")
+                            .attr("click", "off")
+                            .attr("id", "hour");
+                            
+                            map.on("viewreset", updateMap);
+                            updateMap();
+                            
+                            function updateMap() {
+                            feature.attr("transform",
+                            function(d) {
+                            d.x = map.latLngToLayerPoint(d.LatLng).x;
+                            d.y = map.latLngToLayerPoint(d.LatLng).y;
+                            return "translate("+d.x +","+d.y +")";
+                            }
+                            )};
+                            
+                            }// end of draw(h)
+                            
+                            }) // end of d3.csv()
+                        };
+            </script>
+    </body>
+</html>

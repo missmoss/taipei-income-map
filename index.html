@@ -23,7 +23,7 @@
             div.title {
                 position: absolute;
                 text-align: left;
-                color: #159957;
+                color: #558C89;
                 font-size: 1.5rem;
                 left: 5%;
                 top: 10px;
@@ -49,14 +49,13 @@
                 pointer-events: none;
             }
             #side {
-                max-width:50%;
+                max-width: 50%;
                 float:left;
                 margin-right:2%;
             }
             @media screen and (min-width: 64em) {
                 #side {
-                    max-width: 64rem;
-                    clear: left; } }
+                    max-width: 50%; } }
             
             @media screen and (min-width: 42em) and (max-width: 64em) {
                 #side {
@@ -106,7 +105,7 @@
         <div id="fullpage">
             <div class="section">
                 <section class="main-content">
-                    <img src="front.png" style="max-width:50%;float:left;margin-right:2%;"/>
+                    <img src="front.png" id="side" style="margin-right:2%;"/>
                     <h1>雙北所得地圖<br>帶你看貧富差距</h1>
                     <p>製作／<a href="https://github.com/missmoss">@missmoss</a></p>
                     <p>台北的有錢人都住在大安區嗎？過個馬路，居民收入就差20萬？雙北所得地圖與所得稅資料圖表告訴你區域貧富差距。</p>
@@ -200,9 +199,9 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <p>資料來源：101年所得稅統計資料</p>
+                            <p style="font-size: 0.7rem;">資料來源：101年所得稅統計資料</p>
                         </div>
-                        <div>
+                        <div class="wideonly">
                             <p>被網友戲稱為天龍國的台北市大安區，印象中向來是有錢人才住得起的地方，也被認為應該是台灣平均收入最高的一群，但是若將年度家戶所得依各村里中位數排出前十名，大安區只有光明里及龍門里排得上號，以104萬同時名列第十名。</p>
                             <h3>前三名位於市郊</h3>
                             <p>領先群組新店區華城里、文山區政大里及內湖區金湖里的所得中位數難分軒輊，這三個里均是相對市郊、環山抱翠，聚集了不少喜歡清幽的有錢人。</p>

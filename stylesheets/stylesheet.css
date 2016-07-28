@@ -6,7 +6,8 @@ body {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.5;
-  color: #606c71; }
+  color: #606c71;
+    background-color: #ECECEA; }
 
 a {
   color: #1e6bb8;
@@ -129,7 +130,7 @@ a {
   margin-top: 1rem;
   margin-bottom: 1rem;
   font-weight: normal;
-  color: #159957; }
+  color: #558C89; }
 .main-content p {
   font-weight: 100;
   margin-bottom: 1em; }
@@ -195,13 +196,14 @@ a {
   color: #819198;
   overflow: auto;
   background-color: #f3f6fa;
-  border: solid 1px #dce6f0; }
+  border: solid 1px #74AFAD; }
   .main-content blockquote > :first-child {
     margin-top: 0; }
   .main-content blockquote > :last-child {
     margin-bottom: 0; }
 .main-content table {
   display: block;
+  font-size: 0.75rem;
   width: 100%;
   overflow: auto;
   word-break: normal;
@@ -209,14 +211,14 @@ a {
   .main-content table th {
     font-weight: bold; }
   .main-content table th, .main-content table td {
-    padding: 0.5rem 1rem;
-    border: 1px solid #e9ebec; }
+    padding: 0.4rem 0.4rem;
+    border: 1px solid #74AFAD; }
 .main-content dl {
   padding: 0; }
   .main-content dl dt {
     padding: 0;
     margin-top: 1rem;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     font-weight: bold; }
   .main-content dl dd {
     padding: 0;
@@ -268,3 +270,9 @@ a {
 @media screen and (max-width: 42em) {
   .site-footer {
     font-size: 0.7rem; } }
+
+@media only screen and (max-width: 64em) {
+    .wideonly {
+        display: none;
+    }
+}

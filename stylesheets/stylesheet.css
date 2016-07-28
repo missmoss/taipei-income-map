@@ -132,11 +132,12 @@ a {
   font-weight: normal;
   color: #159957; }
 .main-content p {
+  font-weight: 100;
   margin-bottom: 1em; }
 .main-content code {
   padding: 2px 4px;
   font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  font-size: 0.6rem;
+  font-size: 1rem;
   color: #383e41;
   background-color: #f3f6fa;
   border-radius: 0.3rem; }
@@ -153,7 +154,7 @@ a {
   .main-content pre > code {
     padding: 0;
     margin: 0;
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     color: #567482;
     word-break: normal;
     white-space: pre;
@@ -226,17 +227,17 @@ a {
     max-width: 64rem;
     padding: 2rem 6rem;
     margin: 0 auto;
-    font-size: 1.1rem; } }
+    font-size: 0.8rem; } }
 
 @media screen and (min-width: 42em) and (max-width: 64em) {
   .main-content {
     padding: 2rem 4rem;
-    font-size: 1.1rem; } }
+    font-size: 0.8rem; } }
 
 @media screen and (max-width: 42em) {
   .main-content {
     padding: 2rem 1rem;
-    font-size: 1rem; } }
+    font-size: 0.8rem; } }
 
 .site-footer {
   padding-top: 2rem;
@@ -252,12 +253,12 @@ a {
 
 @media screen and (min-width: 64em) {
   .site-footer {
-    font-size: 1rem; } }
+    font-size: 0.8rem; } }
 
 @media screen and (min-width: 42em) and (max-width: 64em) {
   .site-footer {
-    font-size: 1rem; } }
+    font-size: 0.8rem; } }
 
 @media screen and (max-width: 42em) {
   .site-footer {
-    font-size: 0.9rem; } }
+    font-size: 0.7rem; } }

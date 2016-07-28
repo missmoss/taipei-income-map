@@ -48,6 +48,23 @@
                 border-radius: 8px;
                 pointer-events: none;
             }
+            #side {
+                max-width:50%;
+                float:left;
+                margin-right:2%;
+            }
+            @media screen and (min-width: 64em) {
+                #side {
+                    max-width: 64rem;
+                    clear: left; } }
+            
+            @media screen and (min-width: 42em) and (max-width: 64em) {
+                #side {
+                    clear: left;  } }
+            
+            @media screen and (max-width: 42em) {
+                #side {
+                    clear: left; } }
             </style>
             <meta name="viewport" content="width=device-width, initial-scale=1"/>
             <meta property="og:image" content="https://raw.githubusercontent.com/missmoss/taipei-stat-mrt/gh-pages/front.png"/>
@@ -97,7 +114,7 @@
                 <section class="main-content">
                     <h2>雙北地區所得前十名</h2>
                     <div>
-                        <div style="max-width:50%;float:left;margin-right:2%;">
+                        <div id="side">
                             <table>
                                 <thead>
                                     <tr>
@@ -200,11 +217,18 @@
                 <section class="main-content">
                     <h1>雙北地區所得分布</h1>
                     <p>看完了前十名，是不是也好奇其他地區的所得分布狀況呢？</p>
-                    <p`>接下來讓我們一起來看看所得中位數在地圖上的實際分布情形。</p>
+                    <p>接下來讓我們一起來看看所得中位數在地圖上的實際分布情形。</p>
                 </section>
             </div>
             <div class="section">
                 <div id="map"></div>
+            </div>
+            <div class="section">
+                <section class="main-content">
+                    <h2>雙北地區所得分布概況</h2>
+                    <p>從地圖上可以看到，台北市中心區域的中正、大安、大同、松山、信義等區內部顏色較相近，相對而言區域內較為均值。大安區雖然沒有在村里排名拔得頭籌，整體收入都還是在雙北的前段班。而周圍的文山區、內湖區、中山區則有部分村里一枝獨秀的狀況，區域內部較不平均。</p>
+                    <p>新北市普遍所得較高的地區則是大家所熟悉與台北市緊密相連的新店區、中永和區、板橋區、汐止區。另外淡水區，以及將畫面往左拉、西邊的林口區長庚醫院周邊亦是所得較高的區域。</p>
+                </section>
             </div>
             <!--
              <div class="section">
@@ -305,7 +329,14 @@
             
             var fillColor = d3.scale.linear()
             .domain([extent[0], middle, extent[1]])
+            //.range(["#7CFFDE", "#5468E8", "#E84374"]);
             .range(["#52FFB0", "#5468E8", "#E84374"]);
+            //.range(["#00A388", "#FFF457", "#E8518E"]);
+        
+            var fillOpacity = d3.scale.linear()
+            .domain(extent)
+            //.range(["#52FFB0", "#5468E8", "#E84374"]);
+            .range([0.35, 0.55]);
             
             //legend
             var legend = [300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200];
@@ -370,12 +401,13 @@
                     return "white";
                 }
             })
+            .style("opacity", 0.475)
             .on("mouseover", function(d) {
                 d3.select(this)
                 .style("opacity", 0.75);
                 tooltip.transition()
                 .duration(200)
-                .style("opacity", .9);
+                .style("opacity", 0.9);
                 tooltip.text(function () {
                     return d.properties.TOWN+'\n'+
                     d.properties.VILLAGE+'\n'+
@@ -386,12 +418,13 @@
             })
             .on("mouseout", function(d) {
                 d3.select(this)
-                .style("opacity", 0.35);
+                .style("opacity", 0.475)
                 tooltip.transition()
                 .duration(500)
                 .style("opacity", 0);
-            })
-            .style("opacity", 0.35);
+            });
+                
+            //function(d) { return fillOpacity(d.properties.INCOME_MEDIAN); })
             
             //d3 code stolen from http://bost.ocks.org/mike/leaflet/#init
             
@@ -507,6 +540,7 @@
             .attr("class", "lineConnect")
             .attr("id", function(d) {return d.line_no; })
             .attr("stroke", function(d) { return d.color; })
+            .attr("stroke-width", 1.5)
             .attr("fill", "None")
             .style("opacity", 1)
             .attr("d", function(d) { return d3path(d.geoLineString); });

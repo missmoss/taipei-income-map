@@ -46,7 +46,7 @@
                 </style>
                 <meta name="viewport" content="width=device-width, initial-scale=1">
                 <meta property="og:image" content="https://farm4.staticflickr.com/3728/11730442194_6d0086e1c4_o_d.jpg">
-                <meta property="og:description" content="This is a visualization of entry and exit at each station in Taipei Metro"/>
+                <meta property="og:description" content="台北都會區101年所得稅統計資料各村里所得稅中位數地圖"/>
                 <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
                     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' 'type='text/css'>
                         <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
@@ -197,12 +197,13 @@
                             }
                             )
                             
-                            var extent = d3.extent(incomeMedian);
-                            console.log(extent);
+                            var extent = d3.extent(incomeMedian),
+                            middle = (extent[0]+extent[1])/2;
+                            console.log(extent[0], middle, extent[1]);
                             
                             var fillColor = d3.scale.linear()
-                            .range(["#3ED8FF","#E84593"])
-                            .domain(extent);
+                            .domain([extent[0], middle, extent[1]])
+                            .range(["#52FFB0", "#5468E8", "#E84374"]);
                             
                             var transform = d3.geo.transform({point: projectPoint}),
                             path = d3.geo.path().projection(transform);
@@ -251,6 +252,7 @@
                             
                             map.on("viewreset", reset);
                             reset();
+                            
                             function reset() {
                             var topobounds = path.bounds(collection),
                                 topLeft = topobounds[0],

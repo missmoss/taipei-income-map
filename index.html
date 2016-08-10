@@ -910,6 +910,10 @@ input:checked + .sliderround:before {
                     nextBtn.style("opacity", 0);
                     backBtn.on("click", function() { clickBack(); } );
                     interactive();
+                    setTimeout(function() {
+                        distname.style("opacity", 0);
+                        story.style("opacity", 0)
+                    }, 2000)
                 } else if (i === 0) {
                     nextBtn.on("click", function() { clickNext(); } );
                     backBtn.attr("opacity", 0);
@@ -970,7 +974,7 @@ input:checked + .sliderround:before {
                     if (i < storyData.length-1) {
                         setTimeout(function () {
                             clickNext();
-                        }, 2000);
+                        }, 3000);
                     } else {
                         distname.style("opacity", 0);
                     }
@@ -1022,13 +1026,13 @@ input:checked + .sliderround:before {
                     }
 
                     show();
-                    var distSwitch = setInterval(show, 1000);
+                    var distSwitch = setInterval(show, 1500);
 
 
                     if (i < storyData.length-1) {
                         setTimeout(function () {
                             clickNext();
-                        }, 1000*n+1500);
+                        }, 1500*n+2000);
                     } else {
                         distname.style("opacity", 0);
                     };
@@ -1078,12 +1082,12 @@ input:checked + .sliderround:before {
                     }
 
                     show();
-                    var distSwitch = setInterval(show, 2000);
+                    var distSwitch = setInterval(show, 2500);
 
                     if (i < storyData.length-1) {
                         setTimeout(function () {
                             clickNext();
-                        }, 2000*n+1500);
+                        }, 2500*n+2000);
                     } else {
                         distname.style("opacity", 0);
                     }

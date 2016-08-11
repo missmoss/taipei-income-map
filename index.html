@@ -460,25 +460,27 @@ input:checked + .sliderround:before {
         .attr("class", "arrow")
         .append("svg");
 
-        directionArrow
-        .append("path")
-        .attr("d", "m0,0L30,25L60,0L60,7L30,32L0,7z")
-        .attr("fill", "#d0d0d0")
-        .attr("transform", "translate(0, -20)")
-        .transition()
-        .duration(500)
-        .attr("transform", "translate(0, 0)");
+        setTimeout(function() {
+            directionArrow
+            .append("path")
+            .attr("d", "m0,0L30,25L60,0L60,7L30,32L0,7z")
+            .attr("fill", "#d0d0d0")
+            .attr("transform", "translate(0, -20)")
+            .transition()
+            .duration(500)
+            .attr("transform", "translate(0, 0)");
 
-        var directionText = directionArrow
-        .append("text")
-        .attr("x", 65)
-        .attr("y", 0)
-        .attr("fill", "#d0d0d0")
-        .style("font-size", "1rem")
-        .text("往下滑動到下一頁")
-        .transition()
-        .duration(500)
-        .attr("y", 17);
+            directionArrow
+            .append("text")
+            .attr("x", 65)
+            .attr("y", 0)
+            .attr("fill", "#d0d0d0")
+            .style("font-size", "1rem")
+            .text("往下滑動到下一頁")
+            .transition()
+            .duration(500)
+            .attr("y", 17);
+        }, 1000);
         
         var svg1 = d3.select("#map").select("svg");
         g = svg1.append("g");

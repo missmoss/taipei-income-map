@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
             
-            <title>雙北所得地圖 帶你看貧富差距</title>
+            <title>雙北所得分布地圖</title>
             <style>
                 #map{ width: 100%; height: 100vh;}
                 div.legend {
@@ -35,10 +35,10 @@
             div.tooltip {
                 position: absolute;
                 text-align: center;
-                width: 80px;
-                height: 28px;
-                padding: 2px;
-                font: 12px sans-serif;
+                width: 90px;
+                height: 35px;
+                padding: 5.5px 2px;
+                font: 13px sans-serif;
                 background: white;
                 border: 0px;
                 border-radius: 8px;
@@ -85,6 +85,16 @@
                 border: 0px;
                 border-radius: 2px;
             }
+            .arrow {
+                position: absolute;
+                left: 45%;
+                -ms-transform: translateX(-50%);
+                -webkit-transform: translate(-50%,0);
+                transform: translate(-50%,0);
+                bottom: 0.5rem;
+                width: 5rem;
+                height: 2rem;    
+            }
             #back {
                 position: absolute;
                 left: 0rem;
@@ -98,6 +108,13 @@
                 top: 1.25rem;
                 width: 1.5rem;
                 height: 5rem;
+            }
+            #exit {
+                position: absolute;
+                right: 6px;
+                top: 4px;
+                width: 15px;
+                height: 15px;
             }
             #boxplot {
                 width: 30%;
@@ -175,7 +192,7 @@ input:checked + .sliderround:before {
             </style>
             <meta name="viewport" content="width=device-width, initial-scale=1"/>
             <meta property="og:image" content="https://raw.githubusercontent.com/missmoss/taipei-stat-mrt/gh-pages/front.png"/>
-            <meta property="og:description" content="台北的有錢人都住在大安區嗎？過個馬路，居民收入就差20萬？雙北所得地圖與賦稅資料圖表告訴你區域貧富差距。"/>
+            <meta property="og:description" content="台北的有錢人都住在大安區嗎？過個馬路，居民收入就差20萬？雙北所得分布地圖告訴你區域所得差異。"/>
             <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen"/>
             <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' 'type='text/css'/>
             <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen"/>
@@ -207,9 +224,9 @@ input:checked + .sliderround:before {
             <div class="section">
                 <section class="main-content">
                     <img src="front.png" id="side" style="margin-right:2%;"/>
-                    <h1>雙北所得地圖<br>帶你看貧富差距</h1>
+                    <h1>雙北所得分布地圖</h1>
                     <p>製作／<a href="https://github.com/missmoss">@missmoss</a></p>
-                    <p>台北的有錢人都住在大安區嗎？過個馬路，居民收入就差20萬？雙北所得地圖與所得稅資料圖表告訴你區域貧富差距。</p>
+                    <p>台北的有錢人都住在大安區嗎？過個馬路，居民收入就差20萬？雙北所得分布地圖告訴你區域所得差異。</p>
                 </section>
             </div>
             <div class="section">
@@ -315,12 +332,14 @@ input:checked + .sliderround:before {
                         </div>
                         </section>
             </div>
+            <!--
             <div class="section">
                 <section class="main-content">
                     <h1>雙北地區所得分布</h1>
                     <p>接下來讓我們一起來看看所得中位數在地圖上的實際分布情形。</p>
                 </section>
             </div>
+            -->
             <div class="section">
                 <div id="map">
                 </div>
@@ -345,7 +364,7 @@ input:checked + .sliderround:before {
             <div class="section">
                 <section class="main-content">
                     <h3>雙北所得地圖</h3>
-                    <p>將台北市、新北市101年所得稅統計資料各村里所得稅中位數畫成熱圖，顏色越粉紅，所得稅中位數越高，顏色越綠，該村里所得稅中位數越低，並疊上捷運線圖。</p>
+                    <p>將台北市、新北市101年所得稅統計資料各村里綜合所得稅所得總額中位數畫成熱圖，顏色越粉紅，所得稅中位數越高，顏色越綠，該村里所得稅中位數越低。中位數僅能大致窺見區域分佈差異，無法完全衡量實際分佈，也無法顯示出家戶內部的所得差異。</p>
                     <p>另所得稅統計資料處理過程繁複，需時較久，目前資料僅釋出至101年度，故以101年度作圖。</p>
                     <h3>資料來源</h3>
                     101年所得稅統計資料：<a href="http://data.gov.tw/">政府資料開放平台</a> <a href="http://data.gov.tw/node/17983">台北市</a>、<a href="http://data.gov.tw/node/17975">新北市</a></br>
@@ -353,7 +372,7 @@ input:checked + .sliderround:before {
                     <h3>延伸自</h3>
                     <a href="http://missmoss.github.io/taipei-mrt-viz/">台北捷運一日進出站流量</a></br>
                     <footer class="site-footer">
-                        <span class="site-footer-owner"><a href="https://github.com/missmoss/taipei-stat-mrt">雙北所得地圖 帶你看貧富差距</a> 由 <a href="https://github.com/missmoss"> @missmoss</a> 製作。</span>
+                        <span class="site-footer-owner"><a href="https://github.com/missmoss/taipei-stat-mrt">雙北所得分布地圖</a> 由 <a href="https://github.com/missmoss"> @missmoss</a> 製作。</span>
                         <!--<span class="site-footer-credits">The front photo is via courtesy of <a href="https://www.flickr.com/photos/lipon/11730442194/">liponan</a>.</span>-->
                         <span class="site-footer-credits">本頁面是 <a href="https://pages.github.com">GitHub Pages</a> ，修改自由 <a href="https://twitter.com/jasonlong">Jason Long</a> 製作的 <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a>。特別感謝林怡、務熙學長、鴨鴨、有有、南哥、Kn、白經濟作者群在製作過程的討論與協助。</span>
                     </footer>
@@ -363,7 +382,7 @@ input:checked + .sliderround:before {
         </div>
         
         <script>
-            var subdist, interactive, stationName, firstTime = false;
+            var subdist, interactive, stationName, firstTime = false, exit = false;
             $(document).ready(function() {
                 $('#fullpage').fullpage({
 
@@ -371,16 +390,20 @@ input:checked + .sliderround:before {
                         var loadedSection = $(this);
 
                         //using index
-                        if ( index === 4 && firstTime === false ) {
+                        if ( index === 3 && firstTime === false ) {
                             firstTime = true;
                             storyTeller();
                         }
                     },
                     onLeave: function(index, nextIndex, direction){
-                        if ( index === 4 ) {
+                        if ( index === 1 ) {
+                            directionArrow.remove();
+                        } else if ( index === 3 ) {
+                            exit = true;
                             distname.style("opacity", 0);
                             tooltip.style("opacity", 0);
                             subdist.style("opacity", 0.475);
+                            story.remove();
                         }
                     },
                 })
@@ -431,6 +454,31 @@ input:checked + .sliderround:before {
         
         /* svg1 for Heatmap */
         /* We simply pick up the SVG from the map object */
+
+        var directionArrow = d3.select("body")
+        .append("div")
+        .attr("class", "arrow")
+        .append("svg");
+
+        directionArrow
+        .append("path")
+        .attr("d", "m0,0L30,25L60,0L60,7L30,32L0,7z")
+        .attr("fill", "#d0d0d0")
+        .attr("transform", "translate(0, -20)")
+        .transition()
+        .duration(500)
+        .attr("transform", "translate(0, 0)");
+
+        var directionText = directionArrow
+        .append("text")
+        .attr("x", 65)
+        .attr("y", 0)
+        .attr("fill", "#d0d0d0")
+        .style("font-size", "1rem")
+        .text("往下滑動到下一頁")
+        .transition()
+        .duration(500)
+        .attr("y", 17);
         
         var svg1 = d3.select("#map").select("svg");
         g = svg1.append("g");
@@ -579,8 +627,7 @@ input:checked + .sliderround:before {
             .attr("x", rectWidth*10+5)
             .attr("y", 49)
             .attr("fill", "#6C6C6C")
-            .text("萬元");
-            
+            .text("萬元");   
             
             var transform = d3.geo.transform({point: projectPoint}),
             path = d3.geo.path().projection(transform);
@@ -891,29 +938,55 @@ input:checked + .sliderround:before {
                         .attr("fill", "#d0d0d0");
                     });
 
-                    var backBtn = story.append("svg")
-                    .attr("id", "back")
-                    .append("path")
-                    .attr("class", "btn")
-                    .attr("d", "m30,0L23,0L9,50L23,100L30,100L16,50z")
-                    .attr("fill", "#d0d0d0")
-                    .on("mouseover", function(){
-                        d3.select(this)
-                        .attr("fill", "#74AFAD");
-                    })
-                    .on("mouseout", function(){
-                        d3.select(this)
-                        .attr("fill", "#d0d0d0");
-                    });
+                var backBtn = story.append("svg")
+                .attr("id", "back")
+                .append("path")
+                .attr("class", "btn")
+                .attr("d", "m30,0L23,0L9,50L23,100L30,100L16,50z")
+                .attr("fill", "#d0d0d0")
+                .on("mouseover", function(){
+                    d3.select(this)
+                    .attr("fill", "#74AFAD");
+                })
+                .on("mouseout", function(){
+                    d3.select(this)
+                    .attr("fill", "#d0d0d0");
+                });
+
+                var exitBtn = story.append("svg")
+                .attr("id", "exit")
+                .append("path")
+                .attr("class", "btn")
+                .attr("d", "m0,0L5,5L10,10L5,5L0,10L5,5L10,0L5,5z")
+                .attr("stroke-width", 4)
+                .attr("stroke", "#d0d0d0")
+                .attr("transform", "translate(4,4)")
+                .on("mouseover", function(){
+                    d3.select(this)
+                    .attr("stroke", "#74AFAD");
+                })
+                .on("mouseout", function(){
+                    d3.select(this)
+                    .attr("stroke", "#d0d0d0");
+                })
+                .on("click", function() {
+                    exit = true;
+                    distname.style("opacity", 0);
+                    tooltip.style("opacity", 0);
+                    subdist.style("opacity", 0.475);
+                    story.remove();
+                    interactive();
+                    map.panTo([25.045,121.547]);
+                });
 
                 if (i === storyData.length-1) {
                     nextBtn.style("opacity", 0);
                     backBtn.on("click", function() { clickBack(); } );
                     interactive();
                     setTimeout(function() {
-                        distname.style("opacity", 0);
-                        story.style("opacity", 0)
-                    }, 2000)
+                        distname.remove();
+                        story.style("opacity", 0);
+                    }, 4000);
                 } else if (i === 0) {
                     nextBtn.on("click", function() { clickNext(); } );
                     backBtn.attr("opacity", 0);
@@ -924,22 +997,28 @@ input:checked + .sliderround:before {
 
                 function type0() {
 
-                    if (selector === "#") {
-                        d3.select(selector+target)
-                        .style("opacity", 0.85);
-                    } else if (selector === ".") {
-                        d3.selectAll(selector+target)
-                        .style("opacity", 0.85);                        
-                    }
+                    if (exit === false) {
 
-                    map.panTo(pan);
+                        if (selector === "#") {
+                            d3.select(selector+target)
+                            .style("opacity", 0.85);
+                        } else if (selector === ".") {
+                            d3.selectAll(selector+target)
+                            .style("opacity", 0.85);                        
+                        }
 
-                    if (i < storyData.length-1) {
-                        setTimeout(function () {
-                            clickNext();
-                        }, 2000);
+                        map.panTo(pan);
+
+                        if (i < storyData.length-1) {
+                            setTimeout(function () {
+                                clickNext();
+                            }, 3500);
+                        } else {
+                            exit = true;
+                            distname.style("opacity", 0);
+                        }
                     } else {
-                        distname.style("opacity", 0);
+                        return;
                     }
 
                 } // end of type0()
@@ -947,149 +1026,173 @@ input:checked + .sliderround:before {
 
                 function type1() {
 
-                    map.panTo(pan);
+                    if (exit === false) {
 
-                    var textPosition = map.latLngToLayerPoint(new L.LatLng(center[0], center[1]));
+                        map.panTo(pan);
 
-                    if (selector === "#") {
-                        d3.select(selector+target)
-                        .style("opacity", 0.85);
-                    } else if (selector === ".") {
-                        d3.selectAll(selector+target)
-                        .style("opacity", 0.85);                        
-                    };
+                        var textPosition = map.latLngToLayerPoint(new L.LatLng(center[0], center[1]));
 
-                    d3.select(".story")
-                    .style("white-space", "pre-wrap");
+                        if (selector === "#") {
+                            d3.select(selector+target)
+                            .style("opacity", 0.85);
+                        } else if (selector === ".") {
+                            d3.selectAll(selector+target)
+                            .style("opacity", 0.85);                        
+                        };
 
-                    distname.transition()
-                    .duration(200)
-                    .style("opacity", 0.9);
-                    distname.text(function () {
-                            return target;
-                    })
-                    .style("left", (textPosition.x + 10) + "px")
-                    .style("top", (textPosition.y - 28) + "px");
+                        d3.select(".story")
+                        .style("white-space", "pre-wrap");
 
-                    if (i < storyData.length-1) {
-                        setTimeout(function () {
-                            clickNext();
-                        }, 3000);
+                        distname.transition()
+                        .duration(200)
+                        .style("opacity", 0.9);
+                        distname.text(function () {
+                                return target;
+                        })
+                        .style("left", (textPosition.x + 10) + "px")
+                        .style("top", (textPosition.y - 28) + "px");
+
+                        if (i < storyData.length-1) {
+                            setTimeout(function () {
+                                clickNext();
+                            }, 3500);
+                        } else {
+                            exit = true;
+                            distname.style("opacity", 0);
+                        }
                     } else {
-                        distname.style("opacity", 0);
+                        return;
                     }
 
                 } // end of type1()
 
                 function type2() {
 
-                    map.panTo(pan);
+                    if (exit === false) {
 
-                    var j = 0, n = target.length, current = i;
+                        map.panTo(pan);
 
-                    d3.select(".story")
-                    .style("white-space", "pre-wrap");
-                            
-                    function show() {
+                        var j = 0, n = target.length, current = i;
 
-                        if ( current !== i ) {
-                            clearInterval(distSwitch);
-                            return;
+                        d3.select(".story")
+                        .style("white-space", "pre-wrap");
+                                
+                        function show() {
+
+                            if ( current !== i | exit === true ) {
+                                clearInterval(distSwitch);
+                                return;
+                            }
+
+                            var textPosition = map.latLngToLayerPoint(new L.LatLng(center[j][0], center[j][1]));
+
+                            // remove previous
+                            subdist.style("opacity", 0.475);
+                            distname.style("opacity", 0);
+                            // highlight current
+                            if (selector === "#") {
+                                d3.select(selector+target[j])
+                                .style("opacity", 0.85);
+                            } else {
+                                d3.selectAll(selector+target[j])
+                                .style("opacity", 0.85);                      
+                            }
+                            distname.style("opacity", 0.9);
+
+                            distname.text(function () {
+                                return target[j];
+                            })
+                            .style("left", (textPosition.x + 10) + "px")
+                            .style("top", (textPosition.y - 28) + "px");
+
+                            j++;
+
+                            if ( j >= n ) {
+                                clearInterval(distSwitch);
+                            }
                         }
 
-                        var textPosition = map.latLngToLayerPoint(new L.LatLng(center[j][0], center[j][1]));
+                        show();
+                        var distSwitch;
+                        setTimeout(function() {
+                            distSwitch = setInterval(show, 1500);
+                        }, 2000);
 
-                        // remove previous
-                        subdist.style("opacity", 0.475);
-                        distname.style("opacity", 0);
-                        // highlight current
-                        if (selector === "#") {
-                            d3.select(selector+target[j])
-                            .style("opacity", 0.85);
+
+                        if (i < storyData.length-1) {
+                            setTimeout(function () {
+                                clickNext();
+                            }, 1500*n+4000);
                         } else {
-                            d3.selectAll(selector+target[j])
-                            .style("opacity", 0.85);                      
-                        }
-                        distname.style("opacity", 0.9);
-
-                        distname.text(function () {
-                            return target[j];
-                        })
-                        .style("left", (textPosition.x + 10) + "px")
-                        .style("top", (textPosition.y - 28) + "px");
-
-                        j++;
-
-                        if ( j >= n ) {
-                            clearInterval(distSwitch);
-                        }
-                    }
-
-                    show();
-                    var distSwitch = setInterval(show, 1500);
-
-
-                    if (i < storyData.length-1) {
-                        setTimeout(function () {
-                            clickNext();
-                        }, 1500*n+2000);
+                            exit = true;
+                            distname.style("opacity", 0);
+                        };
                     } else {
-                        distname.style("opacity", 0);
-                    };
+                        return;
+                    }
 
                 }  // end of type2()
 
 
                 function type3() {
 
-                    var j = 0, n = target.length, current = i;
+                    if (exit === false) {
 
-                    d3.select(".story")
-                    .style("white-space", "pre-wrap");
-                        
-                    function show() {
+                        var j = 0, n = target.length, current = i;
 
-                        if ( current !== i ) {
-                            clearInterval(distSwitch);
-                            return;
+                        d3.select(".story")
+                        .style("white-space", "pre-wrap");
+                            
+                        function show() {
+
+                            if ( current !== i | exit === true ) {
+                                clearInterval(distSwitch);
+                                return;
+                            }
+
+                            // remove previous
+                            subdist.style("opacity", 0.475);
+                            distname.style("opacity", 0);
+                            // highlight current
+                            if (selector === "#") {
+                                d3.select(selector+target[j])
+                                .style("opacity", 0.85);
+                            } else {
+                                d3.selectAll(selector+target[j])
+                                .style("opacity", 0.85);                        
+                            }
+                            map.panTo(center[j]);
+                            distname.style("opacity", 0.9);
+
+                            distname.text(function () {
+                                return target[j];
+                            })
+                            .style("left", "49%")
+                            .style("top", "50%");
+                            
+                            j++;
+
+                            if ( j >= n ) {
+                                clearInterval(distSwitch);
+                            }
                         }
 
-                        // remove previous
-                        subdist.style("opacity", 0.475);
-                        distname.style("opacity", 0);
-                        // highlight current
-                        if (selector === "#") {
-                            d3.select(selector+target[j])
-                            .style("opacity", 0.85);
+                        show();
+                        var distSwitch;
+                        setTimeout(function() {
+                            distSwitch = setInterval(show, 1500);
+                        }, 2000);
+
+                        if (i < storyData.length-1) {
+                            setTimeout(function () {
+                                clickNext();
+                            }, 2500*n+4000);
                         } else {
-                            d3.selectAll(selector+target[j])
-                            .style("opacity", 0.85);                        
+                            exit = true;
+                            distname.style("opacity", 0);
                         }
-                        map.panTo(center[j]);
-                        distname.style("opacity", 0.9);
-
-                        distname.text(function () {
-                            return target[j];
-                        })
-                        .style("left", "49%")
-                        .style("top", "50%");
-                        
-                        j++;
-
-                        if ( j >= n ) {
-                            clearInterval(distSwitch);
-                        }
-                    }
-
-                    show();
-                    var distSwitch = setInterval(show, 2500);
-
-                    if (i < storyData.length-1) {
-                        setTimeout(function () {
-                            clickNext();
-                        }, 2500*n+2000);
                     } else {
-                        distname.style("opacity", 0);
+                        return;
                     }
                     
                 

@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
             
-            <title>雙北所得分布地圖</title>
+            <title>互動地圖：雙北所得大解密</title>
             <style>
                 #map{ width: 100%; height: 100vh;}
                 div.legend {
@@ -206,6 +206,7 @@ input:checked + .sliderround:before {
             <script src="https://d3js.org/d3.v3.min.js"></script>
             <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+            <script type="text/javascript" src="stylesheets/scrolloverflow.min.js"></script>
             <script type="text/javascript" src="stylesheets/jquery.fullPage.js"></script>
             <script>
                 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -224,7 +225,7 @@ input:checked + .sliderround:before {
             <div class="section">
                 <section class="main-content">
                     <img src="front.png" id="side" style="margin-right:2%;"/>
-                    <h1>雙北所得分布地圖</h1>
+                    <h1>互動地圖：<br>雙北所得大解密</h1>
                     <p>製作／<a href="https://github.com/missmoss">@missmoss</a></p>
                     <p>台北的有錢人都住在大安區嗎？過個馬路，居民收入就差20萬？雙北所得分布地圖告訴你區域所得差異。</p>
                 </section>
@@ -318,8 +319,9 @@ input:checked + .sliderround:before {
                                 </tbody>
                             </table>
                             <p style="font-size: 0.7rem;">資料來源：101年所得稅統計資料</p>
+                            <hr class="narrowonly">
                         </div>
-                        <div class="wideonly">
+                        <div>
                             <p>被網友戲稱為天龍國的台北市大安區，印象中向來是有錢人才住得起的地方，也被認為應該是台灣平均收入最高的一群，但是若將年度家戶所得依各村里中位數排出前十名，大安區只有光明里及龍門里排得上號，以104萬同時名列第十名。</p>
                             <h3>前三名位於市郊</h3>
                             <p>領先群組新店區華城里、文山區政大里及內湖區金湖里的所得中位數難分軒輊，這三個里均是相對市郊、環山抱翠，聚集了不少喜歡清幽的有錢人。</p>
@@ -374,7 +376,7 @@ input:checked + .sliderround:before {
                     <footer class="site-footer">
                         <span class="site-footer-owner"><a href="https://github.com/missmoss/taipei-stat-mrt">雙北所得分布地圖</a> 由 <a href="https://github.com/missmoss"> @missmoss</a> 製作。</span>
                         <!--<span class="site-footer-credits">The front photo is via courtesy of <a href="https://www.flickr.com/photos/lipon/11730442194/">liponan</a>.</span>-->
-                        <span class="site-footer-credits">本頁面是 <a href="https://pages.github.com">GitHub Pages</a> ，修改自由 <a href="https://twitter.com/jasonlong">Jason Long</a> 製作的 <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a>。特別感謝林怡、務熙學長、鴨鴨、有有、南哥、Kn、白經濟作者群在製作過程的討論與協助。</span>
+                        <span class="site-footer-credits">本頁面是 <a href="https://pages.github.com">GitHub Pages</a> ，修改自由 <a href="https://twitter.com/jasonlong">Jason Long</a> 製作的 <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a>。特別感謝映昕、林怡、務熙學長、鴨鴨、有有、南哥、Kn、白經濟作者群在製作過程的討論與協助。</span>
                     </footer>
                     
                 </section>
@@ -386,6 +388,9 @@ input:checked + .sliderround:before {
             $(document).ready(function() {
                 $('#fullpage').fullpage({
 
+                    // scrolling
+                    scrollOverflow: true,
+                    // event
                     afterLoad: function(anchorLink, index){
                         var loadedSection = $(this);
 

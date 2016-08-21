@@ -224,7 +224,7 @@ a {
     padding: 0;
     margin-bottom: 1rem; }
 .main-content hr {
-  height: 2px;
+  height: 1px;
   padding: 0;
   margin: 1rem 0;
   background-color: #74AFAD;
@@ -249,6 +249,9 @@ a {
   .main-content h1, .main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6 {
       margin-top: 0.5rem;
       margin-bottom: 0.5rem; }
+  .main-content blockquote {
+  font-size: 0.7rem;
+  margin-right: 0.2rem; }
   .main-content table {
       display: block;
       font-size: 0.7rem;
@@ -288,8 +291,8 @@ a {
     padding-top: 0.8rem;
     font-size: 0.7rem; } }
 
-@media only screen and (max-width: 64em) {
-    .wideonly {
+@media only screen and (min-width: 42em) {
+    .narrowonly {
         display: none;
     }
 }

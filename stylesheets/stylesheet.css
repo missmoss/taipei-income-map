@@ -1,17 +1,72 @@
+/*
+* Noto Sans TC (Chinese_traditional) http://www.google.com/fonts/earlyaccess
+ */
+@font-face {
+  font-family: 'Noto Sans TC';
+  font-style: normal;
+  font-weight: 100;
+  src: url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Thin.woff2) format('woff2'),
+       url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Thin.woff) format('woff'),
+       url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Thin.otf) format('opentype');
+}
+@font-face {
+  font-family: 'Noto Sans TC';
+  font-style: normal;
+  font-weight: 300;
+  src: url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Light.woff2) format('woff2'),
+       url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Light.woff) format('woff'),
+       url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Light.otf) format('opentype');
+}
+@font-face {
+   font-family: 'Noto Sans TC';
+   font-style: normal;
+   font-weight: 400;
+   src: url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Regular.woff2) format('woff2'),
+        url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Regular.woff) format('woff'),
+        url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Regular.otf) format('opentype');
+ }
+@font-face {
+   font-family: 'Noto Sans TC';
+   font-style: normal;
+   font-weight: 500;
+   src: url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Medium.woff2) format('woff2'),
+        url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Medium.woff) format('woff'),
+        url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Medium.otf) format('opentype');
+ }
+@font-face {
+   font-family: 'Noto Sans TC';
+   font-style: normal;
+   font-weight: 700;
+   src: url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Bold.woff2) format('woff2'),
+        url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Bold.woff) format('woff'),
+        url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Bold.otf) format('opentype');
+ }
+@font-face {
+   font-family: 'Noto Sans TC';
+   font-style: normal;
+   font-weight: 900;
+   src: url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Black.woff2) format('woff2'),
+        url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Black.woff) format('woff'),
+        url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Black.otf) format('opentype');
+ }
 * {
   box-sizing: border-box; }
-
 body {
   padding: 0;
   margin: 0;
+<<<<<<< HEAD
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 <<<<<<< HEAD
+=======
+  font-family: "Noto Sans TC", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+>>>>>>> gh-pages
   font-size: 14px;
 =======
   font-size: 16px;
 >>>>>>> Create gh-pages branch via GitHub
   line-height: 1.5;
-  color: #606c71; }
+  color: #606c71;
+    background-color: #ECECEA; }
 
 a {
   color: #1e6bb8;
@@ -61,8 +116,24 @@ a {
   color: #fff;
   text-align: center;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  background-color: #159957;
+  background-image: linear-gradient(120deg, #155799, #159957); }
+
+@media screen and (min-width: 64em) {
+  .page-header {
+    padding: 5rem 6rem; } }
+
+@media screen and (min-width: 42em) and (max-width: 64em) {
+  .page-header {
+    padding: 3rem 4rem; } }
+
+@media screen and (max-width: 42em) {
+  .page-header {
+    padding: 2rem 1rem; } }
+>>>>>>> gh-pages
   background-color: black;
-  background-image: url("../taipeiByPonan.jpg");
   background-size: auto 130vh;
   background-position: center;
   background-repeat: no-repeat;
@@ -135,20 +206,25 @@ a {
 .main-content img {
   max-width: 100%; }
 .main-content h1, .main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6 {
-  margin-top: 2rem;
+  margin-top: 1rem;
   margin-bottom: 1rem;
   font-weight: normal;
-  color: #159957; }
+  color: #558C89; }
 .main-content p {
+  font-weight: 100;
   margin-bottom: 1em; }
 .main-content code {
   padding: 2px 4px;
   font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
 <<<<<<< HEAD
+<<<<<<< HEAD
   font-size: 0.6rem;
 =======
   font-size: 0.9rem;
 >>>>>>> Create gh-pages branch via GitHub
+=======
+  font-size: 1rem;
+>>>>>>> gh-pages
   color: #383e41;
   background-color: #f3f6fa;
   border-radius: 0.3rem; }
@@ -166,10 +242,14 @@ a {
     padding: 0;
     margin: 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
     font-size: 0.6rem;
 =======
     font-size: 0.9rem;
 >>>>>>> Create gh-pages branch via GitHub
+=======
+    font-size: 0.8rem;
+>>>>>>> gh-pages
     color: #567482;
     word-break: normal;
     white-space: pre;
@@ -198,6 +278,7 @@ a {
   overflow: initial;
   line-height: inherit;
   word-wrap: normal;
+  word-break: normal;
   background-color: transparent;
   border: 0; }
   .main-content pre code:before, .main-content pre code:after, .main-content pre tt:before, .main-content pre tt:after {
@@ -205,67 +286,104 @@ a {
 .main-content ul, .main-content ol {
   margin-top: 0; }
 .main-content blockquote {
-  padding: 0 1rem;
+  padding: 0.8rem 0.8rem 0.8rem 0.8rem;
+  font-size: 0.8rem;
   margin-left: 0;
+  margin-right: 0;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   color: #819198;
-  border-left: 0.3rem solid #dce6f0; }
+  overflow: auto;
+  background-color: #f3f6fa;
+  border: solid 1px #74AFAD; }
   .main-content blockquote > :first-child {
     margin-top: 0; }
   .main-content blockquote > :last-child {
     margin-bottom: 0; }
 .main-content table {
   display: block;
+  font-size: 0.75rem;
   width: 100%;
   overflow: auto;
   word-break: normal;
   word-break: keep-all; }
   .main-content table th {
-    font-weight: bold; }
+    font-weight: 500; }
   .main-content table th, .main-content table td {
-    padding: 0.5rem 1rem;
-    border: 1px solid #e9ebec; }
+    padding: 0.4rem 0.4rem;
+    border: 1px solid #74AFAD; }
 .main-content dl {
   padding: 0; }
   .main-content dl dt {
     padding: 0;
     margin-top: 1rem;
 <<<<<<< HEAD
+<<<<<<< HEAD
     font-size: 0.8rem;
 =======
     font-size: 1rem;
 >>>>>>> Create gh-pages branch via GitHub
     font-weight: bold; }
+=======
+    font-size: 0.7rem;
+    font-weight: 300; }
+>>>>>>> gh-pages
   .main-content dl dd {
     padding: 0;
     margin-bottom: 1rem; }
 .main-content hr {
-  height: 2px;
+  height: 1px;
   padding: 0;
   margin: 1rem 0;
-  background-color: #eff0f1;
+  background-color: #74AFAD;
   border: 0; }
 
 @media screen and (min-width: 64em) {
   .main-content {
     max-width: 64rem;
-    padding: 2rem 6rem;
+    padding: 1rem 6rem;
     margin: 0 auto;
-    font-size: 1.1rem; } }
+    font-size: 0.9rem; } }
 
 @media screen and (min-width: 42em) and (max-width: 64em) {
   .main-content {
-    padding: 2rem 4rem;
-    font-size: 1.1rem; } }
+    padding: 1rem 4rem;
+    font-size: 0.8rem; }
+  .main-content table {
+      display: block;
+      font-size: 0.7rem;
+      width: 100%;
+      overflow: auto;
+      word-break: normal;
+      word-break: keep-all; } }
 
 @media screen and (max-width: 42em) {
   .main-content {
-    padding: 2rem 1rem;
-    font-size: 1rem; } }
+    padding: 0.5rem 0.5rem;
+    font-size: 0.7rem; }
+  .main-content h1, .main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6 {
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem; }
+  .main-content blockquote {
+  font-size: 0.7rem;
+  margin-right: 0.2rem; }
+  .main-content table {
+      display: block;
+      font-size: 0.7rem;
+      width: 100%;
+      overflow: auto;
+      word-break: normal;
+      word-break: keep-all; }
+  .main-content table th {
+      font-weight: bold; }
+  .main-content table th, .main-content table td {
+      padding: 0.28rem 0.28rem;
+      border: 1px solid #74AFAD; } }
 
 .site-footer {
   padding-top: 2rem;
   margin-top: 2rem;
-  border-top: solid 1px #eff0f1; }
+  border-top: solid 1px #74AFAD; }
 
 .site-footer-owner {
   display: block;
@@ -276,12 +394,20 @@ a {
 
 @media screen and (min-width: 64em) {
   .site-footer {
-    font-size: 1rem; } }
+    font-size: 0.8rem; } }
 
 @media screen and (min-width: 42em) and (max-width: 64em) {
   .site-footer {
-    font-size: 1rem; } }
+    padding-top: 1.2rem;
+    font-size: 0.8rem; } }
 
 @media screen and (max-width: 42em) {
   .site-footer {
-    font-size: 0.9rem; } }
+    padding-top: 0.8rem;
+    font-size: 0.7rem; } }
+
+@media only screen and (min-width: 42em) {
+    .narrowonly {
+        display: none;
+    }
+}

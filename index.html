@@ -3,629 +3,1207 @@
 <<<<<<< HEAD
     <head>
         <meta charset="UTF-8">
-
-            <title>台北都會區各項統計與台北捷運</title>
+            
+            <title>互動地圖：雙北所得大解密</title>
             <style>
                 #map{ width: 100%; height: 100vh;}
+                div {
+                    font-family: "Noto Sans TC", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;;
+                }
                 div.legend {
                     position: absolute;
                     text-align: left;
-                    width: 85px;
-                    height: 160px;
-                    right: 5%;
-                    top: 10px;
-                    padding: 2px;
-                    font: 12px sans-serif;
-                    background: rgba(25,25,25,0.2);
-                    border: 0px;      
-                    border-radius: 8px;           
-                    pointer-events: none;         
-                }
-                div.clock {
-                    position: absolute;
-                    text-align: left;
+                    width: 310px;
+                    height: 60px;
                     left: 5%;
-                    top: 10px;
+                    top: 79px;
+                    padding: 2px;
+                    font: 12px "Noto Sans TC";
+                    background: rgba(255,255,255,0.6);
                     border: 0px;
+                    border-radius: 4px;
+                    pointer-events: none;
                 }
-            .subdist {
-                stroke: white;
-                stroke-width: 0.5;
+            div.title {
+                position: absolute;
+                text-align: left;
+                color: #558C89;
+                font-size: 1.5rem;
+                left: 5%;
+                top: 10px;
+                padding: 10px;
+                border: 0px;
+                border-radius: 4px;
+                background: rgba(255,255,255,0.6);
             }
             div.tooltip {
                 position: absolute;
                 text-align: center;
-                width: 80px;
-                height: 28px;
-                padding: 2px;
-                font: 12px sans-serif;
+                width: 90px;
+                height: 35px;
+                padding: 5.5px 2px;
+                font: 13px sans-serif;
                 background: white;
-                border: 0px;      
-                border-radius: 8px;           
-                pointer-events: none;         
+                border: 0px;
+                border-radius: 8px;
+                pointer-events: none;
             }
-                </style>
-                <meta name="viewport" content="width=device-width, initial-scale=1">
-                <meta property="og:image" content="https://farm4.staticflickr.com/3728/11730442194_6d0086e1c4_o_d.jpg">
-                <meta property="og:description" content="This is a visualization of entry and exit at each station in Taipei Metro"/>
-                <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-                    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' 'type='text/css'>
-                        <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-                        <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-                        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
-                        <link rel="stylesheet" type="text/css" href="stylesheets/jquery.fullPage.css" />
-                        <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
-                        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
-                        <script src="http://d3js.org/topojson.v1.min.js"></script>
-                        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-                        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-                        <script src="http://d3js.org/d3.v3.min.js"></script>
-                        <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-                        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-                        <script type="text/javascript" src="stylesheets/jquery.fullPage.js"></script>
-                        <!--
-                        <script>
-                            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-                            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-                        
-                        ga('create', 'UA-79159343-1', 'auto');
-                        ga('send', 'pageview');
-                        
-                            </script>
-                         -->
-                        <script>
-                            $(document).ready(function() {
-                                $('#fullpage').fullpage();
-                            });
-                        </script>
-                        </head>
-                        
-            <body>
-                <div id="fullpage">
-                    <!--
-                    <div class="section">
-                        <section class="page-header">
-                        <h1 class="project-name">A Day in Taipei Metro</h1>
-                        <h2 class="project-tagline">台北捷運一日進出站流量</h2>
-                        </section>
-                    </div>
-                    -->
-                    <div class="section">
-                        
-                        <div id="map"></div>
-                        
-                    </div>
-                    <div class="section">
-                        <section class="main-content">
-                        <h3>台北都會區收入地圖</h3>
-                        <p>將台北市、新北市101年所得稅統計資料各村里所得稅中位數畫成熱圖，顏色越粉紅，所得稅中位數越高，顏色越藍，該村裡所得稅中位數越低，並疊上捷運線圖。</p>
-                        <p>另所得稅統計資料處理過程繁複，需時較久，目前資料僅釋出至101年度，故以101年度作圖。</p>
+            div#mapcontrol {
+                position: absolute;
+                text-align: left;
+                left: 5%;
+                top: 143px;
+                font-size: 0.7rem;
+                width: 6rem;
+                padding: 0.01rem;
+                border: 0px;
+                border-radius: 4px;
+                background: rgba(255,255,255,0.6);
+                white-space: pre;
+            }
+            div.story {
+                position: absolute;
+                text-align: left;
+                left: 50%;
+                -ms-transform: translateX(-50%);
+                -webkit-transform: translate(-50%,0);
+                transform: translate(-50%,0);
+                bottom: 5rem;
+                width: 17rem;
+                height: 7.5rem;
+                padding: 0.55rem 2.3rem;
+                font-size: 0.75rem;
+                background: rgba(255,255,255,0.6);
+                border: 0px;
+                border-radius: 8px;
+                white-space: pre;
+            }
+            div.distname {
+                position: absolute;
+                text-align: center;
+                width: 5rem;
+                height: 1.3rem;
+                padding: 0.05rem;
+                font-size: 0.8rem;
+                background: rgba(255,255,255,0.75);
+                border: 0px;
+                border-radius: 2px;
+            }
+            .arrow {
+                position: absolute;
+                left: 45%;
+                -ms-transform: translateX(-50%);
+                -webkit-transform: translate(-50%,0);
+                transform: translate(-50%,0);
+                bottom: 0.5rem;
+                width: 5rem;
+                height: 2rem;    
+            }
+            #back {
+                position: absolute;
+                left: 0rem;
+                top: 1.25rem;
+                width: 1.5rem;
+                height: 5rem;
+            }
+            #next {
+                position: absolute;
+                right: 0rem;
+                top: 1.25rem;
+                width: 1.5rem;
+                height: 5rem;
+            }
+            #exit {
+                position: absolute;
+                right: 6px;
+                top: 4px;
+                width: 15px;
+                height: 15px;
+            }
+            #boxplot {
+                width: 30%;
+                height: 90%;
+            }
+            #side {
+                max-width: 50%;
+                float:left;
+                margin-right:2%;
+            }
+            @media screen and (min-width: 64em) {
+                #side {
+                    max-width: 50%; } }
+            
+            @media screen and (min-width: 42em) and (max-width: 64em) {
+                #side {
+                    max-width: 100%;
+                    clear: left;  } }
+            
+            @media screen and (max-width: 42em) {
+                #side {
+                    max-width: 100%;
+                    min-width: 100%;
+                    clear: left; } }   
+            /* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 1.6rem;
+  height: 0.8rem;
+}
 
-                        </section>
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.sliderround {
+  position: absolute;
+  cursor: pointer;
+  top:  0.2rem;
+  left:  0.15rem;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 1rem;
+}
+
+.sliderround:before {
+  position: absolute;
+  content: "";
+  height: 0.65rem;
+  width: 0.65rem;
+  left: 0.0008rem;
+  bottom: 0.01rem;
+  background-color: white;
+    -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .sliderround {
+  background-color: #74AFAD;
+}
+
+input:focus + .sliderround {
+  box-shadow: 0 0 1px #74AFAD;
+}
+
+input:checked + .sliderround:before {
+  -webkit-transform: translateX(0.9rem);
+  -ms-transform: translateX(0.9rem);
+  transform: translateX(0.9rem);
+}
+            </style>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <meta property="og:image" content="https://raw.githubusercontent.com/missmoss/taipei-stat-mrt/gh-pages/front.png"/>
+            <meta property="og:description" content="台北的有錢人都住在大安區嗎？過個馬路，居民收入就差20萬？雙北所得分布地圖告訴你區域所得差異。"/>
+            <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen"/>
+            <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' 'type='text/css'/>
+            <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen"/>
+            <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen"/>
+            <link rel="stylesheet" href="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.css" />
+            <link rel="stylesheet" type="text/css" href="stylesheets/jquery.fullPage.css" />
+            <script src="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.js"></script>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+            <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+            <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+            <script src="https://d3js.org/d3.v3.min.js"></script>
+            <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+            <script type="text/javascript" src="stylesheets/scrolloverflow.min.js"></script>
+            <script type="text/javascript" src="stylesheets/jquery.fullPage.js"></script>
+            <script>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+            
+            ga('create', 'UA-81478188-1', 'auto');
+            ga('send', 'pageview');
+            
+                </script>
+            </head>
+    
+    <body>
+        <div id="fullpage">
+            <div class="section">
+                <section class="main-content">
+                    <img src="front.png" id="side" style="margin-right:2%;"/>
+                    <h1>互動地圖：<br>雙北所得大解密</h1>
+                    <p>製作／<a href="https://github.com/missmoss">@missmoss</a></p>
+                    <p>台北的有錢人都住在大安區嗎？過個馬路，居民收入就差20萬？雙北所得分布地圖帶你一窺大台北地區的所得樣貌。</p>
+                </section>
+            </div>
+            <div class="section">
+                <section class="main-content">
+                    <p>星期五晚上11點，敦化南路上的律師事務所仍然燈火通明，C 律師與同事們正為了下週即將開庭的大案積極備戰。在 C 沒有對外窗的裡間獨立辦公室，感覺不到日夜的更迭，唯一明確變動的，只有眼前待解決的工作數量。「不加班，根本做不完。」</p>
+                    <p>入行兩年的 C 說：「週末，我不是在辦公室，就是抱著卷宗和電腦在家趕工。」</p>
+                    <p>每週工時上看 90 小時的 C ，有著大多數人稱羨的薪水：出社會第一年、25 歲就年薪百萬。然而，在 C 家所在的內湖區南湖里，他的年薪還比整個里的家戶所得中位數低一些，表示南湖里有一半以上的家庭，年收入都比 C 律師還要來得高。</p>
+                    <p>上班族追逐的年薪百萬，在台北市只能算是中產，更有 25% 的家庭，一年的所得總額低於 40 萬元。這樣的薪水，在台北市生活尚且不容易，更何況這 40 萬元可能要養活的是一整個家庭。</p>
+                    <p>在大台北地區，所得的地理分布可以一窺區域差異，透過簡單的統計指標，我們嘗試描繪出：現今生活在雙北不同地區的人們，可能過著什麼樣的生活。</p>
+                </section>
+            </div>
+            <div class="section">
+                <section class="main-content">
+                    <h2>雙北地區所得前十名</h2>
+                    <div>
+                        <div id="side">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>排名</th>
+                                        <th>縣市</th>
+                                        <th>鄉鎮市區</th>
+                                        <th>村里</th>
+                                        <th>所得中位數</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>新北市</td>
+                                        <td>新店區</td>
+                                        <td>華城里</td>
+                                        <td>127.5萬</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>台北市</td>
+                                        <td>文山區</td>
+                                        <td>政大里</td>
+                                        <td>127.4萬</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>台北市</td>
+                                        <td>內湖區</td>
+                                        <td>金湖里</td>
+                                        <td>127.3萬</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>台北市</td>
+                                        <td>內湖區</td>
+                                        <td>寶湖里</td>
+                                        <td>120.6萬</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>台北市</td>
+                                        <td>中山區</td>
+                                        <td>成功里</td>
+                                        <td>117.9萬</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>台北市</td>
+                                        <td>南港區</td>
+                                        <td>重陽里</td>
+                                        <td>114.6萬</td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td>台北市</td>
+                                        <td>內湖區</td>
+                                        <td>南湖里</td>
+                                        <td>111.4萬</td>
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td>台北市</td>
+                                        <td>中正區</td>
+                                        <td>新營里</td>
+                                        <td>107.0萬</td>
+                                    </tr>
+                                    <tr>
+                                        <td>9</td>
+                                        <td>台北市</td>
+                                        <td>北投區</td>
+                                        <td>永欣里</td>
+                                        <td>105.9萬</td>
+                                    </tr>
+                                    <tr>
+                                        <td>10</td>
+                                        <td>台北市</td>
+                                        <td>大安區</td>
+                                        <td>光明里<br>龍門里</td>
+                                        <td>104.2萬</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p style="font-size: 0.7rem;">資料來源：101年所得稅統計資料</p>
+                            <hr class="narrowonly">
                         </div>
-                        <div class="section">
-                        <section class="main-content">
-                        <h3>資料來源</h3>
-                        101年所得稅統計資料：<a href="http://data.gov.tw/">政府資料開放平台</a> <a href="http://data.gov.tw/node/17983">台北市</a>、<a href="http://data.gov.tw/node/17975">新北市</a></br>
-                        捷運站點位置： <a href="https://github.com/repeat" class="user-mention">@repeat</a>/<a href="https://github.com/repeat/taipei-metro-stations">taipei-metro-stations</a>
-                        <h3>延伸自</h3>
-                        <a href="http://missmoss.github.io/taipei-mrt-viz/">台北捷運一日進出站流量</a></br>
-                        <footer class="site-footer">
-                        <span class="site-footer-owner"><a href="https://github.com/missmoss/taipei-stat-mrt">台北都會區各項統計與台北捷運</a> 由 <a href="https://github.com/missmoss">missmoss</a> 製作。</span>
+                        <div>
+                            <p>被網友戲稱為天龍國的台北市大安區，印象中向來是有錢人才住得起的地方，也被認為應該是台灣平均收入最高的一群，但是若將年度家戶所得依各村里中位數排出前十名，大安區只有光明里及龍門里排得上號，以104萬同時名列第十名。</p>
+                            <h3>前三名位於市郊</h3>
+                            <p>領先群組新店區華城里、文山區政大里及內湖區金湖里的所得中位數難分軒輊，這三個里均是相對市郊、環山抱翠，聚集了不少喜歡清幽的有錢人。</p>
+                            <h3>三到十名生活機能佳</h3>
+                            <p>中段群組均位於市區，鄰近明星學區、醫院、科技公司聚集處，內湖區寶湖里鄰近三總、國防醫學院，中山區成功里即明水路一帶，著名的大直水岸第一排就座落於此，南港區重陽里也臨河，近南港軟體園區，內湖區南湖里在哈拉影城後方，中正區新營里為中正紀念堂、羅斯福路及杭州南路所夾三角地區，北投區永欣里在榮總周邊，大安區光明里臨中正紀念堂，龍門里則被大安森林公園、台大、龍門國中所環繞。</p>
+                            <blockquote>
+                                <h4>為什麼使用中位數</h4>
+                                <p>中位數是將原始資料排序後，位於正中間（50%）的數值。在所得資料中，平均數常常被少數高所得的極端值拉高，使得平均數有時難以衡量一個群體的大致收入樣貌，所以我們採用中位數，以求貼近一般的所得水準。</p>
+                            </blockquote>
+                        </div>
+                        </section>
+            </div>
+            <!--
+            <div class="section">
+                <section class="main-content">
+                    <h1>雙北地區所得分布</h1>
+                    <p>接下來讓我們一起來看看所得中位數在地圖上的實際分布情形。</p>
+                </section>
+            </div>
+            -->
+            <div class="section">
+                <div id="map">
+                </div>
+            </div>
+            <!--
+            <div class="section">
+            <section class="main-content">
+            <h1>我是h1</h1>
+            <h2>我是h2</h2>
+            <h3>我是h3</h3>
+            <h4>我是h4</h4>
+            <h5>我是h5</h5>
+            <p>我是p</p>
+            <pre><code>我是code</code></pre>
+            <blockquote>
+            <h4>我是小框框標題</h4>
+            <p>我是小框框內容</p>
+            </blockquote>
+            </section>
+            </div>
+            -->
+            <div class="section">
+                <section class="main-content">
+                    <h3>雙北所得地圖</h3>
+                    <p>將台北市、新北市 103 年所得稅統計資料各村里綜合所得稅所得總額中位數畫成熱圖，顏色越粉紅，所得稅中位數越高，顏色越綠，該村里所得稅中位數越低。中位數僅能大致窺見區域分布差異，無法完全衡量實際分布，也無法顯示出家戶內部的所得差異。未設籍在居住地的人口也無法被計入。</p>
+                    <p>另所得稅統計資料處理過程繁複，需時較久，目前資料僅釋出至 103 年度，故以 103 年度作圖。</p>
+                    <h3>資料來源</h3>
+                    所得稅統計資料：103 年／<a href="http://www.fia.gov.tw/ct.asp?xItem=3451&ctNode=668&mp=1">財政部財政資訊中心</a> <a href="https://github.com/leeneil">、@leeneil</a> 在 <a href="https://github.com/cicadatatw>@cicadatatw">@cicadatatw</a> 的 <a href="https://github.com/cicadatatw/taiwan-income-by-village"> pdf/csv 轉檔</a></br>
+                    101 年／<a href="http://data.gov.tw/">政府資料開放平台</a> <a href="http://data.gov.tw/node/17983">台北市</a>、<a href="http://data.gov.tw/node/17975">新北市</a></br>
+                    捷運站點位置： <a href="https://github.com/repeat" class="user-mention">@repeat</a>/<a href="https://github.com/repeat/taipei-metro-stations">taipei-metro-stations</a>
+                    <h3>延伸自</h3>
+                    <a href="http://missmoss.github.io/taipei-mrt-viz/">台北捷運一日進出站流量</a></br>
+                    <footer class="site-footer">
+                        <span class="site-footer-owner"><a href="https://github.com/missmoss/taipei-stat-mrt">雙北所得分布地圖</a> 由 <a href="https://github.com/missmoss"> @missmoss</a> 製作。</span>
                         <!--<span class="site-footer-credits">The front photo is via courtesy of <a href="https://www.flickr.com/photos/lipon/11730442194/">liponan</a>.</span>-->
-                        <span class="site-footer-credits">本頁面是 <a href="https://pages.github.com">GitHub Pages</a> ，使用 <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> ，由 <a href="https://twitter.com/jasonlong">Jason Long</a> 製作。特別感謝林怡、務熙學長、鴨鴨、有有、南哥、Kn 在製作過程的討論與協助。</span>
-                        </footer>
-                        
-                        </section>
-                        </div>
-                    </div>
-                        
-                        <script>
-                        /* Set up Leaflet.js map */
-                        var northEast = L.latLng(25.3,121.8),
-                        southWest = L.latLng(24.9023253,121.26019),
-                        bounds = L.latLngBounds(southWest, northEast);
-                        
-                        var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
-                        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-                        subdomain: 'abcd'
-                        });
-                        
-                        var map = L.map('map', {
-                        scrollWheelZoom: false,
-                        doubleClickZoom: false,
-                        center: [25.0600789,121.5171921],
-                        zoom: 12,
-                        zoomControl: false,
-                        maxBounds: bounds
-                        });
-                        
-                        map.addLayer(layer);
-                        
-                        /* Initialize the SVG layer */
-                        map._initPathRoot()
-                        
-                        /* Set up svg and some elements for charts */
-                        
-                        /* svg1 for Heatmap */
-                        /* We simply pick up the SVG from the map object */
-                        
-                        var svg1 = d3.select("#map").select("svg");
-                        g = svg1.append("g");
-                         
-                        /*
-                        var timediv = d3.select("#map").append("div")
-                        .attr("class", "clock")
-                        .append("svg");
-                        
-                        var div = d3.select("#map").append("div")
-                        .attr("class", "legend");
-                        
-                        var clock = timediv.append("text")
-                        .attr("fill", "#6C6C6C")
-                        .attr("x", 10)
-                        .attr("y", 40)
-                        .style("font-size", 32)
-                        .text("00:00");
-                        */
-                         
-                        var tooltip = d3.select("body")
-                        .append("div")
-                        .attr("class", "tooltip")
-                        .style("opacity", 0);
-
-                        
-                        var svg2 = d3.select(map.getPanes().overlayPane).append("svg"),
-                        g2 = svg2.append("g").attr("class", "dist");
-                        /*
-                        svg3 = d3.select(map.getPanes().overlayPane).append("svg").attr("width", screen.width).attr("height", screen.height),
-                        g = svg3.append("g");
-                        */
-                        d3.json("twnsub2.json", function(collection) {
-                            /*
-                            collection = topojson.feature(collection, collection.objects.Village_NLSC_121_1050219)
-                            
-                            for (idx=collection.length - 1;idx>=0;idx--) {
-                                var city = collection[idx].properties.C_Name
-                                if (city != "臺北市" && city != "新北市") {
-                                    delete collection[idx];
-                                }
-                            }
-                             */
-                            var incomeMedian = collection.features.map(function(item) {
-                                    return parseInt(item.properties.INCOME_MEDIAN);
-                            }
-                            )
-                            
-                            var extent = d3.extent(incomeMedian);
-                            console.log(extent);
-                            
-                            var fillColor = d3.scale.linear()
-                            .range(["#3ED8FF","#E84593"])
-                            .domain(extent);
-                            
-                            var transform = d3.geo.transform({point: projectPoint}),
-                            path = d3.geo.path().projection(transform);
-                            
-                            var feature = g2.selectAll(".subdist")
-                            .data(collection.features)
-                            .enter().append("path")
-                            .attr("class", "subdist")
-                            .attr("fill", function(d) {
-                                
-                                // Get data value
-                                var value = d.properties.INCOME_MEDIAN;
-                                
-                                if (value) {
-                                    //If value exists…
-                                    return fillColor(value);
-                                } else {
-                                    //If value is undefined…
-                                    return "white";
-                                }
-                            })
-                            .on("mouseover", function(d) {
-                                d3.select(this)
-                                .style("opacity", 0.75);
-                                tooltip.transition()
-                                .duration(200)
-                                .style("opacity", .9);
-                                tooltip.text(function () {
-                                    return d.properties.TOWN+'\n'+
-                                    d.properties.VILLAGE+'\n'+
-                                    d.properties.INCOME_MEDIAN+',000 元';
-                                })
-                                .style("left", (d3.event.pageX) + "px")
-                                .style("top", (d3.event.pageY - 28) + "px");
-                            })
-                            .on("mouseout", function(d) {
-                                d3.select(this)
-                                .style("opacity", 0.3);
-                                tooltip.transition()
-                                .duration(500)
-                                .style("opacity", 0);   
-                            })
-                            .style("opacity", 0.3);
-                            
-                            //d3 code stolen from http://bost.ocks.org/mike/leaflet/#init
-                            
-                            map.on("viewreset", reset);
-                            reset();
-                            function reset() {
-                            var topobounds = path.bounds(collection),
-                                topLeft = topobounds[0],
-                                bottomRight = topobounds[1];
-                                
-                                svg2.attr("width", bottomRight[0] - topLeft[0])
-                                .attr("height", bottomRight[1] - topLeft[1])
-                                .style("left", topLeft[0] + "px")
-                                .style("top", topLeft[1] + "px");
-                                g2.attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
-                                
-                                feature.attr("d", path);
-                            }
-                            
-                            function projectPoint(x, y) {
-                                var point = map.latLngToLayerPoint(new L.LatLng(y, x));
-                                this.stream.point(point.x, point.y);
-                            }
-                             
+                        <span class="site-footer-credits">本頁面是 <a href="https://pages.github.com">GitHub Pages</a> ，修改自由 <a href="https://twitter.com/jasonlong">Jason Long</a> 製作的 <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a>。特別感謝映昕、林怡、務熙學長、鴨鴨、有有、南哥、Kn、白經濟作者群在製作過程的討論與協助。</span>
+                    </footer>
                     
-                        });
-                        
-                        //twnsublatlng.json Village_NLSC_121_1050219 25.0853403,121.4231634
-                     
-                        
-                        d3.csv("taipei.csv", function(data) {
-                        
-                        var transform = d3.geo.transform({point: projectPoint}),
-                        d3path = d3.geo.path().projection(transform);
-                        
-                        function projectPoint(x, y) {
-                            var point = map.latLngToLayerPoint(new L.LatLng(x, y));
-                            this.stream.point(point.x, point.y);
-                        }
-                        
-                        var lines = {"1":{
-                            color: "brown",
-                            geoLineString: {
-                                type: "LineString",
-                                coordinates: []
-                                }},
-                            "2": {
-                            color: "red",
-                            geoLineString: {
-                                type: "LineString",
-                                coordinates: []
-                                }},
-                            "3": {
-                            color: "green",
-                            geoLineString: {
-                                type: "LineString",
-                                coordinates: []
-                                }},
-                            "4": {
-                            color: "orange",
-                            geoLineString: {
-                                type: "LineString",
-                                coordinates: []
-                                }},
-                            "4-1": {
-                                color: "orange",
-                                geoLineString: {
-                                    type: "LineString",
-                                    coordinates: []
-                                }},
-                            "5": {
-                            color: "blue",
-                            geoLineString: {
-                                type: "LineString",
-                                coordinates: []
-                                }},
-                            "n": {
-                            color: "red",
-                            geoLineString: {
-                                type: "LineString",
-                                coordinates: []
-                                }},
-                            "s": {
-                            color: "green",
-                            geoLineString: {
-                                type: "LineString",
-                                coordinates: []
-                                }}
-                            };
-                        
-                        data.forEach(function(d) {
-                            lines[d.line_no].geoLineString.coordinates.push(
-                            [parseFloat(d.lat), parseFloat(d.lon)]);
-                        });
-                        
-                        var keys = d3.keys(lines).filter(function(key, d) {
-                            return key;
-                        });
-                        
-                        var lines2 = [];
-                        
-                        keys.forEach(function(key) {
-                            var tmpdata = lines[key];
-                            tmpdata['line_no'] = key;
-                            lines2.push(tmpdata);
-                        });
-                        
-                        var linePath = g.selectAll(".lineConnect")
-                        .data(lines2)
-                        .enter()
-                        .append("path")
-                        .attr("class", "lineConnect")
-                        .attr("id", function(d) {return d.line_no; })
-                        .attr("stroke", function(d) { return d.color; })
-                        .attr("fill", "None")
-                        .style("opacity", 1)
-                        .attr("d", function(d) { return d3path(d.geoLineString); });
-                        
-                        map.on("viewreset", updateMap);
-                        updateMap();
-                        
-                        function updateMap() {
-                            linePath.attr("transform",
-                                function(d) {
-                                    d.x = map.latLngToLayerPoint(d.LatLng).x;
-                                    d.y = map.latLngToLayerPoint(d.LatLng).y;
-                                    return "translate("+d.x +","+d.y +")";
-                                }
-                            )};
-                        
-                        
-                        }); //end of d3.csv("taipei.csv")
-                        
-                        /* Load data, process and draw functions */
-                        /*
-                        d3.csv("mrtflow_Nov2_2015.csv", function(data) {
-                        
-                        data.forEach(function(d) {
-                        d.LatLng = new L.LatLng(d.lat, d.lon);
-                        });
-                        
-                        
-                        var radScale = d3.scale.sqrt().domain([10,5000]).rangeRound([3,15]);
-                        
-                        var legend = [10, 100, 1000, 10000];
-                        
-                        var padding = 10
-                        
-                        div = div.append("svg");
-                        
-                        div.append("text")
-                        .attr("x", 5)
-                        .attr("y", 18)
-                        .attr("fill", "#6C6C6C")
-                        .style("font-size", 14)
-                        .text("Legend");
-                        
-                        div.append("circle")
-                        .attr("cx", 22)
-                        .attr("cy", 30)
-                        .attr("r", 5)
-                        .attr("fill", "#FFE11A")
-                        .style("opacity", 0.7);
-                        div.append("text")
-                        .attr("x", 45)
-                        .attr("y", 35)
-                        .style("font-size", 12)
-                        .text("entry");
-                        div.append("circle")
-                        .attr("cx", 22)
-                        .attr("cy", 45)
-                        .attr("r", 5)
-                        .attr("fill", "#5bc0de")
-                        .style("opacity", 0.7);
-                        div.append("text")
-                        .attr("x", 45)
-                        .attr("y", 50)
-                        .style("font-size", 12)
-                        .text("exit");
-                        
-                        div.selectAll(".legend")
-                        .data(legend)
-                        .enter()
-                        .append("circle")
-                        .attr("cx", 22)
-                        .attr("cy", function(d,i) { return 60+i*10+radScale(d-1)*2; })
-                        .attr("r", function(d) { return radScale(d);} )
-                        .attr("fill", "#5bc0de")
-                        .style("opacity", 0.7);
-                        
-                        div.selectAll(".legendtext")
-                        .data(legend)
-                        .enter()
-                        .append("text")
-                        .attr("x", 45)
-                        .attr("y", function(d,i) { return 67+i*10+radScale(d-1)*2;})
-                        .text(function(d) { return d;});
-                        
-                        var pauseButton = timediv.append("path")
-                        .attr("class", "player")
-                        .attr("id", "pause")
-                        .attr("d", "m42,48L42,64L57,64L57,48L52,48L52,64L47,64L47,48z")
-                        .attr("fill", "#6C6C6C")
-                        .on("mouseover", function(){
-                            d3.select(this)
-                            .attr("fill", "#5bc0de");
-                        })
-                        .on("mouseout", function(){
-                            d3.select(this)
-                            .attr("fill", "#6C6C6C");
-                        })
-                        .on("click", stopTimer);
-                        
-                        var forwardButton = timediv.append("path")
-                        .attr("class", "player")
-                        .attr("id", "forward")
-                        .attr("d", "m70,48L80,56L80,48L90,56L80,64L80,56L70,64z")
-                        .attr("fill", "#6C6C6C")
-                        .on("mouseover", function(){
-                            d3.select(this)
-                            .attr("fill", "#5bc0de");
-                        })
-                        .on("mouseout", function(){
-                            d3.select(this)
-                            .attr("fill", "#6C6C6C");
-                        })
-                        .on("click", forwardTimer);
-                        
-                        var backwardButton = timediv.append("path")
-                        .attr("class", "player")
-                        .attr("id", "backward")
-                        .attr("d", "m30,48L20,56L20,48L10,56L20,64L20,56L30,64z")
-                        .attr("fill", "#6C6C6C")
-                        .on("mouseover", function(){
-                            d3.select(this)
-                            .attr("fill", "#5bc0de");
-                        })
-                        .on("mouseout", function(){
-                            d3.select(this)
-                            .attr("fill", "#6C6C6C");
-                        })
-                        .on("click", backwardTimer);
-                        
-                        
-                        var i = 0;
-                        var timer = setInterval(clockRunner, 1000);
-                        
-                        function clockRunner() {
-                        
-                        if (i < 19) {
-                            var h = i + 5;
-                            }
-                            else {
-                            var h = i - 19;
-                            }
-                            
-                            var h1 = parseInt(h / 10),h2 = h % 10;
-                            
-                            clock.text(h1+""+ h2+":00")
-                            .transition()
-                            .duration(50);
-                            
-                            d3.selectAll("#hour")
-                            .remove();
-                            draw(h);
-                            
-                            i++;
-                            if (i > 21) {
-                                stopTimer();
-                            };
-                            };
-                        
+                </section>
+            </div>
+        </div>
+        
+        <script>
+            var subdist, interactive, stationName, firstTime = false, exit = false;
+            var citydata = {
+                "y103" : {
+                    "tpe": { "q1": 392, "median": 732, "q3": 1427, "mean": 1434},
+                    "ntp": { "q1": 360, "median": 600, "q3": 1054, "mean": 895}
+                }
+            };
+            $(document).ready(function() {
+                $('#fullpage').fullpage({
 
-                        
-                        function stopTimer() {
-                            clearInterval(timer);
-                            
-                            d3.select("#pause")
-                            .remove();
-                            
-                            var playButton = timediv.append("path")
-                            .attr("class", "player")
-                            .attr("id", "play")
-                            .attr("d", "M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z")
-                            .attr("transform", "translate(38,45)")
-                            //.attr("d", "m44,47L55,53L55,47L58,47L58,63L55,63L55,58L44,63z")
-                            .attr("stroke", "#6C6C6C")
-                            .attr("stroke-width", 1.1)
-                            .attr("fill", "#6C6C6C")
-                            .on("mouseover", function(){
-                                d3.select(this)
-                                .attr("fill", "#5bc0de")
-                                .attr("stroke", "#5bc0de");
-                            })
-                            .on("mouseout", function(){
-                                d3.select(this)
-                                .attr("fill", "#6C6C6C")
-                                .attr("stroke", "#6C6C6C");
-                            })
-                            .on("click", restartTimer);
+                    // scrolling
+                    scrollOverflow: true,
+                    // event
+                    afterLoad: function(anchorLink, index){
+                        var loadedSection = $(this);
+
+                        //using index
+                        if ( index === 4 && firstTime === false ) {
+                            firstTime = true;
+                            storyTeller();
+                        }
+                    },
+                    onLeave: function(index, nextIndex, direction){
+                        if ( index === 1 ) {
+                            directionArrow.remove();
+                        } else if ( index === 4 ) {
+                            exit = true;
+                            distname.style("opacity", 0);
+                            tooltip.style("opacity", 0);
+                            subdist.style("opacity", 0.475);
+                            story.remove();
+                        }
+                    },
+                })
+            });
+            
+            /* Set up Leaflet.js map */
+            var northEast = L.latLng(25.3,122),
+            southWest = L.latLng(24.7,121.258),
+            bounds = L.latLngBounds(southWest, northEast);
+            
+            /* Hydda.Base MAP 
+            var layer = L.tileLayer('http://{s}.tile.openstreetmap.se/hydda/base/{z}/{x}/{y}.png', {
+    attribution: 'Tiles courtesy of <a href="http://openstreetmap.se/" target="_blank">OpenStreetMap Sweden</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+});
+            */
+
+            /* CARTODB BASEMAP */
+            var carto = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+                subdomain: 'abcd'
+                });
+
+            var satellite = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+            });
+            
+        
+        var map = L.map('map', {
+            scrollWheelZoom: false,
+            doubleClickZoom: false,
+            center: [25.045,121.547],
+            zoom: 13,
+            zoomControl: false,
+            maxBounds: bounds
+            });
+
+        //add zoom control with your options
+        L.control.zoom({
+             position:'topright'
+        }).addTo(map);
+        
+        map.addLayer(carto);
+        
+        /* Initialize the SVG layer */
+        map._initPathRoot()
+        
+        /* Set up svg and some elements for charts */
+        
+        /* svg1 for Heatmap */
+        /* We simply pick up the SVG from the map object */
+
+        var directionArrow = d3.select("body")
+        .append("div")
+        .attr("class", "arrow")
+        .append("svg");
+
+        setTimeout(function() {
+            directionArrow
+            .append("path")
+            .attr("d", "m0,0L30,25L60,0L60,7L30,32L0,7z")
+            .attr("fill", "#d0d0d0")
+            .attr("transform", "translate(0, -20)")
+            .transition()
+            .duration(500)
+            .attr("transform", "translate(0, 0)");
+
+            directionArrow
+            .append("text")
+            .attr("x", 65)
+            .attr("y", 0)
+            .attr("fill", "#d0d0d0")
+            .style("font-size", "1rem")
+            .text("往下滑動到下一頁")
+            .transition()
+            .duration(500)
+            .attr("y", 17);
+        }, 1000);
+        
+        var svg1 = d3.select("#map").select("svg");
+        g = svg1.append("g");
+
+        var title = d3.select("#map").append("div")
+        .attr("class", "title");
+        
+        title.text("雙北所得地圖");
+        
+        var legend = d3.select("#map").append("div")
+        .attr("class", "legend");
+
+        var mapcontrol = d3.select("#map").append("div")
+        .attr("id", "mapcontrol");
+        
+        var label1 = d3.select("#mapcontrol")
+        .append("div")
+        .append("label")
+        .attr("class", "switch")
+        .text("　　　捷運線");
+        
+        label1.append("input")
+        .attr("type", "checkbox")
+        .attr("checked", true)
+        .attr("id", "mrtline");
+        label1.append("div")
+        .attr("class", "sliderround");
+
+        var label2 = d3.select("#mapcontrol")
+        .append("div")
+        .append("label")
+        .attr("class", "switch")
+        .text("　　　捷運站點");
+        
+        label2.append("input")
+        .attr("type", "checkbox")
+        .attr("id", "station");
+        label2.append("div")
+        .attr("class", "sliderround");
+
+        var label3 = d3.select("#mapcontrol")
+        .append("div")
+        .append("label")
+        .attr("class", "switch")
+        .text("　　　衛星地圖");
+        
+        label3.append("input")
+        .attr("type", "checkbox")
+        .attr("id", "satellite");
+        label3.append("div")
+        .attr("class", "sliderround");
+
+        d3.select("#satellite").on("change", changeMap);
+
+        function changeMap() {
+            var check = this.checked;
+            if (check === true) {
+                map.removeLayer(carto);
+                map.addLayer(satellite);
+                stationName.attr("fill", "white");
+            } else {
+                map.removeLayer(satellite);
+                map.addLayer(carto);
+                stationName.attr("fill", "black");
+            }
+        }
+
+        var tooltip = d3.select("body").append("div")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
+
+        var distname = d3.select("body").append("div")
+        .attr("class", "distname")
+        .style("opacity", 0);
+        
+        
+        var svg2 = d3.select(map.getPanes().overlayPane).append("svg"),
+        g2 = svg2.append("g").attr("class", "dist");
+        g3 = svg2.append("g").attr("class", "station");
+
+        var story = d3.select("#map").append("div")
+        .attr("class", "story");
+        
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        
+        d3.json("twnsub3.json", function(collection) {
+            
+            var incomeMedian = collection.features.map(function(item) {
+                return parseInt(item.properties.INCOME_MEDIAN);
+            }
+            )
+            
+            var extent = d3.extent(incomeMedian),
+            middle = (extent[0]+extent[1])/2;
+            
+            var fillColor = d3.scale.linear()
+            .domain([extent[0], middle, extent[1]])
+            //.range(["#7CFFDE", "#5468E8", "#E84374"]);
+            .range(["#52FFB0", "#5468E8", "#E84374"]);
+            //.range(["#00A388", "#FFF457", "#E8518E"]);
+        
+            var fillOpacity = d3.scale.linear()
+            .domain(extent)
+            //.range(["#52FFB0", "#5468E8", "#E84374"]);
+            .range([0.35, 0.55]);
+            
+            //legend
+            var legendData = [300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200];
+            
+            var rectWidth = 27;
+            
+            legend = legend.append("svg");
+            
+            legend.append("text")
+            .attr("x", 5)
+            .attr("y", 18)
+            .attr("fill", "#6C6C6C")
+            .style("font-size", 14)
+            .text("雙北各里年度家戶所得中位數");
+            
+            legend.selectAll(".legend")
+            .data(legendData)
+            .enter()
+            .append("rect")
+            .attr("x", function(d,i) { return 10+rectWidth*i; })
+            .attr("y", 25)
+            .attr("width", rectWidth)
+            .attr("height", 10)
+            .attr("fill", function(d) { return fillColor(d); })
+            .style("opacity", 0.4);
+            
+            legend.selectAll(".legendtext")
+            .data(legendData)
+            .enter()
+            .append("text")
+            .attr("text-anchor", "start")
+            .attr("x", function(d,i) { return 5+rectWidth*i; })
+            .attr("y", 50)
+            .attr("fill", "#6C6C6C")
+            .text(function(d) { return d/10;});
+            
+            legend.append("text")
+            .attr("text-anchor", "start")
+            .attr("x", rectWidth*10+5)
+            .attr("y", 49)
+            .attr("fill", "#6C6C6C")
+            .text("萬元");   
+            
+            var transform = d3.geo.transform({point: projectPoint}),
+            path = d3.geo.path().projection(transform);
+            
+            subdist = g2.selectAll(".subdist")
+            .data(collection.features)
+            .enter().append("path")
+            .attr("stroke", "white")
+            .attr("stroke-width", 0.5)
+            .attr("class", function(d) { return d.properties.TOWN; }) //class=中正區/大安區/松山區...etc
+            .attr("id", function(d) { return d.properties.VILLAGE; }) //id=華城里/政大里/龍門里...etc
+            .attr("fill", function(d) {
+                
+                // Get data value
+                var value = d.properties.INCOME_MEDIAN;
+                
+                if (value) {
+                    //If value exists…
+                    return fillColor(value);
+                } else {
+                    //If value is undefined…
+                    return "white";
+                }
+            })
+            .style("opacity", 0.475);
+
+            interactive = function () {
+                subdist.on("mouseover", function(d) {
+                    d3.select(this)
+                    .style("opacity", 0.85);
+                    tooltip.transition()
+                    .duration(200)
+                    .style("opacity", 0.9);
+                    tooltip.text(function () {
+                        return d.properties.TOWN+'\n'+
+                        d.properties.VILLAGE+'\n'+
+                        numberWithCommas(d.properties.INCOME_MEDIAN)+',000 元';
+                    })
+                    .style("left", (d3.event.pageX) + "px")
+                    .style("top", (d3.event.pageY - 28) + "px");
+                })
+                .on("click", function(d) {
+                    d3.select(this)
+                    .style("opacity", 0.85);
+                    tooltip.transition()
+                    .duration(200)
+                    .style("opacity", 0.9);
+                    tooltip.text(function () {
+                        return d.properties.TOWN+'\n'+
+                        d.properties.VILLAGE+'\n'+
+                        numberWithCommas(d.properties.INCOME_MEDIAN)+',000 元';
+                    })
+                    .style("left", (d3.event.pageX) + "px")
+                    .style("top", (d3.event.pageY - 28) + "px");
+                })
+                .on("mouseout", function(d) {
+                    d3.select(this)
+                    .style("opacity", 0.475)
+                    tooltip.transition()
+                    .duration(500)
+                    .style("opacity", 0);
+                });
+            }
+            
+            //d3 code stolen from http://bost.ocks.org/mike/leaflet/#init
+            
+            map.on("viewreset", reset);
+            reset();
+            
+            function reset() {
+                var topobounds = path.bounds(collection),
+                topLeft = topobounds[0],
+                bottomRight = topobounds[1];
+                
+                svg2.attr("width", bottomRight[0] - topLeft[0])
+                .attr("height", bottomRight[1] - topLeft[1])
+                .style("left", topLeft[0] + "px")
+                .style("top", topLeft[1] + "px");
+                g2.attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
+                
+                subdist.attr("d", path);
+            }
+
+            function projectPoint(x, y) {
+                var point = map.latLngToLayerPoint(new L.LatLng(y, x));
+                this.stream.point(point.x, point.y);
+            }   
+            
+        });
+        
+        //twnsublatlng.json Village_NLSC_121_1050219 25.0853403,121.4231634
+        
+        
+        d3.csv("taipei.csv", function(data) {
+            
+            var transform = d3.geo.transform({point: projectPoint}),
+            d3path = d3.geo.path().projection(transform);
+
+            function projectPoint(x, y) {
+                var point = map.latLngToLayerPoint(new L.LatLng(x, y));
+                this.stream.point(point.x, point.y);
+            } 
+            
+            var lines = {
+            "1":{
+                color: "brown",
+                geoLineString: {
+                    type: "LineString",
+                    coordinates: []
+                }}, 
+            "2": {
+                color: "red",
+                geoLineString: {
+                    type: "LineString",
+                    coordinates: []
+                }},
+            "3": {
+                color: "green",
+                geoLineString: {
+                    type: "LineString",
+                    coordinates: []
+                }},
+            "4": {
+                color: "orange",
+                geoLineString: {
+                    type: "LineString",
+                    coordinates: []
+                }},
+            "4-1": {
+                color: "orange",
+                geoLineString: {
+                    type: "LineString",
+                    coordinates: []
+                }},
+            "5": {
+                color: "blue",
+                geoLineString: {
+                    type: "LineString",
+                    coordinates: []
+                }},
+            "n": {
+                color: "red",
+                geoLineString: {
+                    type: "LineString",
+                    coordinates: []
+                }},
+            "s": {
+                color: "green",
+                geoLineString: {
+                    type: "LineString",
+                    coordinates: []
+                }}
+            };
+            
+            data.forEach(function(d) {
+                lines[d.line_no].geoLineString.coordinates.push(
+                [parseFloat(d.lat), parseFloat(d.lon)]);
+            });
+
+            var keys = d3.keys(lines).filter(function(key, d) {
+                return key;
+            });
+            
+            var lines2 = [];
+            
+            keys.forEach(function(key) {
+                var tmpdata = lines[key];
+                tmpdata['line_no'] = key;
+                lines2.push(tmpdata);
+            });
+            
+            var linePath = g.selectAll(".lineConnect")
+            .data(lines2)
+            .enter()
+            .append("path")
+            .attr("class", "lineConnect")
+            .attr("id", function(d) {return d.line_no; })
+            .attr("stroke", function(d) { return d.color; })
+            .attr("stroke-width", 1.5)
+            .attr("fill", "None")
+            .style("opacity", 1)
+            .attr("d", function(d) { return d3path(d.geoLineString); });
+
+            d3.select("#mrtline").on("change", switchLine);
+
+            function switchLine() {
+                var check = this.checked;
+                if (check === true) {
+                    linePath.style("opacity", 1);
+                } else {
+                    linePath.style("opacity", 0);
+                }
+            }
+
+            var stations = g.selectAll(".circle")
+            .data(data)
+            .enter()
+            .append("circle")
+            .attr("r", 3.5)
+            .attr("cx", function(d) { return map.latLngToLayerPoint(new L.LatLng(d.lat, d.lon)).x;})
+            .attr("cy", function(d) { return map.latLngToLayerPoint(new L.LatLng(d.lat, d.lon)).y;})
+            .attr("class", "circle")
+            .attr("stroke", function(d) { return lines[d.line_no].color; } )
+            .attr("stroke-width", 1.5)
+            .attr("fill", "#fff")
+            .style("opacity", 0);
+
+            stationName = g2.selectAll(".station-name")
+            .data(data)
+            .enter()
+            .append("text")
+            .attr("class", "station-name")
+            .attr("id", function(d) { return d.id; })
+            .attr("fill", "black")
+            .style("font-size", 6)
+            .text(function(d) { return d.name; } )
+            .style("opacity", 0);
+            
+            map.on("viewreset", updateMap);
+            updateMap();
+
+            d3.select("#station").on("change", switchStation);
+
+            function switchStation() {
+                var check = this.checked;
+                if (check === true) {
+                    stations.style("opacity", 1);
+                    stationName.style("opacity", 1);
+                } else {
+                    stations.style("opacity", 0);
+                    stationName.style("opacity", 0);
+                }
+            }
+
+            function updateMap() {
+                linePath.attr("d", function(d) { return d3path(d.geoLineString); });
+                stationName.attr("transform", function(d) { 
+                    d.x = map.latLngToLayerPoint(new L.LatLng(d.lat, d.lon)).x+7.5;
+                    d.y = map.latLngToLayerPoint(new L.LatLng(d.lat, d.lon)).y+2;
+                    return "translate("+d.x +","+d.y +")rotate(-20)";
+                });
+                stations.attr("cx", function(d) { return map.latLngToLayerPoint(new L.LatLng(d.lat, d.lon)).x;})
+                .attr("cy", function(d) { return map.latLngToLayerPoint(new L.LatLng(d.lat, d.lon)).y;});
+            }
+
+        }); //end of d3.csv("taipei.csv")
+            
+
+        function storyTeller() {
+            // start
+            var i = 0,
+            r = $.Deferred();
+
+            var storyData = [
+            { type: 0, pan: [24.9263674,121.4975], selector: "sub", target: "華城里", text: "第一名  新北市新店區華城里\n家戶所得中位數：127.5 萬\n類型：別墅社區\n學校：康橋中小學\n房價：別墅 3 千萬至 5 千萬\n交通：國道 3 號、環河快速道路" },
+            { type: 0, pan: [24.9896,121.59], selector: "sub", target: "政大里", text: "第二名  台北市文山區政大里\n家戶所得中位數：127.4 萬\n類型：別墅社區\n學校：政大實小、政大附中\n房價：別墅 3 千萬至 5 千萬\n交通：國道 3 號、信義支線" },
+            { type: 0, pan: [25.0752,121.608], selector: "sub", target: "金湖里", text: "第三名  台北市內湖區金湖里\n家戶所得中位數：127.3 萬\n類型：別墅社區\n學校：麗湖國小、明湖國小、明湖國中\n房價：別墅 3 千萬至 5 千萬\n交通：國道 1 號" },
+            { type: 2, pan: [25.045,121.547], center: [[25.0292997,121.5030736], [25.0263064,121.5263363], [25.0645017,121.4959642], [25.0601717,121.5417976], [25.0287132,121.5548065], [25.0294912,121.4803741]], selector: "dist", target: ["中正區", "大安區", "大同區", "松山區", "信義區", "萬華區"], text: "台北市中心區域的中正、大安、大同、松山、信義，以及周邊的萬華等區內部顏色較相近，相對而言區域內較為均值。" },
+            { type: 1, pan: [25.045,121.547], center: [25.0263064,121.5263363], selector: "dist", target: "大安區", text: "大安區雖然沒有在村里排名拔得頭籌，整體收入都還是在雙北的前段班。" },
+            { type: 3, pan: [25.045,121.547], center: [[24.991582, 121.572439], [25.088473, 121.593980], [25.06,121.532]], selector: "dist", target: ["文山區", "內湖區", "中山區"], text: "周圍的文山區、內湖區、中山區則有部分村里一枝獨秀的狀況，區域內部較不平均。" },
+            { type: 3, pan: [25.045,121.547], center: [[25.036521, 121.606516], [25.110375, 121.543105], [25.1531443,121.4833168]], selector: "dist", target: ["南港區", "士林區", "北投區"], text: "士林、北投、南港則是在河堤、山區，與仍有開發問題的社子島有相對較低的所得。" },
+            { type: 3, pan: [25.045,121.547], center: [[24.935879, 121.532208], [24.990909, 121.493024], [25.008994, 121.519721], [25.014647, 121.457957], [25.074577, 121.660210]], selector: "dist", target: ["新店區", "中和區", "永和區", "板橋區", "汐止區"], text: "新北市普遍所得較高的地區則是大家所熟悉與台北市緊密相連的新店區、中永和區、板橋區、汐止區。" },
+            { type: 3, pan: [25.045,121.547], center: [[25.186485, 121.457590], [25.097718, 121.357951], [24.968029, 121.400650], [24.904097, 121.399486]], selector: "dist", target: ["淡水區", "林口區", "樹林區", "三峽區"], text: "另外淡水區，以及西邊的林口區長庚醫院周邊，以及西南邊位於三峽、樹林的台北大學特區亦是所得較高的區域。" },
+            { type: 0, pan: [25.045,121.547], center: [25.0263064,121.5263363], selector: "none", target: "", text: "接下來，換你自由探索地圖囉！" }
+            ]  
+
+            function storyLine() {
+                var type = storyData[i].type,
+                pan = storyData[i].pan,
+                center = storyData[i].center,
+                target = storyData[i].target,
+                text = storyData[i].text,
+                selector;
+
+
+                if (storyData[i].selector === "sub") {
+                    selector = "#";
+                } else if (storyData[i].selector === "dist") {
+                    selector = ".";
+                } else {
+                    selector = "";
+                }
+
+                if (type === 0) {
+                    type0();
+                } else if (type === 1) {
+                    type1();
+                } else if (type === 2) {
+                    type2();
+                } else if (type === 3) {
+                    type3();
+                }
+
+                story.text(text);
+
+                var nextBtn = story.append("svg")
+                    .attr("id", "next")
+                    .append("path")
+                    .attr("class", "btn")
+                    .attr("d", "m0,0L7,0L21,50L7,100L0,100L14,50z")
+                    .attr("fill", "#d0d0d0")
+                    .on("mouseover", function(){
+                        d3.select(this)
+                        .attr("fill", "#74AFAD");
+                    })
+                    .on("mouseout", function(){
+                        d3.select(this)
+                        .attr("fill", "#d0d0d0");
+                    });
+
+                var backBtn = story.append("svg")
+                .attr("id", "back")
+                .append("path")
+                .attr("class", "btn")
+                .attr("d", "m30,0L23,0L9,50L23,100L30,100L16,50z")
+                .attr("fill", "#d0d0d0")
+                .on("mouseover", function(){
+                    d3.select(this)
+                    .attr("fill", "#74AFAD");
+                })
+                .on("mouseout", function(){
+                    d3.select(this)
+                    .attr("fill", "#d0d0d0");
+                });
+
+                var exitBtn = story.append("svg")
+                .attr("id", "exit")
+                .append("path")
+                .attr("class", "btn")
+                .attr("d", "m0,0L5,5L10,10L5,5L0,10L5,5L10,0L5,5z")
+                .attr("stroke-width", 4)
+                .attr("stroke", "#d0d0d0")
+                .attr("transform", "translate(4,4)")
+                .on("mouseover", function(){
+                    d3.select(this)
+                    .attr("stroke", "#74AFAD");
+                })
+                .on("mouseout", function(){
+                    d3.select(this)
+                    .attr("stroke", "#d0d0d0");
+                })
+                .on("click", function() {
+                    exit = true;
+                    distname.style("opacity", 0);
+                    tooltip.style("opacity", 0);
+                    subdist.style("opacity", 0.475);
+                    story.remove();
+                    interactive();
+                    map.panTo([25.045,121.547]);
+                });
+
+                if (i === storyData.length-1) {
+                    nextBtn.style("opacity", 0);
+                    backBtn.on("click", function() { clickBack(); } );
+                    interactive();
+                    setTimeout(function() {
+                        distname.remove();
+                        story.style("opacity", 0);
+                    }, 4000);
+                } else if (i === 0) {
+                    nextBtn.on("click", function() { clickNext(); } );
+                    backBtn.attr("opacity", 0);
+                } else {
+                    nextBtn.on("click", function() { clickNext(); } );
+                    backBtn.on("click", function() { clickBack(); } );
+                }
+
+                function type0() {
+
+                    if (exit === false) {
+
+                        if (selector === "#") {
+                            d3.select(selector+target)
+                            .style("opacity", 0.85);
+                        } else if (selector === ".") {
+                            d3.selectAll(selector+target)
+                            .style("opacity", 0.85);                        
+                        }
+
+                        map.panTo(pan);
+
+                        if (i < storyData.length-1) {
+                            setTimeout(function () {
+                                clickNext();
+                            }, 3500);
+                        } else {
+                            exit = true;
+                            distname.style("opacity", 0);
+                        }
+                    } else {
+                        return;
+                    }
+
+                } // end of type0()
+
+
+                function type1() {
+
+                    if (exit === false) {
+
+                        map.panTo(pan);
+
+                        var textPosition = map.latLngToLayerPoint(new L.LatLng(center[0], center[1]));
+
+                        if (selector === "#") {
+                            d3.select(selector+target)
+                            .style("opacity", 0.85);
+                        } else if (selector === ".") {
+                            d3.selectAll(selector+target)
+                            .style("opacity", 0.85);                        
                         };
-                        
-                        function restartTimer() {
-                            i = 0;
-                            timer = setInterval(clockRunner, 1000);
-                            
-                            d3.select("#play")
-                            .remove();
-                            
-                            var pauseButton = timediv.append("path")
-                            .attr("class", "player")
-                            .attr("id", "pause")
-                            .attr("d", "m42,47L42,63L57,63L57,47L52,47L52,63L47,63L47,47z")
-                            .attr("fill", "#6C6C6C")
-                            .on("mouseover", function(){
-                                d3.select(this)
-                                .attr("fill", "#5bc0de");
+
+                        d3.select(".story")
+                        .style("white-space", "pre-wrap");
+
+                        distname.transition()
+                        .duration(200)
+                        .style("opacity", 0.9);
+                        distname.text(function () {
+                                return target;
+                        })
+                        .style("left", (textPosition.x + 10) + "px")
+                        .style("top", (textPosition.y - 28) + "px");
+
+                        if (i < storyData.length-1) {
+                            setTimeout(function () {
+                                clickNext();
+                            }, 3500);
+                        } else {
+                            exit = true;
+                            distname.style("opacity", 0);
+                        }
+                    } else {
+                        return;
+                    }
+
+                } // end of type1()
+
+                function type2() {
+
+                    if (exit === false) {
+
+                        map.panTo(pan);
+
+                        var j = 0, n = target.length, current = i;
+
+                        d3.select(".story")
+                        .style("white-space", "pre-wrap");
+                                
+                        function show() {
+
+                            if ( current !== i | exit === true ) {
+                                clearInterval(distSwitch);
+                                return;
+                            }
+
+                            var textPosition = map.latLngToLayerPoint(new L.LatLng(center[j][0], center[j][1]));
+
+                            // remove previous
+                            subdist.style("opacity", 0.475);
+                            distname.style("opacity", 0);
+                            // highlight current
+                            if (selector === "#") {
+                                d3.select(selector+target[j])
+                                .style("opacity", 0.85);
+                            } else {
+                                d3.selectAll(selector+target[j])
+                                .style("opacity", 0.85);                      
+                            }
+                            distname.style("opacity", 0.9);
+
+                            distname.text(function () {
+                                return target[j];
                             })
-                            .on("mouseout", function(){
-                                d3.select(this)
-                                .attr("fill", "#6C6C6C");
-                            })
-                            .on("click", stopTimer);
-                        };
-                        
-                        function forwardTimer() {
-                            if (i < 22) {
-                                clockRunner();
+                            .style("left", (textPosition.x + 10) + "px")
+                            .style("top", (textPosition.y - 28) + "px");
+
+                            j++;
+
+                            if ( j >= n ) {
+                                clearInterval(distSwitch);
                             }
                         }
 
-                        function backwardTimer() {
-                            if (i > 0) {
-                                i = i - 2;
-                                console.log(i);
-                                clockRunner();
-                            }
-                        }
-                            function draw(h) {
+                        show();
+                        var distSwitch;
+                        setTimeout(function() {
+                            distSwitch = setInterval(show, 1500);
+                        }, 2000);
+
+
+                        if (i < storyData.length-1) {
+                            setTimeout(function () {
+                                clickNext();
+                            }, 1500*n+4000);
+                        } else {
+                            exit = true;
+                            distname.style("opacity", 0);
+                        };
+                    } else {
+                        return;
+                    }
+
+                }  // end of type2()
+
+
+                function type3() {
+
+                    if (exit === false) {
+
+                        var j = 0, n = target.length, current = i;
+
+                        d3.select(".story")
+                        .style("white-space", "pre-wrap");
                             
-                            hData = data.filter(function(d) {
-                            return d.hour == h;
+                        function show() {
+
+                            if ( current !== i | exit === true ) {
+                                clearInterval(distSwitch);
+                                return;
+                            }
+
+                            // remove previous
+                            subdist.style("opacity", 0.475);
+                            distname.style("opacity", 0);
+                            // highlight current
+                            if (selector === "#") {
+                                d3.select(selector+target[j])
+                                .style("opacity", 0.85);
+                            } else {
+                                d3.selectAll(selector+target[j])
+                                .style("opacity", 0.85);                        
+                            }
+                            map.panTo(center[j]);
+                            distname.style("opacity", 0.9);
+
+                            distname.text(function () {
+                                return target[j];
                             })
+                            .style("left", "49%")
+                            .style("top", "50%");
                             
-                            function color(input) {
-                            if (input === "in") {
-                            return "#FFE11A";
+                            j++;
+
+                            if ( j >= n ) {
+                                clearInterval(distSwitch);
                             }
-                            else if (input === "out") {
-                            return "#5bc0de";
-                            }
-                            else {
-                            return "steelblue";
-                            }
-                            }
-                            
-                            var canvas = g.selectAll("circle")
-                            .data(hData)
-                            .enter();
-                            
-                            var feature = canvas.append("circle")
-                            .style("opacity", .6)
-                            .attr("fill", function(d) {return color(d.direction);})
-                            .attr("r", function(d) {return radScale(d.flow); })
-                            .attr("class", "circle")
-                            .attr("click", "off")
-                            .attr("id", "hour");
-                            
-                            map.on("viewreset", updateMap);
-                            updateMap();
-                            
-                            function updateMap() {
-                            feature.attr("transform",
-                            function(d) {
-                            d.x = map.latLngToLayerPoint(d.LatLng).x;
-                            d.y = map.latLngToLayerPoint(d.LatLng).y;
-                            return "translate("+d.x +","+d.y +")";
-                            }
+<<<<<<< HEAD
                             )};
                             
                             }// end of draw(h)
@@ -694,3 +1272,55 @@
   </body>
 </html>
 >>>>>>> Create gh-pages branch via GitHub
+=======
+                        }
+
+                        show();
+                        var distSwitch;
+                        setTimeout(function() {
+                            distSwitch = setInterval(show, 1500);
+                        }, 2000);
+
+                        if (i < storyData.length-1) {
+                            setTimeout(function () {
+                                clickNext();
+                            }, 2500*n+4000);
+                        } else {
+                            exit = true;
+                            distname.style("opacity", 0);
+                        }
+                    } else {
+                        return;
+                    }
+                    
+                
+                }  // end of type3()
+
+                
+            } // end of storyLine();
+
+            function clickBack() {
+                subdist.style("opacity", 0.475);
+                distname.style("opacity", 0);
+                i--;
+                storyLine();
+            }
+
+
+            function clickNext() {
+                subdist.style("opacity", 0.475);
+                distname.style("opacity", 0);
+                i++;
+                storyLine();
+            }
+
+            storyLine();
+
+        } // end of storyTeller() 
+
+        // remove all after display. navigation? color? mapcontrol?
+
+        </script>
+    </body>
+</html>
+>>>>>>> gh-pages

@@ -6,6 +6,9 @@
             <title>互動地圖：雙北所得大解密</title>
             <style>
                 #map{ width: 100%; height: 100vh;}
+                div {
+                    font-family: "Noto Sans TC", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;;
+                }
                 div.legend {
                     position: absolute;
                     text-align: left;
@@ -14,7 +17,7 @@
                     left: 5%;
                     top: 79px;
                     padding: 2px;
-                    font: 12px sans-serif;
+                    font: 12px "Noto Sans TC";
                     background: rgba(255,255,255,0.6);
                     border: 0px;
                     border-radius: 4px;
@@ -137,6 +140,7 @@
             @media screen and (max-width: 42em) {
                 #side {
                     max-width: 100%;
+                    min-width: 100%;
                     clear: left; } }   
             /* The switch - the box around the slider */
 .switch {
@@ -227,7 +231,16 @@ input:checked + .sliderround:before {
                     <img src="front.png" id="side" style="margin-right:2%;"/>
                     <h1>互動地圖：<br>雙北所得大解密</h1>
                     <p>製作／<a href="https://github.com/missmoss">@missmoss</a></p>
-                    <p>台北的有錢人都住在大安區嗎？過個馬路，居民收入就差20萬？雙北所得分布地圖告訴你區域所得差異。</p>
+                    <p>台北的有錢人都住在大安區嗎？過個馬路，居民收入就差20萬？雙北所得分布地圖帶你一窺大台北地區的所得樣貌。</p>
+                </section>
+            </div>
+            <div class="section">
+                <section class="main-content">
+                    <p>星期五晚上11點，敦化南路上的律師事務所仍然燈火通明，C 律師與同事們正為了下週即將開庭的大案積極備戰。在 C 沒有對外窗的裡間獨立辦公室，感覺不到日夜的更迭，唯一明確變動的，只有眼前待解決的工作數量。「不加班，根本做不完。」</p>
+                    <p>入行兩年的 C 說：「週末，我不是在辦公室，就是抱著卷宗和電腦在家趕工。」</p>
+                    <p>每週工時上看 90 小時的 C ，有著大多數人稱羨的薪水：出社會第一年、25 歲就年薪百萬。然而，在 C 家所在的內湖區南湖里，他的年薪還比整個里的家戶所得中位數低一些，表示南湖里有一半以上的家庭，年收入都比 C 律師還要來得高。</p>
+                    <p>上班族追逐的年薪百萬，在台北市只能算是中產，更有 25% 的家庭，一年的所得總額低於 40 萬元。這樣的薪水，在台北市生活尚且不容易，更何況這 40 萬元可能要養活的是一整個家庭。</p>
+                    <p>在大台北地區，所得的地理分布可以一窺區域差異，透過簡單的統計指標，我們嘗試描繪出：現今生活在雙北不同地區的人們，可能過著什麼樣的生活。</p>
                 </section>
             </div>
             <div class="section">
@@ -366,10 +379,11 @@ input:checked + .sliderround:before {
             <div class="section">
                 <section class="main-content">
                     <h3>雙北所得地圖</h3>
-                    <p>將台北市、新北市101年所得稅統計資料各村里綜合所得稅所得總額中位數畫成熱圖，顏色越粉紅，所得稅中位數越高，顏色越綠，該村里所得稅中位數越低。中位數僅能大致窺見區域分布差異，無法完全衡量實際分布，也無法顯示出家戶內部的所得差異。未設籍在居住地的人口也無法被計入。</p>
-                    <p>另所得稅統計資料處理過程繁複，需時較久，目前資料僅釋出至101年度，故以101年度作圖。</p>
+                    <p>將台北市、新北市 103 年所得稅統計資料各村里綜合所得稅所得總額中位數畫成熱圖，顏色越粉紅，所得稅中位數越高，顏色越綠，該村里所得稅中位數越低。中位數僅能大致窺見區域分布差異，無法完全衡量實際分布，也無法顯示出家戶內部的所得差異。未設籍在居住地的人口也無法被計入。</p>
+                    <p>另所得稅統計資料處理過程繁複，需時較久，目前資料僅釋出至 103 年度，故以 103 年度作圖。</p>
                     <h3>資料來源</h3>
-                    101年所得稅統計資料：<a href="http://data.gov.tw/">政府資料開放平台</a> <a href="http://data.gov.tw/node/17983">台北市</a>、<a href="http://data.gov.tw/node/17975">新北市</a></br>
+                    所得稅統計資料：103 年／<a href="http://www.fia.gov.tw/ct.asp?xItem=3451&ctNode=668&mp=1">財政部財政資訊中心</a> <a href="https://github.com/leeneil">、@leeneil</a> 在 <a href="https://github.com/cicadatatw>@cicadatatw">@cicadatatw</a> 的 <a href="https://github.com/cicadatatw/taiwan-income-by-village"> pdf/csv 轉檔</a></br>
+                    101 年／<a href="http://data.gov.tw/">政府資料開放平台</a> <a href="http://data.gov.tw/node/17983">台北市</a>、<a href="http://data.gov.tw/node/17975">新北市</a></br>
                     捷運站點位置： <a href="https://github.com/repeat" class="user-mention">@repeat</a>/<a href="https://github.com/repeat/taipei-metro-stations">taipei-metro-stations</a>
                     <h3>延伸自</h3>
                     <a href="http://missmoss.github.io/taipei-mrt-viz/">台北捷運一日進出站流量</a></br>
@@ -385,6 +399,12 @@ input:checked + .sliderround:before {
         
         <script>
             var subdist, interactive, stationName, firstTime = false, exit = false;
+            var citydata = {
+                "y103" : {
+                    "tpe": { "q1": 392, "median": 732, "q3": 1427, "mean": 1434},
+                    "ntp": { "q1": 360, "median": 600, "q3": 1054, "mean": 895}
+                }
+            };
             $(document).ready(function() {
                 $('#fullpage').fullpage({
 
@@ -395,7 +415,7 @@ input:checked + .sliderround:before {
                         var loadedSection = $(this);
 
                         //using index
-                        if ( index === 3 && firstTime === false ) {
+                        if ( index === 4 && firstTime === false ) {
                             firstTime = true;
                             storyTeller();
                         }
@@ -403,7 +423,7 @@ input:checked + .sliderround:before {
                     onLeave: function(index, nextIndex, direction){
                         if ( index === 1 ) {
                             directionArrow.remove();
-                        } else if ( index === 3 ) {
+                        } else if ( index === 4 ) {
                             exit = true;
                             distname.style("opacity", 0);
                             tooltip.style("opacity", 0);
@@ -573,7 +593,7 @@ input:checked + .sliderround:before {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
         
-        d3.json("twnsub2.json", function(collection) {
+        d3.json("twnsub3.json", function(collection) {
             
             var incomeMedian = collection.features.map(function(item) {
                 return parseInt(item.properties.INCOME_MEDIAN);

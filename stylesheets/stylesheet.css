@@ -54,16 +54,8 @@
 body {
   padding: 0;
   margin: 0;
-<<<<<<< HEAD
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-<<<<<<< HEAD
-=======
   font-family: "Noto Sans TC", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
->>>>>>> gh-pages
   font-size: 14px;
-=======
-  font-size: 16px;
->>>>>>> Create gh-pages branch via GitHub
   line-height: 1.5;
   color: #606c71;
     background-color: #ECECEA; }
@@ -115,9 +107,6 @@ a {
 .page-header {
   color: #fff;
   text-align: center;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
   background-color: #159957;
   background-image: linear-gradient(120deg, #155799, #159957); }
 
@@ -132,7 +121,6 @@ a {
 @media screen and (max-width: 42em) {
   .page-header {
     padding: 2rem 1rem; } }
->>>>>>> gh-pages
   background-color: black;
   background-size: auto 130vh;
   background-position: center;
@@ -151,22 +139,6 @@ a {
 @media screen and (max-width: 42em) {
   .page-header {
     padding: 1rem 0.5rem; } }
-=======
-  background-color: #159957;
-  background-image: linear-gradient(120deg, #155799, #159957); }
-
-@media screen and (min-width: 64em) {
-  .page-header {
-    padding: 5rem 6rem; } }
-
-@media screen and (min-width: 42em) and (max-width: 64em) {
-  .page-header {
-    padding: 3rem 4rem; } }
-
-@media screen and (max-width: 42em) {
-  .page-header {
-    padding: 2rem 1rem; } }
->>>>>>> Create gh-pages branch via GitHub
 
 .project-name {
   margin-top: 0;
@@ -216,15 +188,7 @@ a {
 .main-content code {
   padding: 2px 4px;
   font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
-<<<<<<< HEAD
-<<<<<<< HEAD
-  font-size: 0.6rem;
-=======
-  font-size: 0.9rem;
->>>>>>> Create gh-pages branch via GitHub
-=======
   font-size: 1rem;
->>>>>>> gh-pages
   color: #383e41;
   background-color: #f3f6fa;
   border-radius: 0.3rem; }
@@ -241,15 +205,7 @@ a {
   .main-content pre > code {
     padding: 0;
     margin: 0;
-<<<<<<< HEAD
-<<<<<<< HEAD
-    font-size: 0.6rem;
-=======
-    font-size: 0.9rem;
->>>>>>> Create gh-pages branch via GitHub
-=======
     font-size: 0.8rem;
->>>>>>> gh-pages
     color: #567482;
     word-break: normal;
     white-space: pre;
@@ -263,11 +219,7 @@ a {
 .main-content .highlight pre, .main-content pre {
   padding: 0.8rem;
   overflow: auto;
-<<<<<<< HEAD
   font-size: 0.6rem;
-=======
-  font-size: 0.9rem;
->>>>>>> Create gh-pages branch via GitHub
   line-height: 1.45;
   border-radius: 0.3rem; }
 .main-content pre code, .main-content pre tt {
@@ -317,17 +269,8 @@ a {
   .main-content dl dt {
     padding: 0;
     margin-top: 1rem;
-<<<<<<< HEAD
-<<<<<<< HEAD
-    font-size: 0.8rem;
-=======
-    font-size: 1rem;
->>>>>>> Create gh-pages branch via GitHub
-    font-weight: bold; }
-=======
     font-size: 0.7rem;
     font-weight: 300; }
->>>>>>> gh-pages
   .main-content dl dd {
     padding: 0;
     margin-bottom: 1rem; }

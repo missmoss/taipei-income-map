@@ -2,48 +2,127 @@
 <html lang="en-us">
     <head>
         <meta charset="UTF-8">
-
-            <title>台北都會區各項統計與台北捷運</title>
+            
+            <title>互動地圖：雙北所得大解密</title>
             <style>
                 #map{ width: 100%; height: 100vh;}
+                div {
+                    font-family: "Noto Sans TC", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;;
+                }
                 div.legend {
                     position: absolute;
                     text-align: left;
-                    width: 85px;
-                    height: 160px;
-                    right: 5%;
-                    top: 10px;
-                    padding: 2px;
-                    font: 12px sans-serif;
-                    background: rgba(25,25,25,0.2);
-                    border: 0px;      
-                    border-radius: 8px;           
-                    pointer-events: none;         
-                }
-                div.clock {
-                    position: absolute;
-                    text-align: left;
+                    width: 310px;
+                    height: 60px;
                     left: 5%;
-                    top: 10px;
+                    top: 79px;
+                    padding: 2px;
+                    font: 12px "Noto Sans TC";
+                    background: rgba(255,255,255,0.6);
                     border: 0px;
+                    border-radius: 4px;
+                    pointer-events: none;
                 }
-            .subdist {
-                stroke: white;
-                stroke-width: 0.5;
+            div.title {
+                position: absolute;
+                text-align: left;
+                color: #558C89;
+                font-size: 1.5rem;
+                left: 5%;
+                top: 10px;
+                padding: 10px;
+                border: 0px;
+                border-radius: 4px;
+                background: rgba(255,255,255,0.6);
             }
             div.tooltip {
                 position: absolute;
                 text-align: center;
-                width: 80px;
-                height: 28px;
-                padding: 2px;
-                font: 12px sans-serif;
+                width: 90px;
+                height: 35px;
+                padding: 5.5px 2px;
+                font: 13px sans-serif;
                 background: white;
-                border: 0px;      
-                border-radius: 8px;           
-                pointer-events: none;         
+                border: 0px;
+                border-radius: 8px;
+                pointer-events: none;
             }
-<<<<<<< HEAD
+            div#mapcontrol {
+                position: absolute;
+                text-align: left;
+                left: 5%;
+                top: 143px;
+                font-size: 0.7rem;
+                width: 6rem;
+                padding: 0.01rem;
+                border: 0px;
+                border-radius: 4px;
+                background: rgba(255,255,255,0.6);
+                white-space: pre;
+            }
+            div.story {
+                position: absolute;
+                text-align: left;
+                left: 50%;
+                -ms-transform: translateX(-50%);
+                -webkit-transform: translate(-50%,0);
+                transform: translate(-50%,0);
+                bottom: 5rem;
+                width: 17rem;
+                height: 7.5rem;
+                padding: 0.55rem 2.3rem;
+                font-size: 0.75rem;
+                background: rgba(255,255,255,0.6);
+                border: 0px;
+                border-radius: 8px;
+                white-space: pre;
+            }
+            div.distname {
+                position: absolute;
+                text-align: center;
+                width: 5rem;
+                height: 1.3rem;
+                padding: 0.05rem;
+                font-size: 0.8rem;
+                background: rgba(255,255,255,0.75);
+                border: 0px;
+                border-radius: 2px;
+            }
+            .arrow {
+                position: absolute;
+                left: 45%;
+                -ms-transform: translateX(-50%);
+                -webkit-transform: translate(-50%,0);
+                transform: translate(-50%,0);
+                bottom: 0.5rem;
+                width: 5rem;
+                height: 2rem;    
+            }
+            #back {
+                position: absolute;
+                left: 0rem;
+                top: 1.25rem;
+                width: 1.5rem;
+                height: 5rem;
+            }
+            #next {
+                position: absolute;
+                right: 0rem;
+                top: 1.25rem;
+                width: 1.5rem;
+                height: 5rem;
+            }
+            #exit {
+                position: absolute;
+                right: 6px;
+                top: 4px;
+                width: 15px;
+                height: 15px;
+            }
+            #boxplot {
+                width: 30%;
+                height: 90%;
+            }
             #side {
                 max-width: 50%;
                 float:left;
@@ -70,8 +149,10 @@
   width: 1.6rem;
   height: 0.8rem;
 }
+
 /* Hide default HTML checkbox */
 .switch input {display:none;}
+
 /* The slider */
 .sliderround {
   position: absolute;
@@ -85,6 +166,7 @@
   transition: .4s;
   border-radius: 1rem;
 }
+
 .sliderround:before {
   position: absolute;
   content: "";
@@ -97,12 +179,15 @@
   transition: .4s;
   border-radius: 50%;
 }
+
 input:checked + .sliderround {
   background-color: #74AFAD;
 }
+
 input:focus + .sliderround {
   box-shadow: 0 0 1px #74AFAD;
 }
+
 input:checked + .sliderround:before {
   -webkit-transform: translateX(0.9rem);
   -ms-transform: translateX(0.9rem);
@@ -260,80 +345,51 @@ input:checked + .sliderround:before {
                                 <p>中位數是將原始資料排序後，位於正中間（50%）的數值。在所得資料中，平均數常常被少數高所得的極端值拉高，使得平均數有時難以衡量一個群體的大致收入樣貌，所以我們採用中位數，以求貼近一般的所得水準。</p>
                             </blockquote>
                         </div>
-=======
-                </style>
-                <meta name="viewport" content="width=device-width, initial-scale=1">
-                <meta property="og:image" content="https://farm4.staticflickr.com/3728/11730442194_6d0086e1c4_o_d.jpg">
-                <meta property="og:description" content="This is a visualization of entry and exit at each station in Taipei Metro"/>
-                <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-                    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' 'type='text/css'>
-                        <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-                        <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-                        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
-                        <link rel="stylesheet" type="text/css" href="stylesheets/jquery.fullPage.css" />
-                        <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
-                        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
-                        <script src="http://d3js.org/topojson.v1.min.js"></script>
-                        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-                        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-                        <script src="http://d3js.org/d3.v3.min.js"></script>
-                        <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-                        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-                        <script type="text/javascript" src="stylesheets/jquery.fullPage.js"></script>
-                        <!--
-                        <script>
-                            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-                            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-                        
-                        ga('create', 'UA-79159343-1', 'auto');
-                        ga('send', 'pageview');
-                        
-                            </script>
-                         -->
-                        <script>
-                            $(document).ready(function() {
-                                $('#fullpage').fullpage();
-                            });
-                        </script>
-                        </head>
-                        
-            <body>
-                <div id="fullpage">
-                    <!--
-                    <div class="section">
-                        <section class="page-header">
-                        <h1 class="project-name">A Day in Taipei Metro</h1>
-                        <h2 class="project-tagline">台北捷運一日進出站流量</h2>
                         </section>
-                    </div>
-                    -->
-                    <div class="section">
-                        
-                        <div id="map"></div>
-                        
-                    </div>
-                    <div class="section">
-                        <section class="main-content">
-                        <h3>台北都會區收入地圖</h3>
-                        <p>將台北市、新北市101年所得稅統計資料各村里所得稅中位數畫成熱圖，顏色越粉紅，所得稅中位數越高，顏色越藍，該村裡所得稅中位數越低，並疊上捷運線圖。</p>
-                        <p>另所得稅統計資料處理過程繁複，需時較久，目前資料僅釋出至101年度，故以101年度作圖。</p>
-
->>>>>>> parent of e222e8b... Merge branch 'gh-pages'
-                        </section>
-                        </div>
-                        <div class="section">
-                        <section class="main-content">
-                        <h3>資料來源</h3>
-                        101年所得稅統計資料：<a href="http://data.gov.tw/">政府資料開放平台</a> <a href="http://data.gov.tw/node/17983">台北市</a>、<a href="http://data.gov.tw/node/17975">新北市</a></br>
-                        捷運站點位置： <a href="https://github.com/repeat" class="user-mention">@repeat</a>/<a href="https://github.com/repeat/taipei-metro-stations">taipei-metro-stations</a>
-                        <h3>延伸自</h3>
-                        <a href="http://missmoss.github.io/taipei-mrt-viz/">台北捷運一日進出站流量</a></br>
-                        <footer class="site-footer">
-                        <span class="site-footer-owner"><a href="https://github.com/missmoss/taipei-stat-mrt">台北都會區各項統計與台北捷運</a> 由 <a href="https://github.com/missmoss">missmoss</a> 製作。</span>
+            </div>
+            <!--
+            <div class="section">
+                <section class="main-content">
+                    <h1>雙北地區所得分布</h1>
+                    <p>接下來讓我們一起來看看所得中位數在地圖上的實際分布情形。</p>
+                </section>
+            </div>
+            -->
+            <div class="section">
+                <div id="map">
+                </div>
+            </div>
+            <!--
+            <div class="section">
+            <section class="main-content">
+            <h1>我是h1</h1>
+            <h2>我是h2</h2>
+            <h3>我是h3</h3>
+            <h4>我是h4</h4>
+            <h5>我是h5</h5>
+            <p>我是p</p>
+            <pre><code>我是code</code></pre>
+            <blockquote>
+            <h4>我是小框框標題</h4>
+            <p>我是小框框內容</p>
+            </blockquote>
+            </section>
+            </div>
+            -->
+            <div class="section">
+                <section class="main-content">
+                    <h3>雙北所得地圖</h3>
+                    <p>將台北市、新北市 103 年所得稅統計資料各村里綜合所得稅所得總額中位數畫成熱圖，顏色越粉紅，所得稅中位數越高，顏色越綠，該村里所得稅中位數越低。中位數僅能大致窺見區域分布差異，無法完全衡量實際分布，也無法顯示出家戶內部的所得差異。未設籍在居住地的人口也無法被計入。</p>
+                    <p>另所得稅統計資料處理過程繁複，需時較久，目前資料僅釋出至 103 年度，故以 103 年度作圖。</p>
+                    <h3>資料來源</h3>
+                    所得稅統計資料：103 年／<a href="http://www.fia.gov.tw/ct.asp?xItem=3451&ctNode=668&mp=1">財政部財政資訊中心</a> <a href="https://github.com/leeneil">、@leeneil</a> 在 <a href="https://github.com/cicadatatw>@cicadatatw">@cicadatatw</a> 的 <a href="https://github.com/cicadatatw/taiwan-income-by-village"> pdf/csv 轉檔</a></br>
+                    101 年／<a href="http://data.gov.tw/">政府資料開放平台</a> <a href="http://data.gov.tw/node/17983">台北市</a>、<a href="http://data.gov.tw/node/17975">新北市</a></br>
+                    捷運站點位置： <a href="https://github.com/repeat" class="user-mention">@repeat</a>/<a href="https://github.com/repeat/taipei-metro-stations">taipei-metro-stations</a>
+                    <h3>延伸自</h3>
+                    <a href="http://missmoss.github.io/taipei-mrt-viz/">台北捷運一日進出站流量</a></br>
+                    <footer class="site-footer">
+                        <span class="site-footer-owner"><a href="https://github.com/missmoss/taipei-stat-mrt">雙北所得分布地圖</a> 由 <a href="https://github.com/missmoss"> @missmoss</a> 製作。</span>
                         <!--<span class="site-footer-credits">The front photo is via courtesy of <a href="https://www.flickr.com/photos/lipon/11730442194/">liponan</a>.</span>-->
-<<<<<<< HEAD
                         <span class="site-footer-credits">本頁面是 <a href="https://pages.github.com">GitHub Pages</a> ，修改自由 <a href="https://twitter.com/jasonlong">Jason Long</a> 製作的 <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a>。特別感謝映昕、林怡、務熙學長、鴨鴨、有有、南哥、Kn、白經濟作者群在製作過程的討論與協助。</span>
                     </footer>
                     
@@ -351,11 +407,13 @@ input:checked + .sliderround:before {
             };
             $(document).ready(function() {
                 $('#fullpage').fullpage({
+
                     // scrolling
                     scrollOverflow: true,
                     // event
                     afterLoad: function(anchorLink, index){
                         var loadedSection = $(this);
+
                         //using index
                         if ( index === 4 && firstTime === false ) {
                             firstTime = true;
@@ -1047,520 +1105,103 @@ input:checked + .sliderround:before {
                         .style("white-space", "pre-wrap");
                                 
                         function show() {
-=======
-                        <span class="site-footer-credits">本頁面是 <a href="https://pages.github.com">GitHub Pages</a> ，使用 <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> ，由 <a href="https://twitter.com/jasonlong">Jason Long</a> 製作。特別感謝林怡、務熙學長、鴨鴨、有有、南哥、Kn 在製作過程的討論與協助。</span>
-                        </footer>
-                        
-                        </section>
-                        </div>
-                    </div>
-                        
-                        <script>
-                        /* Set up Leaflet.js map */
-                        var northEast = L.latLng(25.3,121.8),
-                        southWest = L.latLng(24.9023253,121.26019),
-                        bounds = L.latLngBounds(southWest, northEast);
-                        
-                        var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
-                        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-                        subdomain: 'abcd'
-                        });
-                        
-                        var map = L.map('map', {
-                        scrollWheelZoom: false,
-                        doubleClickZoom: false,
-                        center: [25.0600789,121.5171921],
-                        zoom: 12,
-                        zoomControl: false,
-                        maxBounds: bounds
-                        });
-                        
-                        map.addLayer(layer);
-                        
-                        /* Initialize the SVG layer */
-                        map._initPathRoot()
-                        
-                        /* Set up svg and some elements for charts */
-                        
-                        /* svg1 for Heatmap */
-                        /* We simply pick up the SVG from the map object */
-                        
-                        var svg1 = d3.select("#map").select("svg");
-                        g = svg1.append("g");
-                         
-                        /*
-                        var timediv = d3.select("#map").append("div")
-                        .attr("class", "clock")
-                        .append("svg");
-                        
-                        var div = d3.select("#map").append("div")
-                        .attr("class", "legend");
-                        
-                        var clock = timediv.append("text")
-                        .attr("fill", "#6C6C6C")
-                        .attr("x", 10)
-                        .attr("y", 40)
-                        .style("font-size", 32)
-                        .text("00:00");
-                        */
-                         
-                        var tooltip = d3.select("body")
-                        .append("div")
-                        .attr("class", "tooltip")
-                        .style("opacity", 0);
->>>>>>> parent of e222e8b... Merge branch 'gh-pages'
 
-                        
-                        var svg2 = d3.select(map.getPanes().overlayPane).append("svg"),
-                        g2 = svg2.append("g").attr("class", "dist");
-                        /*
-                        svg3 = d3.select(map.getPanes().overlayPane).append("svg").attr("width", screen.width).attr("height", screen.height),
-                        g = svg3.append("g");
-                        */
-                        d3.json("twnsub2.json", function(collection) {
-                            /*
-                            collection = topojson.feature(collection, collection.objects.Village_NLSC_121_1050219)
-                            
-                            for (idx=collection.length - 1;idx>=0;idx--) {
-                                var city = collection[idx].properties.C_Name
-                                if (city != "臺北市" && city != "新北市") {
-                                    delete collection[idx];
-                                }
+                            if ( current !== i | exit === true ) {
+                                clearInterval(distSwitch);
+                                return;
                             }
-                             */
-                            var incomeMedian = collection.features.map(function(item) {
-                                    return parseInt(item.properties.INCOME_MEDIAN);
+
+                            var textPosition = map.latLngToLayerPoint(new L.LatLng(center[j][0], center[j][1]));
+
+                            // remove previous
+                            subdist.style("opacity", 0.475);
+                            distname.style("opacity", 0);
+                            // highlight current
+                            if (selector === "#") {
+                                d3.select(selector+target[j])
+                                .style("opacity", 0.85);
+                            } else {
+                                d3.selectAll(selector+target[j])
+                                .style("opacity", 0.85);                      
                             }
-                            )
-                            
-                            var extent = d3.extent(incomeMedian);
-                            console.log(extent);
-                            
-                            var fillColor = d3.scale.linear()
-                            .range(["#3ED8FF","#E84593"])
-                            .domain(extent);
-                            
-                            var transform = d3.geo.transform({point: projectPoint}),
-                            path = d3.geo.path().projection(transform);
-                            
-                            var feature = g2.selectAll(".subdist")
-                            .data(collection.features)
-                            .enter().append("path")
-                            .attr("class", "subdist")
-                            .attr("fill", function(d) {
-                                
-                                // Get data value
-                                var value = d.properties.INCOME_MEDIAN;
-                                
-                                if (value) {
-                                    //If value exists…
-                                    return fillColor(value);
-                                } else {
-                                    //If value is undefined…
-                                    return "white";
-                                }
+                            distname.style("opacity", 0.9);
+
+                            distname.text(function () {
+                                return target[j];
                             })
-                            .on("mouseover", function(d) {
-                                d3.select(this)
-                                .style("opacity", 0.75);
-                                tooltip.transition()
-                                .duration(200)
-                                .style("opacity", .9);
-                                tooltip.text(function () {
-                                    return d.properties.TOWN+'\n'+
-                                    d.properties.VILLAGE+'\n'+
-                                    d.properties.INCOME_MEDIAN+',000 元';
-                                })
-                                .style("left", (d3.event.pageX) + "px")
-                                .style("top", (d3.event.pageY - 28) + "px");
-                            })
-                            .on("mouseout", function(d) {
-                                d3.select(this)
-                                .style("opacity", 0.3);
-                                tooltip.transition()
-                                .duration(500)
-                                .style("opacity", 0);   
-                            })
-                            .style("opacity", 0.3);
-                            
-                            //d3 code stolen from http://bost.ocks.org/mike/leaflet/#init
-                            
-                            map.on("viewreset", reset);
-                            reset();
-                            function reset() {
-                            var topobounds = path.bounds(collection),
-                                topLeft = topobounds[0],
-                                bottomRight = topobounds[1];
-                                
-                                svg2.attr("width", bottomRight[0] - topLeft[0])
-                                .attr("height", bottomRight[1] - topLeft[1])
-                                .style("left", topLeft[0] + "px")
-                                .style("top", topLeft[1] + "px");
-                                g2.attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
-                                
-                                feature.attr("d", path);
+                            .style("left", (textPosition.x + 10) + "px")
+                            .style("top", (textPosition.y - 28) + "px");
+
+                            j++;
+
+                            if ( j >= n ) {
+                                clearInterval(distSwitch);
                             }
-                            
-                            function projectPoint(x, y) {
-                                var point = map.latLngToLayerPoint(new L.LatLng(y, x));
-                                this.stream.point(point.x, point.y);
-                            }
-                             
-                    
-                        });
-                        
-                        //twnsublatlng.json Village_NLSC_121_1050219 25.0853403,121.4231634
-                     
-                        
-                        d3.csv("taipei.csv", function(data) {
-                        
-                        var transform = d3.geo.transform({point: projectPoint}),
-                        d3path = d3.geo.path().projection(transform);
-                        
-                        function projectPoint(x, y) {
-                            var point = map.latLngToLayerPoint(new L.LatLng(x, y));
-                            this.stream.point(point.x, point.y);
                         }
-                        
-                        var lines = {"1":{
-                            color: "brown",
-                            geoLineString: {
-                                type: "LineString",
-                                coordinates: []
-                                }},
-                            "2": {
-                            color: "red",
-                            geoLineString: {
-                                type: "LineString",
-                                coordinates: []
-                                }},
-                            "3": {
-                            color: "green",
-                            geoLineString: {
-                                type: "LineString",
-                                coordinates: []
-                                }},
-                            "4": {
-                            color: "orange",
-                            geoLineString: {
-                                type: "LineString",
-                                coordinates: []
-                                }},
-                            "4-1": {
-                                color: "orange",
-                                geoLineString: {
-                                    type: "LineString",
-                                    coordinates: []
-                                }},
-                            "5": {
-                            color: "blue",
-                            geoLineString: {
-                                type: "LineString",
-                                coordinates: []
-                                }},
-                            "n": {
-                            color: "red",
-                            geoLineString: {
-                                type: "LineString",
-                                coordinates: []
-                                }},
-                            "s": {
-                            color: "green",
-                            geoLineString: {
-                                type: "LineString",
-                                coordinates: []
-                                }}
-                            };
-                        
-                        data.forEach(function(d) {
-                            lines[d.line_no].geoLineString.coordinates.push(
-                            [parseFloat(d.lat), parseFloat(d.lon)]);
-                        });
-                        
-                        var keys = d3.keys(lines).filter(function(key, d) {
-                            return key;
-                        });
-                        
-                        var lines2 = [];
-                        
-                        keys.forEach(function(key) {
-                            var tmpdata = lines[key];
-                            tmpdata['line_no'] = key;
-                            lines2.push(tmpdata);
-                        });
-                        
-                        var linePath = g.selectAll(".lineConnect")
-                        .data(lines2)
-                        .enter()
-                        .append("path")
-                        .attr("class", "lineConnect")
-                        .attr("id", function(d) {return d.line_no; })
-                        .attr("stroke", function(d) { return d.color; })
-                        .attr("fill", "None")
-                        .style("opacity", 1)
-                        .attr("d", function(d) { return d3path(d.geoLineString); });
-                        
-                        map.on("viewreset", updateMap);
-                        updateMap();
-                        
-                        function updateMap() {
-                            linePath.attr("transform",
-                                function(d) {
-                                    d.x = map.latLngToLayerPoint(d.LatLng).x;
-                                    d.y = map.latLngToLayerPoint(d.LatLng).y;
-                                    return "translate("+d.x +","+d.y +")";
-                                }
-                            )};
-                        
-                        
-                        }); //end of d3.csv("taipei.csv")
-                        
-                        /* Load data, process and draw functions */
-                        /*
-                        d3.csv("mrtflow_Nov2_2015.csv", function(data) {
-                        
-                        data.forEach(function(d) {
-                        d.LatLng = new L.LatLng(d.lat, d.lon);
-                        });
-                        
-                        
-                        var radScale = d3.scale.sqrt().domain([10,5000]).rangeRound([3,15]);
-                        
-                        var legend = [10, 100, 1000, 10000];
-                        
-                        var padding = 10
-                        
-                        div = div.append("svg");
-                        
-                        div.append("text")
-                        .attr("x", 5)
-                        .attr("y", 18)
-                        .attr("fill", "#6C6C6C")
-                        .style("font-size", 14)
-                        .text("Legend");
-                        
-                        div.append("circle")
-                        .attr("cx", 22)
-                        .attr("cy", 30)
-                        .attr("r", 5)
-                        .attr("fill", "#FFE11A")
-                        .style("opacity", 0.7);
-                        div.append("text")
-                        .attr("x", 45)
-                        .attr("y", 35)
-                        .style("font-size", 12)
-                        .text("entry");
-                        div.append("circle")
-                        .attr("cx", 22)
-                        .attr("cy", 45)
-                        .attr("r", 5)
-                        .attr("fill", "#5bc0de")
-                        .style("opacity", 0.7);
-                        div.append("text")
-                        .attr("x", 45)
-                        .attr("y", 50)
-                        .style("font-size", 12)
-                        .text("exit");
-                        
-                        div.selectAll(".legend")
-                        .data(legend)
-                        .enter()
-                        .append("circle")
-                        .attr("cx", 22)
-                        .attr("cy", function(d,i) { return 60+i*10+radScale(d-1)*2; })
-                        .attr("r", function(d) { return radScale(d);} )
-                        .attr("fill", "#5bc0de")
-                        .style("opacity", 0.7);
-                        
-                        div.selectAll(".legendtext")
-                        .data(legend)
-                        .enter()
-                        .append("text")
-                        .attr("x", 45)
-                        .attr("y", function(d,i) { return 67+i*10+radScale(d-1)*2;})
-                        .text(function(d) { return d;});
-                        
-                        var pauseButton = timediv.append("path")
-                        .attr("class", "player")
-                        .attr("id", "pause")
-                        .attr("d", "m42,48L42,64L57,64L57,48L52,48L52,64L47,64L47,48z")
-                        .attr("fill", "#6C6C6C")
-                        .on("mouseover", function(){
-                            d3.select(this)
-                            .attr("fill", "#5bc0de");
-                        })
-                        .on("mouseout", function(){
-                            d3.select(this)
-                            .attr("fill", "#6C6C6C");
-                        })
-                        .on("click", stopTimer);
-                        
-                        var forwardButton = timediv.append("path")
-                        .attr("class", "player")
-                        .attr("id", "forward")
-                        .attr("d", "m70,48L80,56L80,48L90,56L80,64L80,56L70,64z")
-                        .attr("fill", "#6C6C6C")
-                        .on("mouseover", function(){
-                            d3.select(this)
-                            .attr("fill", "#5bc0de");
-                        })
-                        .on("mouseout", function(){
-                            d3.select(this)
-                            .attr("fill", "#6C6C6C");
-                        })
-                        .on("click", forwardTimer);
-                        
-                        var backwardButton = timediv.append("path")
-                        .attr("class", "player")
-                        .attr("id", "backward")
-                        .attr("d", "m30,48L20,56L20,48L10,56L20,64L20,56L30,64z")
-                        .attr("fill", "#6C6C6C")
-                        .on("mouseover", function(){
-                            d3.select(this)
-                            .attr("fill", "#5bc0de");
-                        })
-                        .on("mouseout", function(){
-                            d3.select(this)
-                            .attr("fill", "#6C6C6C");
-                        })
-                        .on("click", backwardTimer);
-                        
-                        
-                        var i = 0;
-                        var timer = setInterval(clockRunner, 1000);
-                        
-                        function clockRunner() {
-                        
-                        if (i < 19) {
-                            var h = i + 5;
-                            }
-                            else {
-                            var h = i - 19;
-                            }
-                            
-                            var h1 = parseInt(h / 10),h2 = h % 10;
-                            
-                            clock.text(h1+""+ h2+":00")
-                            .transition()
-                            .duration(50);
-                            
-                            d3.selectAll("#hour")
-                            .remove();
-                            draw(h);
-                            
-                            i++;
-                            if (i > 21) {
-                                stopTimer();
-                            };
-                            };
-                        
 
-                        
-                        function stopTimer() {
-                            clearInterval(timer);
-                            
-                            d3.select("#pause")
-                            .remove();
-                            
-                            var playButton = timediv.append("path")
-                            .attr("class", "player")
-                            .attr("id", "play")
-                            .attr("d", "M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z")
-                            .attr("transform", "translate(38,45)")
-                            //.attr("d", "m44,47L55,53L55,47L58,47L58,63L55,63L55,58L44,63z")
-                            .attr("stroke", "#6C6C6C")
-                            .attr("stroke-width", 1.1)
-                            .attr("fill", "#6C6C6C")
-                            .on("mouseover", function(){
-                                d3.select(this)
-                                .attr("fill", "#5bc0de")
-                                .attr("stroke", "#5bc0de");
-                            })
-                            .on("mouseout", function(){
-                                d3.select(this)
-                                .attr("fill", "#6C6C6C")
-                                .attr("stroke", "#6C6C6C");
-                            })
-                            .on("click", restartTimer);
+                        show();
+                        var distSwitch;
+                        setTimeout(function() {
+                            distSwitch = setInterval(show, 1500);
+                        }, 2000);
+
+
+                        if (i < storyData.length-1) {
+                            setTimeout(function () {
+                                clickNext();
+                            }, 1500*n+4000);
+                        } else {
+                            exit = true;
+                            distname.style("opacity", 0);
                         };
-                        
-                        function restartTimer() {
-                            i = 0;
-                            timer = setInterval(clockRunner, 1000);
-                            
-                            d3.select("#play")
-                            .remove();
-                            
-                            var pauseButton = timediv.append("path")
-                            .attr("class", "player")
-                            .attr("id", "pause")
-                            .attr("d", "m42,47L42,63L57,63L57,47L52,47L52,63L47,63L47,47z")
-                            .attr("fill", "#6C6C6C")
-                            .on("mouseover", function(){
-                                d3.select(this)
-                                .attr("fill", "#5bc0de");
-                            })
-                            .on("mouseout", function(){
-                                d3.select(this)
-                                .attr("fill", "#6C6C6C");
-                            })
-                            .on("click", stopTimer);
-                        };
-                        
-                        function forwardTimer() {
-                            if (i < 22) {
-                                clockRunner();
-                            }
-                        }
+                    } else {
+                        return;
+                    }
 
-                        function backwardTimer() {
-                            if (i > 0) {
-                                i = i - 2;
-                                console.log(i);
-                                clockRunner();
-                            }
-                        }
-                            function draw(h) {
+                }  // end of type2()
+
+
+                function type3() {
+
+                    if (exit === false) {
+
+                        var j = 0, n = target.length, current = i;
+
+                        d3.select(".story")
+                        .style("white-space", "pre-wrap");
                             
-                            hData = data.filter(function(d) {
-                            return d.hour == h;
+                        function show() {
+
+                            if ( current !== i | exit === true ) {
+                                clearInterval(distSwitch);
+                                return;
+                            }
+
+                            // remove previous
+                            subdist.style("opacity", 0.475);
+                            distname.style("opacity", 0);
+                            // highlight current
+                            if (selector === "#") {
+                                d3.select(selector+target[j])
+                                .style("opacity", 0.85);
+                            } else {
+                                d3.selectAll(selector+target[j])
+                                .style("opacity", 0.85);                        
+                            }
+                            map.panTo(center[j]);
+                            distname.style("opacity", 0.9);
+
+                            distname.text(function () {
+                                return target[j];
                             })
+                            .style("left", "49%")
+                            .style("top", "50%");
                             
-                            function color(input) {
-                            if (input === "in") {
-                            return "#FFE11A";
+                            j++;
+
+                            if ( j >= n ) {
+                                clearInterval(distSwitch);
                             }
-                            else if (input === "out") {
-                            return "#5bc0de";
-                            }
-                            else {
-                            return "steelblue";
-                            }
-                            }
-                            
-                            var canvas = g.selectAll("circle")
-                            .data(hData)
-                            .enter();
-                            
-                            var feature = canvas.append("circle")
-                            .style("opacity", .6)
-                            .attr("fill", function(d) {return color(d.direction);})
-                            .attr("r", function(d) {return radScale(d.flow); })
-                            .attr("class", "circle")
-                            .attr("click", "off")
-                            .attr("id", "hour");
-                            
-                            map.on("viewreset", updateMap);
-                            updateMap();
-                            
-                            function updateMap() {
-                            feature.attr("transform",
-                            function(d) {
-                            d.x = map.latLngToLayerPoint(d.LatLng).x;
-                            d.y = map.latLngToLayerPoint(d.LatLng).y;
-                            return "translate("+d.x +","+d.y +")";
-                            }
-<<<<<<< HEAD
                         }
 
                         show();
@@ -1611,73 +1252,3 @@ input:checked + .sliderround:before {
         </script>
     </body>
 </html>
-=======
-                            )};
-                            
-                            }// end of draw(h)
-                            
-                            }) // end of d3.csv()
-                        };
-                         */
-                        
-</script>
-</body>
-</html>
-=======
-  <head>
-    <meta charset="UTF-8">
-    <title>Taipei-stat-mrt by missmoss</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">Taipei-stat-mrt</h1>
-      <h2 class="project-tagline"></h2>
-      <a href="https://github.com/missmoss/taipei-stat-mrt" class="btn">View on GitHub</a>
-      <a href="https://github.com/missmoss/taipei-stat-mrt/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/missmoss/taipei-stat-mrt/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
-
-    <section class="main-content">
-      <h3>
-<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here <a href="https://guides.github.com/features/mastering-markdown/">using GitHub Flavored Markdown</a>, select a template crafted by a designer, and publish. After your page is generated, you can check out the new <code>gh-pages</code> branch locally. If you’re using GitHub Desktop, simply sync your repository and you’ll see the new branch.</p>
-
-<h3>
-<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We’ve crafted some handsome templates for you to use. Go ahead and click 'Continue to layouts' to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved.</p>
-
-<h3>
-<a id="creating-pages-manually" class="anchor" href="#creating-pages-manually" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Creating pages manually</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://help.github.com/articles/basic-writing-and-formatting-syntax/#mentioning-users-and-teams" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor’s GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out our <a href="https://help.github.com/pages">documentation</a> or <a href="https://github.com/contact">contact support</a> and we’ll help you sort it out.</p>
-
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/missmoss/taipei-stat-mrt">Taipei-stat-mrt</a> is maintained by <a href="https://github.com/missmoss">missmoss</a>.</span>
-
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
-
-    </section>
-
-  
-  </body>
-</html>
->>>>>>> Create gh-pages branch via GitHub
->>>>>>> parent of e222e8b... Merge branch 'gh-pages'

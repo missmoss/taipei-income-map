@@ -38,14 +38,8 @@ SOFTWARE.
   color: #795da3;
 }
 
-
-<<<<<<< HEAD
 .pl-smi /* variable.parameter.function, storage.modifier.package, storage.modifier.import, storage.type.java, variable.other */,
 .pl-s .pl-s1 /* string source */ {
-=======
-.pl-s .pl-s1 /* string source */,
-.pl-smi      /* storage.modifier.import, storage.modifier.package, storage.type.java, variable.other, variable.parameter.function */ {
->>>>>>> gh-pages
   color: #333;
 }
 

@@ -263,7 +263,7 @@ input:checked + .sliderround:before {
                     <h1>互動地圖：<br>雙北所得大解密</h1>
                     <p>製作／<a href="https://github.com/missmoss">@missmoss</a></p>
                     <p>台北的有錢人都住在大安區嗎？圍牆內外，居民收入竟是百萬與千萬的差別？雙北所得分布地圖帶你一窺大台北地區的所得樣貌。</p>
-                    <p>為達最佳瀏覽效果，建議使用電腦版閱讀。</p>
+                    <p>（為達最佳瀏覽效果，建議使用電腦版閱讀。）</font></p>
                 </section>
             </div>
             <div class="section">
@@ -1487,7 +1487,7 @@ input:checked + .sliderround:before {
 
         var x = d3.scale.ordinal()
         .domain(subdistdata.map(function(a) { return a.subdist; }))
-        .rangePoints([chart1width*0.025, chart1width*0.6]);
+        .rangePoints([chart1width*0.03, chart1width*0.6]);
 
         var xBand = d3.scale.ordinal()
         .domain(subdistdata.map(function(a) { return a.subdist; }))
@@ -1521,6 +1521,7 @@ input:checked + .sliderround:before {
         
         chart1.append("g")
         .attr("class", "y axis")
+        .attr("transform", "translate(" + chart1width*0.005 +",0)")
         .call(yAxis)
         .append("text")
         .attr("y", 6)

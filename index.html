@@ -128,19 +128,50 @@
                 float:left;
                 margin-right:2%;
             }
+			.axis path,
+			.axis line {
+			  fill: none;
+			  stroke: #000;
+			  shape-rendering: crispEdges;
+			}
+            .x.axis text {
+                font-weight: 200;
+                font-size: 0.8rem;
+            }
+            .y.axis text {
+                font-weight: 200;
+                font-size: 0.8rem;
+            }
+            .chart1legend text {
+            	font-weight: 200;
+                font-size: 0.7rem;
+            }
+            .meantext, .mediantext, .q1text, .q3text {
+            	font-weight: 200;
+                font-size: 0.5rem;
+                opacity: 0;
+            }
             @media screen and (min-width: 64em) {
                 #side {
-                    max-width: 50%; } }
+                    max-width: 50%; }
+                #chart1 {
+                    width: 50vw;} }
             
             @media screen and (min-width: 42em) and (max-width: 64em) {
                 #side {
                     max-width: 100%;
+                    clear: left;  }
+                #chart1 {
+                    width: 100vw;
                     clear: left;  } }
             
             @media screen and (max-width: 42em) {
                 #side {
                     max-width: 100%;
                     min-width: 100%;
+                    clear: left; }
+                #chart1 {
+                    width: 100vw;
                     clear: left; } }   
             /* The switch - the box around the slider */
 .switch {
@@ -231,16 +262,16 @@ input:checked + .sliderround:before {
                     <img src="front.png" id="side" style="margin-right:2%;"/>
                     <h1>互動地圖：<br>雙北所得大解密</h1>
                     <p>製作／<a href="https://github.com/missmoss">@missmoss</a></p>
-                    <p>台北的有錢人都住在大安區嗎？過個馬路，居民收入就差20萬？雙北所得分布地圖帶你一窺大台北地區的所得樣貌。</p>
+                    <p>台北的有錢人都住在大安區嗎？圍牆內外，居民收入竟是百萬與千萬的差別？雙北所得分布地圖帶你一窺大台北地區的所得樣貌。</p>
                 </section>
             </div>
             <div class="section">
                 <section class="main-content">
                     <p>星期五晚上11點，敦化南路上的律師事務所仍然燈火通明，C 律師與同事們正為了下週即將開庭的大案積極備戰。在 C 沒有對外窗的裡間獨立辦公室，感覺不到日夜的更迭，唯一明確變動的，只有眼前待解決的工作數量。「不加班，根本做不完。」</p>
                     <p>入行兩年的 C 說：「週末，我不是在辦公室，就是抱著卷宗和電腦在家趕工。」</p>
-                    <p>每週工時上看 90 小時的 C ，有著大多數人稱羨的薪水：出社會第一年、25 歲就年薪百萬。然而，在 C 家所在的內湖區南湖里，他的年薪還比整個里的家戶所得中位數低一些，表示南湖里有一半以上的家庭，年收入都比 C 律師還要來得高。</p>
+                    <p>每週工時上看 90 小時的 C ，有著大多數人稱羨的薪水：出社會第一年、25 歲就年薪百萬。然而，在 C 家所在的內湖區南湖里，他的年薪還比整個里的所得中位數低一些，表示南湖里有一半以上的家庭，年收入都比 C 律師還要來得高。</p>
                     <p>上班族追逐的年薪百萬，在台北市只能算是中產，更有 25% 的家庭，一年的所得總額低於 40 萬元。這樣的薪水，在台北市生活尚且不容易，更何況這 40 萬元可能要養活的是一整個家庭。</p>
-                    <p>在大台北地區，所得的地理分布可以一窺區域差異，透過簡單的統計指標，我們嘗試描繪出：現今生活在雙北不同地區的人們，可能過著什麼樣的生活。</p>
+                    <p>在大台北地區，所得的空間分布可以一窺區域差異，透過簡單的統計指標，我們嘗試討論：雙北地區的高所得居民集中在哪？區域的內部，又有著什麼樣的差異？</p>
                 </section>
             </div>
             <div class="section">
@@ -261,85 +292,85 @@ input:checked + .sliderround:before {
                                 <tbody>
                                     <tr>
                                         <td>1</td>
-                                        <td>新北市</td>
-                                        <td>新店區</td>
-                                        <td>華城里</td>
-                                        <td>127.5萬</td>
+                                        <td>台北市</td>
+                                        <td>內湖區</td>
+                                        <td>寶湖里</td>
+                                        <td>124.0萬</td>
                                     </tr>
                                     <tr>
                                         <td>2</td>
                                         <td>台北市</td>
                                         <td>文山區</td>
                                         <td>政大里</td>
-                                        <td>127.4萬</td>
+                                        <td>123.6萬</td>
                                     </tr>
                                     <tr>
                                         <td>3</td>
-                                        <td>台北市</td>
-                                        <td>內湖區</td>
-                                        <td>金湖里</td>
-                                        <td>127.3萬</td>
+                                        <td>新北市</td>
+                                        <td>新店區</td>
+                                        <td>華城里</td>
+                                        <td>119.7萬</td>
                                     </tr>
                                     <tr>
                                         <td>4</td>
                                         <td>台北市</td>
                                         <td>內湖區</td>
-                                        <td>寶湖里</td>
-                                        <td>120.6萬</td>
+                                        <td>金湖里</td>
+                                        <td>118.3萬</td>
                                     </tr>
                                     <tr>
                                         <td>5</td>
                                         <td>台北市</td>
                                         <td>中山區</td>
                                         <td>成功里</td>
-                                        <td>117.9萬</td>
+                                        <td>116.4萬</td>
                                     </tr>
                                     <tr>
                                         <td>6</td>
                                         <td>台北市</td>
-                                        <td>南港區</td>
-                                        <td>重陽里</td>
-                                        <td>114.6萬</td>
+                                        <td>內湖區</td>
+                                        <td>南湖里</td>
+                                        <td>112.0萬</td>
                                     </tr>
                                     <tr>
                                         <td>7</td>
                                         <td>台北市</td>
-                                        <td>內湖區</td>
-                                        <td>南湖里</td>
-                                        <td>111.4萬</td>
+                                        <td>大安區</td>
+                                        <td>光明里</td>
+                                        <td>106.9萬</td>
                                     </tr>
                                     <tr>
                                         <td>8</td>
                                         <td>台北市</td>
-                                        <td>中正區</td>
-                                        <td>新營里</td>
-                                        <td>107.0萬</td>
+                                        <td>南港區</td>
+                                        <td>重陽里</td>
+                                        <td>106.5萬</td>
                                     </tr>
                                     <tr>
                                         <td>9</td>
                                         <td>台北市</td>
-                                        <td>北投區</td>
-                                        <td>永欣里</td>
-                                        <td>105.9萬</td>
+                                        <td>大安區</td>
+                                        <td>龍門里</td>
+                                        <td>105.7萬</td>
                                     </tr>
                                     <tr>
                                         <td>10</td>
                                         <td>台北市</td>
                                         <td>大安區</td>
-                                        <td>光明里<br>龍門里</td>
-                                        <td>104.2萬</td>
+                                        <td>福住里</td>
+                                        <td>105.1萬</td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <p style="font-size: 0.7rem;">資料來源：101年所得稅統計資料</p>
+                            <p style="font-size: 0.7rem;">資料來源：103年所得稅統計資料</p>
                             <hr class="narrowonly">
                         </div>
                         <div>
-                            <p>被網友戲稱為天龍國的台北市大安區，印象中向來是有錢人才住得起的地方，也被認為應該是台灣平均收入最高的一群，但是若將年度家戶所得依各村里中位數排出前十名，大安區只有光明里及龍門里排得上號，以104萬同時名列第十名。</p>
-                            <h3>前三名位於市郊</h3>
-                            <p>領先群組新店區華城里、文山區政大里及內湖區金湖里的所得中位數難分軒輊，這三個里均是相對市郊、環山抱翠，聚集了不少喜歡清幽的有錢人。</p>
-                            <h3>三到十名生活機能佳</h3>
-                            <p>中段群組均位於市區，鄰近明星學區、醫院、科技公司聚集處，內湖區寶湖里鄰近三總、國防醫學院，中山區成功里即明水路一帶，著名的大直水岸第一排就座落於此，南港區重陽里也臨河，近南港軟體園區，內湖區南湖里在哈拉影城後方，中正區新營里為中正紀念堂、羅斯福路及杭州南路所夾三角地區，北投區永欣里在榮總周邊，大安區光明里臨中正紀念堂，龍門里則被大安森林公園、台大、龍門國中所環繞。</p>
+                            <p>被網友戲稱為天龍國的台北市大安區，印象中向來是有錢人才住得起的地方，也被認為應該是台灣平均收入最高的一群，若將年度家戶所得依各村里中位數排出前十名，大安區雖然無法拔得頭籌，卻囊括了十名中的七、九、十名，區內各里也都在台北市的前段班。</p>
+                            <h3>位於市郊的領先群組</h3>
+                            <p>前五名中的文山區政大里、新店區華城里及內湖區金湖里均是相對市郊、環山抱翠，聚集了不少喜歡清幽的有錢人。</p>
+                            <h3>明星學區長青不衰</h3>
+                            <p>其他入榜的村里均位於市區，鄰近明星學區、醫院、科技公司聚集處，內湖區寶湖里鄰近三總、國防醫學院，中山區成功里即明水路一帶，著名的大直水岸第一排就座落於此，大安區光明里臨中正紀念堂，為明星學校中正國中學區，南港區重陽里也臨河，近南港軟體園區，內湖區南湖里在哈拉影城後方，中正區新營里為中正紀念堂、羅斯福路及杭州南路所夾三角地區，也是中正國中學區，龍門里則被大安森林公園、台大、名校龍門國中所環繞，福住里在金華國中、大安森林公園旁。</p>
                             <blockquote>
                                 <h4>為什麼使用中位數</h4>
                                 <p>中位數是將原始資料排序後，位於正中間（50%）的數值。在所得資料中，平均數常常被少數高所得的極端值拉高，使得平均數有時難以衡量一個群體的大致收入樣貌，所以我們採用中位數，以求貼近一般的所得水準。</p>
@@ -347,18 +378,130 @@ input:checked + .sliderround:before {
                         </div>
                         </section>
             </div>
-            <!--
-            <div class="section">
-                <section class="main-content">
-                    <h1>雙北地區所得分布</h1>
-                    <p>接下來讓我們一起來看看所得中位數在地圖上的實際分布情形。</p>
-                </section>
-            </div>
-            -->
             <div class="section">
                 <div id="map">
                 </div>
             </div>
+            <div class="section">
+                <section class="main-content">
+                    <h2>一道圍牆，兩個世界</h2>
+                    <p>民生東路四段巷內，台北市隨處可見的五到七樓高華廈住宅群中，有幾棟並不特別華麗大氣、卻由高聳圍牆、濃密樹蔭與監視器所環繞的半新大樓，森嚴的戒備與低調外觀平添了神秘感。</p>
+                    <p>這些大樓位於松山區東昌里。財稅中心公布的各村里所得總額統計數字，或可提供一些線索：</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>區域</th>
+                                <th>村里</th>
+                                <th>區域所得總額</th>
+                                <th>納稅單位</th>
+                                <th>平均</th>
+                                <th>第一分位數</th>
+                                <th>中位數</th>
+                                <th>第三分位數</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>松山區</td>
+                                <td>東昌里</td>
+                                <td>983657萬</td>
+                                <td>917</td>
+                                <td>1072.7萬</td>
+                                <td>47.4萬</td>
+                                <td>93.6萬</td>
+                                <td>181.6萬</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <blockquote>
+                        <h4>稅收資料的單位</h4>
+                        <p>因為稅籍資料以報稅單位為最小單位，我們無法得知究竟人們是單獨報稅、夫妻報稅或是整個家庭一起報稅，但我們可以將每個報稅單位視為一組共同生活的小群體，想像他們的收入及支出是共用的。</p>
+                    </blockquote>
+                    <p>將所有資料從最小到最大排序，依序找出排在 25%、50% 及 75% 位置的資料，這就是第一分位數、中位數和第三分位數的概念。從所得總額的資料中，我們可以知道排序在收入最低 0-25% 的東昌里設籍家戶／居民，年度所得介於 0-47.4 萬間。中位數 93.6 萬，位於台北市 456 個里的第 37 名，屬於前段班，但絕無擠進前十名的機會。即使是位於整個里 75% 的高收入族群，年度所得也只在 181.6 萬，排名台北市第 59。</p>
+                    <h2>圍牆內的天文數字</h2>
+                    <p>乍看之下，東昌里只是一個收入屬於台北市前段班的普通村里。</p>
+                    <p>然而，松山區東昌里整個區域的平均年度所得總額，卻長期盤踞北市、甚至全台的第一名寶座。103 年度的統計中，這個數字是驚人的 1072.7 萬。</p>
+                    <p>遠高於中位數、甚至是第三分位數數倍的平均數，暗示著東昌里的 917 個納稅單位中，有一位或多位納稅人，有著天文數字般的所得總額。</p>
+                    <p>我們可以嘗試做個簡單的估計：假設 0-25% 的人收入都是 47.4 萬、25-50% 的人收入都是 93.6 萬，50-75% 的人收入都是 181.6 萬，剩下的 75-100% 收入設定個 2000 萬好了，再用整區所得總額 983657 萬，減掉前面估計出的所得總額，再除以我們設定的納稅單位數量，來看看這些拉高平均的納稅單位，年度所得總額到底有多高。</p>
+                    <h3>假設 1：10 個超高收入納稅單位</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                            	<th>所得族群</br>假設所得總額</th>
+                                <th>25%</br>47.4萬</th>
+                                <th>50%</br>93.6萬</th>
+                                <th>75%</br>181.6萬</th>
+                                <th>100%</br>2000萬</th>
+                                <th>超高收入納稅單位</th>
+                                <th>平均每單位所得總額</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>單位數</td>
+                                <td>230</td>
+                                <td>230</td>
+                                <td>230</td>
+                                <td>217</td>
+                                <td>10</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>分組所得總額</td>
+                                <td>10971萬</td>
+                                <td>21528萬</td>
+                                <td>41768萬</td>
+                                <td>434000萬</td>
+                                <td>475399萬</td>
+                                <td><font color="#558C89">約 4 億 7 千萬</font></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h3>假設 2：50 個超高收入納稅單位</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                            	<th>所得族群</br>假設所得總額</th>
+                                <th>25%</br>47.4萬</th>
+                                <th>50%</br>93.6萬</th>
+                                <th>75%</br>181.6萬</th>
+                                <th>100%</br>2000萬</th>
+                                <th>超高收入納稅單位</th>
+                                <th>平均每單位所得總額</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>單位數</td>
+                                <td>230</td>
+                                <td>230</td>
+                                <td>230</td>
+                                <td>177</td>
+                                <td>50</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>分組所得總額</td>
+                                <td>10971萬</td>
+                                <td>21528萬</td>
+                                <td>41768萬</td>
+                                <td>354000萬</td>
+                                <td>555399萬</td>
+                                <td><font color="#558C89">約 1 億 1 千萬</font></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>從上面的估計中可以發現，這些神秘的大戶每年至少有上億的收入。由於我們已經非常高估其他人的所得，神秘大戶的報稅收入，應該會比剛剛估算的數字更多一些。如果仔細觀察數字的分布，還可發現，整個東昌里其他納稅單位的全部所得加起來，可能還比大戶們的所得少一些。</p>
+                    <h2>有錢的鄰居在哪裡</h2>
+                    <p>像這樣在同一個區域內，所得分配有巨大差異的狀況，到底有多少呢？</p>
+                    <div id="chart1">
+                    </div>
+                    <p>圖 1：區域內部所得分配差異</p>
+                    <p>在圖 1 中，我們繪出平均所得總額前十名的村里的各項統計數字，稍微觀察一下這些平均數遠高於中位數、甚至第三分位數的區域，分別是哪些村里，差距又有多大。不過除了長據第一的松山區東昌里，因為位於敦化北路台塑總部後方，據傳是台塑集團的王永在家族的居住地之外，其他的村里我們暫時找不到資料，足以解釋造成平均數飆高的原因。</p>
+                    <h2>10%？1%？0.1%？</h2>
+                    <p>我們或可想像，一般印象中的大安區、或者一開始的中位數前十名各里，住著台灣／雙北地區排名 10% 左右的有錢人，但超高平均數呈現出的，可能是 1%、甚至 0.1% 的有錢人。有錢人在哪裡？這是一個大家都好奇的問題。藉由地圖和統計資料的觀察，我們嘗試描繪高所得人群的空間分布。</p>
+                    <p>不過，在想了解有錢人生活的好奇心之外，我們或許可以提出更多問題：有錢人的收入穩定嗎？他們的收入來源和一般人有什麼差別？這些差別，有沒有可能告訴我們什麼？接下來，我們會嘗試使用稅務資料繼續研究這些問題，如果發現了有趣的結果，再和大家分享。</p>
+                </section>
             <!--
             <div class="section">
             <section class="main-content">
@@ -376,21 +519,21 @@ input:checked + .sliderround:before {
             </section>
             </div>
             -->
-            <div class="section">
                 <section class="main-content">
-                    <h3>雙北所得地圖</h3>
+                	<hr>
+                    <h3>互動地圖：雙北所得大解密</h3>
                     <p>將台北市、新北市 103 年所得稅統計資料各村里綜合所得稅所得總額中位數畫成熱圖，顏色越粉紅，所得稅中位數越高，顏色越綠，該村里所得稅中位數越低。中位數僅能大致窺見區域分布差異，無法完全衡量實際分布，也無法顯示出家戶內部的所得差異。未設籍在居住地的人口也無法被計入。</p>
-                    <p>另所得稅統計資料處理過程繁複，需時較久，目前資料僅釋出至 103 年度，故以 103 年度作圖。</p>
+                    <p>另所得稅統計資料處理過程繁複，需時較久，目前資料僅釋出至 103 年度，故以 103 年度資料討論及作圖。</p>
                     <h3>資料來源</h3>
                     所得稅統計資料：103 年／<a href="http://www.fia.gov.tw/ct.asp?xItem=3451&ctNode=668&mp=1">財政部財政資訊中心</a> <a href="https://github.com/leeneil">、@leeneil</a> 在 <a href="https://github.com/cicadatatw>@cicadatatw">@cicadatatw</a> 的 <a href="https://github.com/cicadatatw/taiwan-income-by-village"> pdf/csv 轉檔</a></br>
                     101 年／<a href="http://data.gov.tw/">政府資料開放平台</a> <a href="http://data.gov.tw/node/17983">台北市</a>、<a href="http://data.gov.tw/node/17975">新北市</a></br>
-                    捷運站點位置： <a href="https://github.com/repeat" class="user-mention">@repeat</a>/<a href="https://github.com/repeat/taipei-metro-stations">taipei-metro-stations</a>
+                    捷運站點位置： <a href="https://github.com/repeat" class="user-mention">@repeat</a> 的 <a href="https://github.com/repeat/taipei-metro-stations">taipei-metro-stations</a>
                     <h3>延伸自</h3>
                     <a href="http://missmoss.github.io/taipei-mrt-viz/">台北捷運一日進出站流量</a></br>
                     <footer class="site-footer">
                         <span class="site-footer-owner"><a href="https://github.com/missmoss/taipei-stat-mrt">雙北所得分布地圖</a> 由 <a href="https://github.com/missmoss"> @missmoss</a> 製作。</span>
                         <!--<span class="site-footer-credits">The front photo is via courtesy of <a href="https://www.flickr.com/photos/lipon/11730442194/">liponan</a>.</span>-->
-                        <span class="site-footer-credits">本頁面是 <a href="https://pages.github.com">GitHub Pages</a> ，修改自由 <a href="https://twitter.com/jasonlong">Jason Long</a> 製作的 <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a>。特別感謝映昕、林怡、務熙學長、鴨鴨、有有、南哥、Kn、白經濟作者群在製作過程的討論與協助。</span>
+                        <span class="site-footer-credits">本頁面是 <a href="https://pages.github.com">GitHub Pages</a> ，修改自由 <a href="https://twitter.com/jasonlong">Jason Long</a> 製作的 <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a>。特別感謝 Miss Monday、務熙學長、鴨鴨、有有、南哥、Kn、白經濟作者群在製作過程的討論與協助。</span>
                     </footer>
                     
                 </section>
@@ -399,12 +542,7 @@ input:checked + .sliderround:before {
         
         <script>
             var subdist, interactive, stationName, firstTime = false, exit = false;
-            var citydata = {
-                "y103" : {
-                    "tpe": { "q1": 392, "median": 732, "q3": 1427, "mean": 1434},
-                    "ntp": { "q1": 360, "median": 600, "q3": 1054, "mean": 895}
-                }
-            };
+
             $(document).ready(function() {
                 $('#fullpage').fullpage({
 
@@ -909,9 +1047,9 @@ input:checked + .sliderround:before {
             r = $.Deferred();
 
             var storyData = [
-            { type: 0, pan: [24.9263674,121.4975], selector: "sub", target: "華城里", text: "第一名  新北市新店區華城里\n家戶所得中位數：127.5 萬\n類型：別墅社區\n學校：康橋中小學\n房價：別墅 3 千萬至 5 千萬\n交通：國道 3 號、環河快速道路" },
-            { type: 0, pan: [24.9896,121.59], selector: "sub", target: "政大里", text: "第二名  台北市文山區政大里\n家戶所得中位數：127.4 萬\n類型：別墅社區\n學校：政大實小、政大附中\n房價：別墅 3 千萬至 5 千萬\n交通：國道 3 號、信義支線" },
-            { type: 0, pan: [25.0752,121.608], selector: "sub", target: "金湖里", text: "第三名  台北市內湖區金湖里\n家戶所得中位數：127.3 萬\n類型：別墅社區\n學校：麗湖國小、明湖國小、明湖國中\n房價：別墅 3 千萬至 5 千萬\n交通：國道 1 號" },
+            { type: 0, pan: [25.0656575,121.5896828], selector: "sub", target: "寶湖里", text: "第一名  台北市內湖區寶湖里\n家戶所得中位數：124.0 萬\n類型：別墅社區\n學校：內湖國中、三民國中\n房價：別墅 3 千萬至 5 千萬\n交通：國道 1 號、環東大道"},
+            { type: 0, pan: [24.9896,121.59], selector: "sub", target: "政大里", text: "第二名  台北市文山區政大里\n家戶所得中位數：123.6 萬\n類型：別墅社區\n學校：政大實小、政大附中\n房價：透天厝總價 4 千萬、電梯大樓每坪 70 多萬元\n交通：國道 3 號、信義支線" },
+           { type: 0, pan: [24.9263674,121.4975], selector: "sub", target: "華城里", text: "第三名  新北市新店區華城里\n家戶所得中位數：119.7 萬\n類型：別墅社區\n學校：康橋中小學\n房價：別墅 3 千萬至 5 千萬\n交通：國道 3 號、環河快速道路" },
             { type: 2, pan: [25.045,121.547], center: [[25.0292997,121.5030736], [25.0263064,121.5263363], [25.0645017,121.4959642], [25.0601717,121.5417976], [25.0287132,121.5548065], [25.0294912,121.4803741]], selector: "dist", target: ["中正區", "大安區", "大同區", "松山區", "信義區", "萬華區"], text: "台北市中心區域的中正、大安、大同、松山、信義，以及周邊的萬華等區內部顏色較相近，相對而言區域內較為均值。" },
             { type: 1, pan: [25.045,121.547], center: [25.0263064,121.5263363], selector: "dist", target: "大安區", text: "大安區雖然沒有在村里排名拔得頭籌，整體收入都還是在雙北的前段班。" },
             { type: 3, pan: [25.045,121.547], center: [[24.991582, 121.572439], [25.088473, 121.593980], [25.06,121.532]], selector: "dist", target: ["文山區", "內湖區", "中山區"], text: "周圍的文山區、內湖區、中山區則有部分村里一枝獨秀的狀況，區域內部較不平均。" },
@@ -1248,6 +1386,289 @@ input:checked + .sliderround:before {
         } // end of storyTeller() 
 
         // remove all after display. navigation? color? mapcontrol?
+
+        // chart1
+        var citydata = {
+            "tpe": { "q1": 392, "median": 732, "q3": 1427, "mean": 1434},
+            "ntp": { "q1": 360, "median": 600, "q3": 1054, "mean": 895}
+        };
+
+        var subdistdata = [
+		  {
+		    "dist": "松山區",
+		    "subdist": "東昌里",
+		    "mean": 1072.7,
+		    "median": 93.6,
+		    "q1": 47.4,
+		    "q3": 181.6
+		  },
+		  {
+		    "dist": "信義區",
+		    "subdist": "興隆里",
+		    "mean": 908.3,
+		    "median": 80.6,
+		    "q1": 36.8,
+		    "q3": 189.5
+		  },
+		  {
+		    "dist": "士林區",
+		    "subdist": "菁山里",
+		    "mean": 610.4,
+		    "median": 64.6,
+		    "q1": 38.8,
+		    "q3": 107.6
+		  },
+		  {
+		    "dist": "士林區",
+		    "subdist": "永福里",
+		    "mean": 595.3,
+		    "median": 78.8,
+		    "q1": 42.2,
+		    "q3": 170
+		  },
+		  {
+		    "dist": "士林區",
+		    "subdist": "新安里",
+		    "mean": 578.5,
+		    "median": 64.4,
+		    "q1": 34,
+		    "q3": 143
+		  },
+		  {
+		    "dist": "中正區",
+		    "subdist": "東門里",
+		    "mean": 543.1,
+		    "median": 88.7,
+		    "q1": 45.8,
+		    "q3": 189
+		  },
+		  {
+		    "dist": "大安區",
+		    "subdist": "民輝里",
+		    "mean": 430.7,
+		    "median": 94,
+		    "q1": 44.2,
+		    "q3": 210.3
+		  },
+		  {
+		    "dist": "松山區",
+		    "subdist": "福成里",
+		    "mean": 416.2,
+		    "median": 90.8,
+		    "q1": 42.9,
+		    "q3": 188.2
+		  },
+		  {
+		    "dist": "信義區",
+		    "subdist": "安康里",
+		    "mean": 415.4,
+		    "median": 99.4,
+		    "q1": 47,
+		    "q3": 218
+		  },
+		  {
+		    "dist": "中山區",
+		    "subdist": "新福里",
+		    "mean": 409.6,
+		    "median": 62.4,
+		    "q1": 35.1,
+		    "q3": 116.2
+		  }
+		]
+
+        var chart1width = screen.width*0.85, chart1height = screen.height*0.45;
+        
+        var chart1 = d3.select("#chart1").append("svg")
+        .attr("width", chart1width*0.8)
+        .attr("height", chart1height*0.8)
+        .append("g")
+        .attr("transform", "translate(" + chart1width*0.035 + "," + chart1height*0.05 + ")");
+
+        var x = d3.scale.ordinal()
+        .domain(subdistdata.map(function(a) { return a.subdist; }))
+        .rangePoints([chart1width*0.025, chart1width*0.6]);
+
+        var xBand = d3.scale.ordinal()
+        .domain(subdistdata.map(function(a) { return a.subdist; }))
+        .rangeRoundBands([0, chart1width*0.65]);
+        
+        var y = d3.scale.linear()
+        .range([chart1height*0.7-20, 0]);
+        
+        var xAxis = d3.svg.axis()
+        .scale(x)
+        .orient("bottom");
+        
+        var yAxis = d3.svg.axis()
+        .scale(y)
+        .orient("left");
+
+        var mean = d3.svg.line()
+        .x(function(d) { return x(d.subdist); })
+        .y(function(d) { return y(d.mean); });
+        
+        var median = d3.svg.line()
+        .x(function(d) { return x(d.subdist); })
+        .y(function(d) { return y(d.median); });
+        
+        y.domain([0, d3.max(subdistdata, function(d) { return d.mean; })]);
+
+        chart1.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + (chart1height*0.7-20) + ")")
+        .call(xAxis);
+        
+        chart1.append("g")
+        .attr("class", "y axis")
+        .call(yAxis)
+        .append("text")
+        .attr("y", 6)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .attr("fill", "#558C89")
+        .style("font-weight", 200)
+        .attr("transform", "rotate(-90)")
+        .text("年度所得總額（單位：萬元）");
+
+        chart1.selectAll(".mean")
+		.data(subdistdata)
+		.enter().append("circle")
+		.attr("class", "mean")
+		.attr("id", function(d) { return "c"+d.subdist; })
+		.attr("r", 3.5)
+		.attr("cx", function(d) { return x(d.subdist); })
+		.attr("cy", function(d) { return y(d.mean); })
+		.style("fill", "#EB7F00")
+		.on("mouseover", chart1mouseover)
+		.on("mouseout", chart1mouseout)
+		
+		chart1.selectAll(".meantext")
+		.data(subdistdata)
+		.enter().append("text")
+		.attr("class", "meantext")
+		.attr("id", function(d) { return "tt"+d.subdist; })
+		.attr("x", function(d) { return x(d.subdist)+6; })
+		.attr("y", function(d) { return y(d.mean)+3; })
+		.text(function(d) { return d.mean; });
+
+		chart1.selectAll(".median")
+		.data(subdistdata)
+		.enter().append("circle")
+		.attr("class", "median")
+		.attr("id", function(d) { return "c"+d.subdist; })
+		.attr("r", 3.5)
+		.attr("cx", function(d) { return x(d.subdist); })
+		.attr("cy", function(d) { return y(d.median); })
+		.style("fill", "#1595A3")
+		.on("mouseover", chart1mouseover)
+		.on("mouseout", chart1mouseout);
+
+		chart1.selectAll(".mediantext")
+		.data(subdistdata)
+		.enter().append("text")
+		.attr("class", "mediantext")
+		.attr("id", function(d) { return "tt"+d.subdist; })
+		.attr("x", function(d) { return x(d.subdist)+6; })
+		.attr("y", function(d) { return y(d.median)+3; })
+		.text(function(d) { return d.median; });
+
+
+		chart1.selectAll(".q1")
+		.data(subdistdata)
+		.enter().append("circle")
+		.attr("class", "q1")
+		.attr("id", function(d) { return "c"+d.subdist; })
+		.attr("r", 3.5)
+		.attr("cx", function(d) { return x(d.subdist); })
+		.attr("cy", function(d) { return y(d.q1); })
+		.style("fill", "#ACF0F2")
+		.on("mouseover", chart1mouseover)
+		.on("mouseout", chart1mouseout);
+
+		chart1.selectAll(".q1text")
+		.data(subdistdata)
+		.enter().append("text")
+		.attr("class", "q1text")
+		.attr("id", function(d) { return "tt"+d.subdist; })
+		.attr("x", function(d) { return x(d.subdist)+6; })
+		.attr("y", function(d) { return y(d.q1)+3; })
+		.text(function(d) { return d.q1; });
+
+		chart1.selectAll(".q3")
+		.data(subdistdata)
+		.enter().append("circle")
+		.attr("class", "q3")
+		.attr("id", function(d) { return "c"+d.subdist; })
+		.attr("r", 3.5)
+		.attr("cx", function(d) { return x(d.subdist); })
+		.attr("cy", function(d) { return y(d.q3); })
+		.style("fill", "#225378")
+		.on("mouseover", chart1mouseover)
+		.on("mouseout", chart1mouseout);
+
+		chart1.selectAll(".q3text")
+		.data(subdistdata)
+		.enter().append("text")
+		.attr("class", "q3text")
+		.attr("id", function(d) { return "tt"+d.subdist; })
+		.attr("x", function(d) { return x(d.subdist)+6; })
+		.attr("y", function(d) { return y(d.q3)+3; })
+		.text(function(d) { return d.q3; });
+
+		chart1.selectAll(".chart1rect")
+		.data(subdistdata)
+		.enter().append("rect")
+		.attr("class", "chart1rect")
+		.attr("id", function(d) { return "r"+d.subdist; })
+		.attr("x", function(d) { return xBand(d.subdist); })
+        .attr("width", xBand.rangeBand())
+        .attr("y", 0 )
+		.attr("height", chart1height*0.7-20 )
+		.attr("fill", "black")
+		.style("opacity", 0)
+		.on("mouseover", chart1mouseover)
+		.on("mouseout", chart1mouseout);
+
+		var color = [
+		{"name": "平均數", "color": "#EB7F00"},
+		{"name": "第三分位數", "color": "#225378"},
+		{"name": "中位數", "color": "#1595A3"},
+		{"name": "第一分位數", "color": "#ACF0F2"},
+		]
+
+		var chart1legend = chart1.selectAll(".chart1legend")
+		.data(color)
+		.enter().append("g")
+		.attr("class", "chart1legend")
+		.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+		chart1legend.append("rect")
+		.attr("x", chart1width*0.6)
+		.attr("width", 17)
+		.attr("height", 17)
+		.style("fill", function(d) {return d.color});
+
+		chart1legend.append("text")
+		.attr("x", chart1width*0.595)
+		.attr("y", 9)
+		.attr("dy", ".35em")
+		.style("text-anchor", "end")
+		.text(function(d) { return d.name; });
+
+		function chart1mouseover(d) {
+			d3.selectAll("#c"+d.subdist)
+			.attr("r", 5);
+			d3.selectAll("#tt"+d.subdist)
+			.style("opacity", 1);
+		}
+
+		function chart1mouseout(d) {
+			d3.selectAll("#c"+d.subdist)
+			.attr("r", 3.5);
+			d3.selectAll("#tt"+d.subdist)
+			.style("opacity", 0);
+		}
+
 
         </script>
     </body>

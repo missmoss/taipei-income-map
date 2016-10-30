@@ -291,10 +291,10 @@ a {
 @media screen and (min-width: 42em) and (max-width: 64em) {
   .main-content {
     padding: 1rem 4rem;
-    font-size: 0.8rem; }
+    font-size: 0.85rem; }
   .main-content table {
       display: block;
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       width: 100%;
       overflow: auto;
       word-break: normal;
@@ -303,16 +303,16 @@ a {
 @media screen and (max-width: 42em) {
   .main-content {
     padding: 0.5rem 0.5rem;
-    font-size: 0.7rem; }
+    font-size: 0.85rem; }
   .main-content h1, .main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6 {
       margin-top: 0.5rem;
       margin-bottom: 0.5rem; }
   .main-content blockquote {
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   margin-right: 0.2rem; }
   .main-content table {
       display: block;
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       width: 100%;
       overflow: auto;
       word-break: normal;

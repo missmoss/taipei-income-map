@@ -135,20 +135,20 @@
 			  shape-rendering: crispEdges;
 			}
             .x.axis text {
-                font-weight: 200;
+                font-weight: 400;
                 font-size: 0.8rem;
             }
             .y.axis text {
-                font-weight: 200;
+                font-weight: 400;
                 font-size: 0.8rem;
             }
             .chart1legend text {
-            	font-weight: 200;
+            	font-weight: 400;
                 font-size: 0.7rem;
             }
             .meantext, .mediantext, .q1text, .q3text {
-            	font-weight: 200;
-                font-size: 0.5rem;
+            	font-weight: 400;
+                font-size: 0.7rem;
                 opacity: 0;
             }
             @media screen and (min-width: 64em) {
@@ -263,6 +263,7 @@ input:checked + .sliderround:before {
                     <h1>互動地圖：<br>雙北所得大解密</h1>
                     <p>製作／<a href="https://github.com/missmoss">@missmoss</a></p>
                     <p>台北的有錢人都住在大安區嗎？圍牆內外，居民收入竟是百萬與千萬的差別？雙北所得分布地圖帶你一窺大台北地區的所得樣貌。</p>
+                    <p>為達最佳瀏覽效果，建議使用電腦版閱讀。</p>
                 </section>
             </div>
             <div class="section">
@@ -1526,7 +1527,7 @@ input:checked + .sliderround:before {
         .attr("dy", ".71em")
         .style("text-anchor", "end")
         .attr("fill", "#558C89")
-        .style("font-weight", 200)
+        .style("font-weight", 400)
         .attr("transform", "rotate(-90)")
         .text("年度所得總額（單位：萬元）");
 
@@ -1591,7 +1592,7 @@ input:checked + .sliderround:before {
 		.attr("class", "q1text")
 		.attr("id", function(d) { return "tt"+d.subdist; })
 		.attr("x", function(d) { return x(d.subdist)+6; })
-		.attr("y", function(d) { return y(d.q1)+3; })
+		.attr("y", function(d) { return y(d.q1)+8; })
 		.text(function(d) { return d.q1; });
 
 		chart1.selectAll(".q3")

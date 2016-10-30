@@ -4,14 +4,6 @@
 @font-face {
   font-family: 'Noto Sans TC';
   font-style: normal;
-  font-weight: 100;
-  src: url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Thin.woff2) format('woff2'),
-       url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Thin.woff) format('woff'),
-       url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Thin.otf) format('opentype');
-}
-@font-face {
-  font-family: 'Noto Sans TC';
-  font-style: normal;
   font-weight: 300;
   src: url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Light.woff2) format('woff2'),
        url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Light.woff) format('woff'),
@@ -55,10 +47,11 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Noto Sans TC", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-size: 14px;
   line-height: 1.5;
   color: #606c71;
-    background-color: #ECECEA; }
+  background-color: #ECECEA; }
 
 a {
   color: #1e6bb8;
@@ -183,7 +176,7 @@ a {
   font-weight: normal;
   color: #558C89; }
 .main-content p {
-  font-weight: 100;
+  font-weight: 300;
   margin-bottom: 1em; }
 .main-content code {
   padding: 2px 4px;
@@ -240,6 +233,7 @@ a {
 .main-content blockquote {
   padding: 0.8rem 0.8rem 0.8rem 0.8rem;
   font-size: 0.8rem;
+  font-weight: 400;
   margin-left: 0;
   margin-right: 0;
   margin-top: 1rem;

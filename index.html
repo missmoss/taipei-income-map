@@ -134,14 +134,6 @@
 			  stroke: #000;
 			  shape-rendering: crispEdges;
 			}
-            .x.axis text {
-                font-weight: 400;
-                font-size: 0.7rem;
-            }
-            .y.axis text {
-                font-weight: 400;
-                font-size: 0.8rem;
-            }
             .chart1legend text {
             	font-weight: 400;
                 font-size: 0.7rem;
@@ -156,8 +148,15 @@
                     max-width: 50%; }
                 #chart1 {
                     width: 60vw;
-                    height: 30vh;} }
-            
+                    height: 30vh;}
+                .x.axis text {
+	                font-weight: 400;
+	                font-size: 0.7rem;
+	            }
+	            .y.axis text {
+	                font-weight: 400;
+	                font-size: 0.8rem;
+	            } }
             @media screen and (min-width: 42em) and (max-width: 64em) {
                 #side {
                     max-width: 100%;
@@ -165,8 +164,16 @@
                 #chart1 {
                     width: 100vw;
                     height: 40vh;
-                    clear: left;  } }
-            
+                    clear: left;  }
+                .x.axis text {
+	                font-weight: 400;
+	                font-size: 0.5rem;
+	            }
+	            .y.axis text {
+	                font-weight: 400;
+	                font-size: 0.6rem;
+	            } }
+	            
             @media screen and (max-width: 42em) {
                 #side {
                     max-width: 100%;
@@ -175,7 +182,15 @@
                 #chart1 {
                     width: 100vw;
                     height: 40vh;
-                    clear: left; } }   
+                    clear: left; }
+                .x.axis text {
+	                font-weight: 400;
+	                font-size: 0.5rem;
+	            }
+	            .y.axis text {
+	                font-weight: 400;
+	                font-size: 0.6rem;
+	            } } }   
             /* The switch - the box around the slider */
 .switch {
   position: relative;
@@ -564,6 +579,8 @@ input:checked + .sliderround:before {
 
                     // scrolling
                     scrollOverflow: true,
+                    // for mobile
+                    scrollHorizontally: true,
                     // event
                     afterLoad: function(anchorLink, index){
                         var loadedSection = $(this);

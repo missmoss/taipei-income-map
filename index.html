@@ -406,7 +406,7 @@ input:checked + .sliderround:before {
                     <h2>一道圍牆，兩個世界</h2>
                     <p>民生東路四段巷內，台北市隨處可見的五到七樓高華廈住宅群中，有幾棟並不特別華麗大氣、卻由高聳圍牆、濃密樹蔭與監視器所環繞的半新大樓，森嚴的戒備與低調外觀平添了神秘感。</p>
                     <p>這些大樓位於松山區東昌里。財稅中心公布的各村里所得總額統計數字，或可提供一些線索：</p>
-                    <table>
+                    <table id="no-more-tables">
                         <thead>
                             <tr>
                                 <th>區域</th>
@@ -422,15 +422,15 @@ input:checked + .sliderround:before {
                         </thead>
                         <tbody>
                             <tr>
-                                <td>松山區</td>
-                                <td>東昌里</td>
-                                <td>983657萬</td>
-                                <td>917</td>
-                                <td>1072.7萬</td>
-                                <td>47.4萬</td>
-                                <td>93.6萬</td>
-                                <td>181.6萬</td>
-                                <td>261760.57</td>
+                                <td data-title="區域">松山區</td>
+                                <td data-title="村里">東昌里</td>
+                                <td data-title="區域所得總額">983657萬</td>
+                                <td data-title="納稅單位">917</td>
+                                <td data-title="平均">1072.7萬</td>
+                                <td data-title="第一分位數">47.4萬</td>
+                                <td data-title="中位數">93.6萬</td>
+                                <td data-title="第三分位數">181.6萬</td>
+                                <td  data-title="標準差">261760.57</td>
                             </tr>
                         </tbody>
                     </table>
@@ -458,23 +458,23 @@ input:checked + .sliderround:before {
                         </thead>
                         <tbody>
                             <tr>
-                                <td>單位數</td>
-                                <td>230</td>
-                                <td>230</td>
-                                <td>230</td>
-                                <td>217</td>
-                                <td>10</td>
+                                <td data-title="所得族群">單位數</td>
+                                <td data-title="25%">230</td>
+                                <td data-title="50%">230</td>
+                                <td data-title="75%">230</td>
+                                <td data-title="100%">217</td>
+                                <td data-title="超高收入">10</td>
                             </tr>
                             <tr>
-                                <td>分組所得總額</td>
-                                <td>10971萬</td>
-                                <td>21528萬</td>
-                                <td>41768萬</td>
-                                <td>434000萬</td>
-                                <td>475399萬</td>
+                                <td data-title="所得族群">分組所得總額</td>
+                                <td data-title="25%">10971萬</td>
+                                <td data-title="50%">21528萬</td>
+                                <td data-title="75%">41768萬</td>
+                                <td data-title="100%">434000萬</td>
+                                <td data-title="超高收入">475399萬</td>
                             </tr>
                             <tr>
-                            	<td><b>平均每單位所得總額</b></td>
+                            	<td data-title="超高收入"><b>平均每單位所得總額</b></td>
                             	<td></td>
                             	<td></td>
                             	<td></td>
@@ -484,7 +484,7 @@ input:checked + .sliderround:before {
                         </tbody>
                     </table>
                     <h3>假設 2：50 個超高收入納稅單位</h3>
-                    <table>
+                    <table id="no-more-tables">
                         <thead>
                             <tr>
                             	<th>所得族群</br>假設所得總額</th>
@@ -497,23 +497,23 @@ input:checked + .sliderround:before {
                         </thead>
                         <tbody>
                             <tr>
-                                <td>單位數</td>
-                                <td>230</td>
-                                <td>230</td>
-                                <td>230</td>
-                                <td>177</td>
-                                <td>50</td>
+                                <td data-title="所得族群">單位數</td>
+                                <td data-title="25%">230</td>
+                                <td data-title="50%">230</td>
+                                <td data-title="75%">230</td>
+                                <td data-title="100%">177</td>
+                                <td data-title="超高收入">50</td>
                             </tr>
                             <tr>
-                                <td>分組所得總額</td>
-                                <td>10971萬</td>
-                                <td>21528萬</td>
-                                <td>41768萬</td>
-                                <td>354000萬</td>
-                                <td>555399萬</td>
+                                <td data-title="所得族群">分組所得總額</td>
+                                <td data-title="25%">10971萬</td>
+                                <td data-title="50%">21528萬</td>
+                                <td data-title="75%">41768萬</td>
+                                <td data-title="100%">354000萬</td>
+                                <td data-title="超高收入">555399萬</td>
                             </tr>
                             <tr>
-                            	<td><b>平均每單位所得總額</b></td>
+                            	<td data-title="超高收入"><b>平均每單位所得總額</b></td>
                             	<td></td>
                             	<td></td>
                             	<td></td>
@@ -1517,7 +1517,7 @@ input:checked + .sliderround:before {
         .attr("width", chart1width)
         .attr("height", chart1height)
         .append("g")
-        .attr("transform", "translate(" + chart1width*0.05 + "," + chart1height*0.01 + ")");
+        .attr("transform", "translate(" + chart1width*0.08 + "," + chart1height*0.01 + ")");
 
         var x = d3.scale.ordinal()
         .domain(subdistdata.map(function(a) { return a.subdist; }))

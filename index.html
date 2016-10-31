@@ -136,7 +136,7 @@
 			}
             .x.axis text {
                 font-weight: 400;
-                font-size: 0.8rem;
+                font-size: 0.7rem;
             }
             .y.axis text {
                 font-weight: 400;
@@ -402,6 +402,7 @@ input:checked + .sliderround:before {
                                 <th>第一分位數</th>
                                 <th>中位數</th>
                                 <th>第三分位數</th>
+                                <th>標準差</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -414,6 +415,7 @@ input:checked + .sliderround:before {
                                 <td>47.4萬</td>
                                 <td>93.6萬</td>
                                 <td>181.6萬</td>
+                                <td>261760.57</td>
                             </tr>
                         </tbody>
                     </table>
@@ -437,7 +439,6 @@ input:checked + .sliderround:before {
                                 <th>75%</br>181.6萬</th>
                                 <th>100%</br>2000萬</th>
                                 <th>超高收入納稅單位</th>
-                                <th>平均每單位所得總額</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -448,7 +449,6 @@ input:checked + .sliderround:before {
                                 <td>230</td>
                                 <td>217</td>
                                 <td>10</td>
-                                <td></td>
                             </tr>
                             <tr>
                                 <td>分組所得總額</td>
@@ -457,7 +457,14 @@ input:checked + .sliderround:before {
                                 <td>41768萬</td>
                                 <td>434000萬</td>
                                 <td>475399萬</td>
-                                <td><font color="#558C89">約 4 億 7 千萬</font></td>
+                            </tr>
+                            <tr>
+                            	<td><b>平均每單位所得總額</b></td>
+                            	<td></td>
+                            	<td></td>
+                            	<td></td>
+                            	<td></td>
+                            	<td><font color="#558C89">約 4 億 7 千萬</font></td>
                             </tr>
                         </tbody>
                     </table>
@@ -471,7 +478,6 @@ input:checked + .sliderround:before {
                                 <th>75%</br>181.6萬</th>
                                 <th>100%</br>2000萬</th>
                                 <th>超高收入納稅單位</th>
-                                <th>平均每單位所得總額</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -482,7 +488,6 @@ input:checked + .sliderround:before {
                                 <td>230</td>
                                 <td>177</td>
                                 <td>50</td>
-                                <td></td>
                             </tr>
                             <tr>
                                 <td>分組所得總額</td>
@@ -491,7 +496,14 @@ input:checked + .sliderround:before {
                                 <td>41768萬</td>
                                 <td>354000萬</td>
                                 <td>555399萬</td>
-                                <td><font color="#558C89">約 1 億 1 千萬</font></td>
+                            </tr>
+                            <tr>
+                            	<td><b>平均每單位所得總額</b></td>
+                            	<td></td>
+                            	<td></td>
+                            	<td></td>
+                            	<td></td>
+                            	<td><font color="#558C89">約 1 億 1 千萬</font></td>
                             </tr>
                         </tbody>
                     </table>
@@ -1488,18 +1500,18 @@ input:checked + .sliderround:before {
         .attr("width", chart1width)
         .attr("height", chart1height)
         .append("g")
-        .attr("transform", "translate(" + chart1width*0.05 + "," + chart1height*0.05 + ")");
+        .attr("transform", "translate(" + chart1width*0.05 + "," + chart1height*0.01 + ")");
 
         var x = d3.scale.ordinal()
         .domain(subdistdata.map(function(a) { return a.subdist; }))
-        .rangePoints([chart1width*0.04, chart1width*0.8]);
+        .rangePoints([chart1width*0.05, chart1width*0.8]);
 
         var xBand = d3.scale.ordinal()
         .domain(subdistdata.map(function(a) { return a.subdist; }))
         .rangeRoundBands([0, chart1width*0.85]);
         
         var y = d3.scale.linear()
-        .range([chart1height*0.85, 0]);
+        .range([chart1height*0.85, 10]);
         
         var xAxis = d3.svg.axis()
         .scale(x)
@@ -1522,11 +1534,14 @@ input:checked + .sliderround:before {
         chart1.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + (chart1height*0.85) + ")")
-        .call(xAxis);
+        .call(xAxis)
+        .selectAll("text")
+	    .attr("transform", "rotate(25)")
+	    .style("text-anchor", "start");
         
         chart1.append("g")
         .attr("class", "y axis")
-        .attr("transform", "translate(" + chart1width*0.005 +",0)")
+        .attr("transform", "translate(" + 10 +",0)")
         .call(yAxis)
         .append("text")
         .attr("y", 6)

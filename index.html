@@ -155,7 +155,8 @@
                 #side {
                     max-width: 50%; }
                 #chart1 {
-                    width: 50vw;} }
+                    width: 60vw;
+                    height: 30vh;} }
             
             @media screen and (min-width: 42em) and (max-width: 64em) {
                 #side {
@@ -163,6 +164,7 @@
                     clear: left;  }
                 #chart1 {
                     width: 100vw;
+                    height: 40vh;
                     clear: left;  } }
             
             @media screen and (max-width: 42em) {
@@ -172,6 +174,7 @@
                     clear: left; }
                 #chart1 {
                     width: 100vw;
+                    height: 40vh;
                     clear: left; } }   
             /* The switch - the box around the slider */
 .switch {
@@ -498,7 +501,7 @@ input:checked + .sliderround:before {
                     <div id="chart1">
                     </div>
                     <p>圖 1：區域內部所得分配差異</p>
-                    <p>在圖 1 中，我們繪出平均所得總額前十名的村里的各項統計數字，稍微觀察一下這些平均數遠高於中位數、甚至第三分位數的區域，分別是哪些村里，差距又有多大。不過除了長據第一的松山區東昌里，因為位於敦化北路台塑總部後方，據傳是台塑集團的王永在家族的居住地之外，其他的村里我們暫時找不到資料，足以解釋造成平均數飆高的原因。</p>
+                    <p>在圖 1 中，我們繪出平均所得總額前十名的村里的各項統計數字，稍微觀察一下這些平均數遠高於中位數、甚至第三分位數的區域，分別是哪些村里，差距又有多大。不過除了長據第一的松山區東昌里，因為位於敦化北路台塑總部後方，據傳是台塑集團王永在家族的居住地之外，其他的村里我們暫時找不到資料，足以解釋造成平均數飆高的原因。</p>
                     <h2>10%？1%？0.1%？</h2>
                     <p>我們或可想像，一般印象中的大安區、或者一開始的中位數前十名各里，住著台灣／雙北地區排名 10% 左右的有錢人，但超高平均數呈現出的，可能是 1%、甚至 0.1% 的有錢人。有錢人在哪裡？這是一個大家都好奇的問題。藉由地圖和統計資料的觀察，我們嘗試描繪高所得人群的空間分布。</p>
                     <p>不過，在想了解有錢人生活的好奇心之外，我們或許可以提出更多問題：有錢人的收入穩定嗎？他們的收入來源和一般人有什麼差別？這些差別，有沒有可能告訴我們什麼？接下來，我們會嘗試使用稅務資料繼續研究這些問題，如果發現了有趣的結果，再和大家分享。</p>
@@ -1477,24 +1480,25 @@ input:checked + .sliderround:before {
 		  }
 		]
 
-        var chart1width = screen.width, chart1height = screen.height*0.45;
+        var chart1width = parseInt(d3.select("#chart1").style("width")), 
+        chart1height = parseInt(d3.select("#chart1").style("height"));
         
         var chart1 = d3.select("#chart1").append("svg")
-        .attr("width", chart1width*0.8)
-        .attr("height", chart1height*0.8)
+        .attr("width", chart1width)
+        .attr("height", chart1height)
         .append("g")
-        .attr("transform", "translate(" + chart1width*0.035 + "," + chart1height*0.05 + ")");
+        .attr("transform", "translate(" + chart1width*0.05 + "," + chart1height*0.05 + ")");
 
         var x = d3.scale.ordinal()
         .domain(subdistdata.map(function(a) { return a.subdist; }))
-        .rangePoints([chart1width*0.03, chart1width*0.6]);
+        .rangePoints([chart1width*0.04, chart1width*0.8]);
 
         var xBand = d3.scale.ordinal()
         .domain(subdistdata.map(function(a) { return a.subdist; }))
-        .rangeRoundBands([0, chart1width*0.65]);
+        .rangeRoundBands([0, chart1width*0.85]);
         
         var y = d3.scale.linear()
-        .range([chart1height*0.7-20, 0]);
+        .range([chart1height*0.85, 0]);
         
         var xAxis = d3.svg.axis()
         .scale(x)
@@ -1516,7 +1520,7 @@ input:checked + .sliderround:before {
 
         chart1.append("g")
         .attr("class", "x axis")
-        .attr("transform", "translate(0," + (chart1height*0.7-20) + ")")
+        .attr("transform", "translate(0," + (chart1height*0.85) + ")")
         .call(xAxis);
         
         chart1.append("g")
@@ -1625,7 +1629,7 @@ input:checked + .sliderround:before {
 		.attr("x", function(d) { return xBand(d.subdist); })
         .attr("width", xBand.rangeBand())
         .attr("y", 0 )
-		.attr("height", chart1height*0.7-20 )
+		.attr("height", chart1height*0.85 )
 		.attr("fill", "black")
 		.style("opacity", 0)
 		.on("mouseover", chart1mouseover)
@@ -1645,13 +1649,13 @@ input:checked + .sliderround:before {
 		.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
 		chart1legend.append("rect")
-		.attr("x", chart1width*0.6)
+		.attr("x", chart1width*0.8)
 		.attr("width", 17)
 		.attr("height", 17)
 		.style("fill", function(d) {return d.color});
 
 		chart1legend.append("text")
-		.attr("x", chart1width*0.595)
+		.attr("x", chart1width*0.795)
 		.attr("y", 9)
 		.attr("dy", ".35em")
 		.style("text-anchor", "end")

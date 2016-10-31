@@ -59,6 +59,10 @@ a {
   a:hover {
     text-decoration: underline; }
 
+b {
+  font-weight: 700;
+}
+
 .btn {
   display: inline-block;
   margin-bottom: 1rem;
@@ -366,7 +370,7 @@ a {
     top: -9999px;
     left: -9999px;
   }
- 
+
   #no-more-tables tr { border: 1px solid #74AFAD; }
  
   #no-more-tables td { 

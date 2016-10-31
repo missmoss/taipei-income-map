@@ -2,7 +2,6 @@
 <html lang="en-us">
     <head>
         <meta charset="UTF-8">
-            
             <title>互動地圖：雙北所得大解密</title>
             <style>
                 #map{ width: 100%; height: 100vh;}
@@ -38,10 +37,10 @@
             div.tooltip {
                 position: absolute;
                 text-align: center;
-                width: 90px;
+                width: 100px;
                 height: 35px;
                 padding: 5.5px 2px;
-                font: 13px sans-serif;
+                font: 14px sans-serif;
                 background: white;
                 border: 0px;
                 border-radius: 8px;
@@ -190,7 +189,7 @@
 	            .y.axis text {
 	                font-weight: 400;
 	                font-size: 0.6rem;
-	            } } }   
+	            } }  
             /* The switch - the box around the slider */
 .switch {
   position: relative;
@@ -206,8 +205,8 @@
 .sliderround {
   position: absolute;
   cursor: pointer;
-  top:  0.2rem;
-  left:  0.15rem;
+  top:  0.2rem; 
+  left:  0.15rem; 
   right: 0;
   bottom: 0;
   background-color: #ccc;
@@ -222,7 +221,7 @@
   height: 0.65rem;
   width: 0.65rem;
   left: 0.0008rem;
-  bottom: 0.01rem;
+  bottom: 0.015rem;
   background-color: white;
     -webkit-transition: .4s;
   transition: .4s;
@@ -290,7 +289,7 @@ input:checked + .sliderround:before {
                     <p>入行兩年的 C 說：「週末，我不是在辦公室，就是抱著卷宗和電腦在家趕工。」</p>
                     <p>每週工時上看 90 小時的 C ，有著大多數人稱羨的薪水：出社會第一年、25 歲就年薪百萬。然而，在 C 家所在的內湖區南湖里，他的年薪還比整個里的所得中位數低一些，表示南湖里有一半以上的家庭，年收入都比 C 律師還要來得高。</p>
                     <p>上班族追逐的年薪百萬，在台北市只能算是中產，更有 25% 的家庭，一年的所得總額低於 40 萬元。這樣的薪水，在台北市生活尚且不容易，更何況這 40 萬元可能要養活的是一整個家庭。</p>
-                    <p>在大台北地區，所得的空間分布可以一窺區域差異，透過簡單的統計指標，我們嘗試討論：雙北地區的高所得居民集中在哪？區域的內部，又有著什麼樣的差異？</p>
+                    <p>在大台北地區，所得的空間分布可以一窺區域差異，透過簡單的統計指標，我們嘗試討論：<b>雙北地區的高所得居民集中在哪？區域的內部，又有著什麼樣的差異？</b></p>
                 </section>
             </div>
             <div class="section">
@@ -442,7 +441,7 @@ input:checked + .sliderround:before {
                     <h2>圍牆內的天文數字</h2>
                     <p>乍看之下，東昌里只是一個收入屬於台北市前段班的普通村里。</p>
                     <p>然而，松山區東昌里整個區域的平均年度所得總額，卻長期盤踞北市、甚至全台的第一名寶座。103 年度的統計中，這個數字是驚人的 1072.7 萬。</p>
-                    <p>遠高於中位數、甚至是第三分位數數倍的平均數，暗示著東昌里的 917 個納稅單位中，有一位或多位納稅人，有著天文數字般的所得總額。</p>
+                    <p><b>遠高於中位數、甚至是第三分位數數倍的平均數，暗示著東昌里的 917 個納稅單位中，有一位或多位納稅人，有著天文數字般的所得總額。</b></p>
                     <p>我們可以嘗試做個簡單的估計：假設 0-25% 的人收入都是 47.4 萬、25-50% 的人收入都是 93.6 萬，50-75% 的人收入都是 181.6 萬，剩下的 75-100% 收入設定個 2000 萬好了，再用整區所得總額 983657 萬，減掉前面估計出的所得總額，再除以我們設定的納稅單位數量，來看看這些拉高平均的納稅單位，年度所得總額到底有多高。</p>
                     <h3>假設 1：10 個超高收入納稅單位</h3>
                     <table id="no-more-tables">

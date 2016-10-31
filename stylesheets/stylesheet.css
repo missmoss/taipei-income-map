@@ -348,7 +348,7 @@ a {
         display: none;
     }
 }
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 42em) {
   
   /* Force table to not be like tables anymore */
   #no-more-tables table, 

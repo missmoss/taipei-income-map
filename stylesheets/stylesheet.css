@@ -348,140 +348,6 @@ a {
         display: none;
     }
 }
-Responsive Tables
-Home
-The Unseen Column
-Flip Scroll
-No More Tables
-collated by Simon Elvery
-Responsive Tables Demo
-A quick and dirty look at some techniques for designing responsive table layouts. This was put together in haste (and with the aid of Twitter Bootstrap) for What Do You Know Brisbane hosted by Web Directions.
-
-I work for a really great little web design agency in Brisbane, and you should say hello.
-
-The Unseen Column
-This technique, first described by Stuart Curry (@irishstu) involves simply hiding less important columns on smaller screen sizes.
-
-Example
-Code  Company Price Change  Change %  Open  High  Low Volume
-AAC AUSTRALIAN AGRICULTURAL COMPANY LIMITED.  $1.38 -0.01 -0.36%  $1.39 $1.39 $1.38 9,395
-AAD ARDENT LEISURE GROUP  $1.15 +0.02 1.32% $1.14 $1.15 $1.13 56,431
-AAX AUSENCO LIMITED $4.00 -0.04 -0.99%  $4.01 $4.05 $4.00 90,641
-ABC ADELAIDE BRIGHTON LIMITED $3.00 +0.06 2.04% $2.98 $3.00 $2.96 862,518
-ABP ABACUS PROPERTY GROUP $1.91 0.00  0.00% $1.92 $1.93 $1.90 595,701
-ABY ADITYA BIRLA MINERALS LIMITED $0.77 +0.02 2.00% $0.76 $0.77 $0.76 54,567
-ACR ACRUX LIMITED $3.71 +0.01 0.14% $3.70 $3.72 $3.68 191,373
-ADU ADAMUS RESOURCES LIMITED  $0.72 0.00  0.00% $0.73 $0.74 $0.72 8,602,291
-AGG ANGLOGOLD ASHANTI LIMITED $7.81 -0.22 -2.74%  $7.82 $7.82 $7.81 148
-AGK AGL ENERGY LIMITED  $13.82  +0.02 0.14% $13.83  $13.83  $13.67  846,403
-AGO ATLAS IRON LIMITED  $3.17 -0.02 -0.47%  $3.11 $3.22 $3.10 5,416,303
-Code
-The approach I've presented here assumes you know the index of the columns to be hidden. This probably isn't always appropriate, and isn't all that semantic. Another option is to give the <th> and <td> classes based on importance level and code your CSS accordingly.
-
-HTML
-CSS
-<table>
-  <thead>
-    <tr>
-      <th>Code</th>
-      <th>Company</th>
-      <th class="numeric">Price</th>
-      <th class="numeric">Change</th>
-      <th class="numeric">Change %</th>
-      <th class="numeric">Open</th>
-      <th class="numeric">High</th>
-      <th class="numeric">Low</th>
-      <th class="numeric">Volume</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>AAC</td>
-      <td>AUSTRALIAN AGRICULTURAL COMPANY LIMITED.</td>
-      <td class="numeric">$1.38</td>
-      <td class="numeric">-0.01</td>
-      <td class="numeric">-0.36%</td>
-      <td class="numeric">$1.39</td>
-      <td class="numeric">$1.39</td>
-      <td class="numeric">$1.38</td>
-      <td class="numeric">9,395</td>
-    </tr>
-  </tbody>
-</table>
-            
-Flip Scroll
-This technique was first published by David Bushell (@dbushell). For the full low down on this technique visit his post on the technique, Responsive Tables (2). While you're there, it's also worth checking out his responsive calendar proof of concept.
-
-Example
-Code  Company Price Change  Change %  Open  High  Low Volume
-AAC AUSTRALIAN AGRICULTURAL COMPANY LIMITED.  $1.38 -0.01 -0.36%  $1.39 $1.39 $1.38 9,395
-AAD ARDENT LEISURE GROUP  $1.15 +0.02 1.32% $1.14 $1.15 $1.13 56,431
-AAX AUSENCO LIMITED $4.00 -0.04 -0.99%  $4.01 $4.05 $4.00 90,641
-ABC ADELAIDE BRIGHTON LIMITED $3.00 +0.06 2.04% $2.98 $3.00 $2.96 862,518
-ABP ABACUS PROPERTY GROUP $1.91 0.00  0.00% $1.92 $1.93 $1.90 595,701
-ABY ADITYA BIRLA MINERALS LIMITED $0.77 +0.02 2.00% $0.76 $0.77 $0.76 54,567
-ACR ACRUX LIMITED $3.71 +0.01 0.14% $3.70 $3.72 $3.68 191,373
-ADU ADAMUS RESOURCES LIMITED  $0.72 0.00  0.00% $0.73 $0.74 $0.72 8,602,291
-AGG ANGLOGOLD ASHANTI LIMITED $7.81 -0.22 -2.74%  $7.82 $7.82 $7.81 148
-AGK AGL ENERGY LIMITED  $13.82  +0.02 0.14% $13.83  $13.83  $13.67  846,403
-AGO ATLAS IRON LIMITED  $3.17 -0.02 -0.47%  $3.11 $3.22 $3.10 5,416,303
-Code
-The biggest trick to getting this working is to use display: inline-block; on the table rows and white-space: nowrap; on the table body. You'll also need to make use of your favourite float clearing method.
-
-HTML
-CSS
- 
-@media only screen and (max-width: 800px) {
-  
-  #flip-scroll .cf:after { visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
-  #flip-scroll * html .cf { zoom: 1; }
-  #flip-scroll *:first-child+html .cf { zoom: 1; }
-  
-  #flip-scroll table { width: 100%; border-collapse: collapse; border-spacing: 0; }
- 
-  #flip-scroll th,
-  #flip-scroll td { margin: 0; vertical-align: top; }
-  #flip-scroll th { text-align: left; }
-  
-  #flip-scroll table { display: block; position: relative; width: 100%; }
-  #flip-scroll thead { display: block; float: left; }
-  #flip-scroll tbody { display: block; width: auto; position: relative; overflow-x: auto; white-space: nowrap; }
-  #flip-scroll thead tr { display: block; }
-  #flip-scroll th { display: block; text-align: right; }
-  #flip-scroll tbody tr { display: inline-block; vertical-align: top; }
-  #flip-scroll td { display: block; min-height: 1.25em; text-align: left; }
- 
- 
-  /* sort out borders */
- 
-  #flip-scroll th { border-bottom: 0; border-left: 0; }
-  #flip-scroll td { border-left: 0; border-right: 0; border-bottom: 0; }
-  #flip-scroll tbody tr { border-left: 1px solid #babcbf; }
-  #flip-scroll th:last-child,
-  #flip-scroll td:last-child { border-bottom: 1px solid #babcbf; }
-}
-            
-No More Tables
-This technique was developed by Chris Coyier (@chriscoyier) and described in his post Responsive Data Tables at css-tricks.com. While you're there, you should probably check out the Responsive Tables Roundup post, which showcases all these techniques and more.
-
-Example
-Code  Company Price Change  Change %  Open  High  Low Volume
-AAC AUSTRALIAN AGRICULTURAL COMPANY LIMITED.  $1.38 -0.01 -0.36%  $1.39 $1.39 $1.38 9,395
-AAD ARDENT LEISURE GROUP  $1.15 +0.02 1.32% $1.14 $1.15 $1.13 56,431
-AAX AUSENCO LIMITED $4.00 -0.04 -0.99%  $4.01 $4.05 $4.00 90,641
-ABC ADELAIDE BRIGHTON LIMITED $3.00 +0.06 2.04% $2.98 $3.00 $2.96 862,518
-ABP ABACUS PROPERTY GROUP $1.91 0.00  0.00% $1.92 $1.93 $1.90 595,701
-ABY ADITYA BIRLA MINERALS LIMITED $0.77 +0.02 2.00% $0.76 $0.77 $0.76 54,567
-ACR ACRUX LIMITED $3.71 +0.01 0.14% $3.70 $3.72 $3.68 191,373
-ADU ADAMUS RESOURCES LIMITED  $0.72 0.00  0.00% $0.73 $0.74 $0.72 8,602,291
-AGG ANGLOGOLD ASHANTI LIMITED $7.81 -0.22 -2.74%  $7.82 $7.82 $7.81 148
-AGK AGL ENERGY LIMITED  $13.82  +0.02 0.14% $13.83  $13.83  $13.67  846,403
-AGO ATLAS IRON LIMITED  $3.17 -0.02 -0.47%  $3.11 $3.22 $3.10 5,416,303
-Code
-This technique as presented here relies on using HTML5 data attributes and accessing them via CSS to specify the column headings. The other option is to hard code the column headings into the CSS, but as we all know content in CSS is a huge no-no.
-
-HTML
-CSS
 @media only screen and (max-width: 800px) {
   
   /* Force table to not be like tables anymore */
@@ -501,7 +367,7 @@ CSS
     left: -9999px;
   }
  
-  #no-more-tables tr { border: 1px solid #ccc; }
+  #no-more-tables tr { border: 1px solid #74AFAD; }
  
   #no-more-tables td { 
     /* Behave  like a "row" */
@@ -517,11 +383,11 @@ CSS
     /* Now like a table header */
     position: absolute;
     /* Top/left values mimic padding */
-    top: 6px;
-    left: 6px;
-    width: 45%; 
+    top: 1px;
+    left: 1px;
+    width: 70%; 
     padding-right: 10px; 
-    white-space: nowrap;
+    white-space: normal;
     text-align:left;
     font-weight: bold;
   }
@@ -531,4 +397,4 @@ CSS
   */
   #no-more-tables td:before { content: attr(data-title); }
 }
-            
+

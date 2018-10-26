@@ -53,6 +53,9 @@ body {
   color: #606c71;
   background-color: #ECECEA; }
 
+#smaller {
+  font-size: 13px;
+}
 a {
   color: #1e6bb8;
   text-decoration: none; }
@@ -284,10 +287,14 @@ b {
 
 @media screen and (min-width: 64em) {
   .main-content {
-    max-width: 64rem;
-    padding: 1rem 6rem;
+    max-width: 60rem;
+    padding: 1rem 8rem;
     margin: 0 auto;
-    font-size: 0.9rem; } }
+    font-size: 0.85rem; }
+  #front-page {
+    max-width: 64rem;
+}}
+
 
 @media screen and (min-width: 42em) and (max-width: 64em) {
   .main-content {

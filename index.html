@@ -2,7 +2,7 @@
 <html lang="en-us">
     <head>
         <meta charset="UTF-8">
-            <title>互動地圖：雙北所得大解密</title>
+            <title>Interactive Map: Taipei's Income Distribution</title>
             <style>
                 #map{ width: 100%; height: 100vh;}
                 div {
@@ -11,7 +11,7 @@
                 div.legend {
                     position: absolute;
                     text-align: left;
-                    width: 310px;
+                    width: 330px;
                     height: 60px;
                     left: 5%;
                     top: 79px;
@@ -38,12 +38,12 @@
                 position: absolute;
                 text-align: center;
                 width: 100px;
-                height: 35px;
+                height: 50px;
                 padding: 5.5px 2px;
                 font: 14px sans-serif;
                 background: white;
                 border: 0px;
-                border-radius: 8px;
+                border-radius: 5px;
                 pointer-events: none;
             }
             div#mapcontrol {
@@ -52,7 +52,7 @@
                 left: 5%;
                 top: 143px;
                 font-size: 0.7rem;
-                width: 6rem;
+                width: 6.5rem;
                 padding: 0.01rem;
                 border: 0px;
                 border-radius: 4px;
@@ -67,11 +67,11 @@
                 -webkit-transform: translate(-50%,0);
                 transform: translate(-50%,0);
                 bottom: 5rem;
-                width: 17rem;
+                width: 18rem;
                 height: 7.5rem;
-                padding: 0.55rem 2.3rem;
+                padding: 0.55rem 1rem;
                 font-size: 0.75rem;
-                background: rgba(255,255,255,0.6);
+                background: rgba(255,255,255,0.75);
                 border: 0px;
                 border-radius: 8px;
                 white-space: pre;
@@ -96,20 +96,6 @@
                 bottom: 0.5rem;
                 width: 5rem;
                 height: 2rem;    
-            }
-            #back {
-                position: absolute;
-                left: 0rem;
-                top: 1.25rem;
-                width: 1.5rem;
-                height: 5rem;
-            }
-            #next {
-                position: absolute;
-                right: 0rem;
-                top: 1.25rem;
-                width: 1.5rem;
-                height: 5rem;
             }
             #exit {
                 position: absolute;
@@ -147,7 +133,7 @@
                     max-width: 50%; }
                 #chart1 {
                     width: 60vw;
-                    height: 30vh;}
+                    height: 45vh;}
                 .x.axis text {
 	                font-weight: 400;
 	                font-size: 0.7rem;
@@ -162,7 +148,7 @@
                     clear: left;  }
                 #chart1 {
                     width: 100vw;
-                    height: 40vh;
+                    height: 45vh;
                     clear: left;  }
                 .x.axis text {
 	                font-weight: 400;
@@ -180,7 +166,7 @@
                     clear: left; }
                 #chart1 {
                     width: 100vw;
-                    height: 40vh;
+                    height: 45vh;
                     clear: left; }
                 .x.axis text {
 	                font-weight: 400;
@@ -190,7 +176,8 @@
 	                font-weight: 400;
 	                font-size: 0.6rem;
 	            } }  
-            /* The switch - the box around the slider */
+
+/* The switch - the box around the slider */
 .switch {
   position: relative;
   display: inline-block;
@@ -244,7 +231,7 @@ input:checked + .sliderround:before {
             </style>
             <meta name="viewport" content="width=device-width, initial-scale=1"/>
             <meta property="og:image" content="https://raw.githubusercontent.com/missmoss/taipei-stat-mrt/gh-pages/front.png"/>
-            <meta property="og:description" content="台北的有錢人都住在大安區嗎？圍牆內外，居民收入竟是百萬與千萬的差別？雙北所得分布地圖帶你一窺大台北地區的所得樣貌。"/>
+            <meta property="og:description" content="On two sides of a wall, the residents' incomes can differ by ten times. This map reveals the geographical distribution of how much people earn in Taipei."/>
             <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen"/>
             <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' 'type='text/css'/>
             <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen"/>
@@ -275,128 +262,25 @@ input:checked + .sliderround:before {
     <body>
         <div id="fullpage">
             <div class="section">
-                <section class="main-content">
+                <section class="main-content" id="front-page">
                     <img src="front.png" id="side" style="margin-right:2%;"/>
-                    <h1>互動地圖：<br>雙北所得大解密</h1>
-                    <p>製作／<a href="https://github.com/missmoss">@missmoss</a></p>
-                    <p>協力／<a href="https://www.facebook.com/Cicadatatw/">知了新聞</a>、<a href="https://www.facebook.com/TalkEcon/">白經濟</a></p>
-                    <p>台北的有錢人都住在大安區嗎？圍牆內外，居民收入竟是百萬與千萬的差別？雙北所得分布地圖帶你一窺大台北地區的所得樣貌。</p>
-                    <p>（為達最佳瀏覽效果，建議使用電腦版閱讀。）</font></p>
-                    <p><a href="zh.html">中文(Mandarin)</a></p>
+                    <h1>Interactive Map: <br>Taipei's Income Distribution</h1>
+                    <p>Written, Designed and Developed by <a href="https://github.com/missmoss">@missmoss</a>
+                    <br>Special Thanks to <a href="https://www.facebook.com/Cicadatatw/">Cicadata TW</a>, <a href="https://www.facebook.com/TalkEcon/">Talkecon</a></p>
+                    <p>On two sides of a wall, the residents' incomes can differ by ten times.
+This map reveals the geographical distribution of how much people earn in Taipei.</p>
+                    <p>(Recommend to read on computer for better browsing experiences)</p>
+                    <p><a href="zh.html" id="smaller">中文(Traditional Chinese)</a></p>
                 </section>
             </div>
             <div class="section">
                 <section class="main-content">
-                    <p>星期五晚上11點，敦化南路上的律師事務所仍然燈火通明，C 律師與同事們正為了下週即將開庭的大案積極備戰。在 C 沒有對外窗的裡間獨立辦公室，感覺不到日夜的更迭，唯一明確變動的，只有眼前待解決的工作數量。「不加班，根本做不完。」</p>
-                    <p>入行兩年的 C 說：「週末，我不是在辦公室，就是抱著卷宗和電腦在家趕工。」</p>
-                    <p>每週工時上看 90 小時的 C ，有著大多數人稱羨的薪水：出社會第一年、25 歲就年薪百萬。然而，在 C 家所在的內湖區南湖里，他的年薪還比整個里的所得中位數低一些，表示南湖里有一半以上的家庭，年收入都比 C 律師還要來得高。</p>
-                    <p>上班族追逐的年薪百萬，在台北市只能算是中產，更有 25% 的家庭，一年的所得總額低於 40 萬元。這樣的薪水，在台北市生活尚且不容易，更何況這 40 萬元可能要養活的是一整個家庭。</p>
-                    <p>在大台北地區，所得的空間分布可以一窺區域差異，透過簡單的統計指標，我們嘗試討論：<b>雙北地區的高所得居民集中在哪？區域的內部，又有著什麼樣的差異？</b></p>
+                    <p>Saturday night, the lights are still on at a law firm on Dunhua South Road at  11:00. Lawyer C and his colleagues have been preparing for an upcoming crucial court session for weeks. In the windowless cellular office of C's, it's hard to notice the transition of day and night. The to-do list on the desk is the only changing thing.</p>
+                    <p>"I can't finish all these works without overtime." the two-year-practice lawyer told me, "At weekends, I'm either at the office or work at home with my laptop and documents."</p>
+                    <p>With up to 90 work hours per week, C has a nice salary people would admire. He earned 1m NTD (3.3k USD) in his first practice year at age 25. However, in C's hometown, Nanhu Village in Neihu District, his annual salary is a bit lower than the median income of the village. That is, half of tax units (we can think it as households)  have higher annual income than lawyer C.</p>
+                    <p>Taiwan's white-collar see an annual income of one million NTD (3.3k USD) as an achievement. Yet an income of one million is only middle-class. More than 25% households in Taipei earn less than 0.4 million NTD (1.3k USD) yearly. The income is hardly enough for one to live in Taipei. Let alone the income is probably for a whole family, not a person.</p>
+                    <p>In big Taipei area, geographical income distribution can help us to understand the differences among districts. Through statistics, we try to discuss: <b>Where the high-income people live? Within districts, what differences exist?</b></p>
                 </section>
-            </div>
-            <div class="section">
-                <section class="main-content">
-                    <h2>雙北地區所得前十名</h2>
-                    <div>
-                        <div id="side">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>排名</th>
-                                        <th>縣市</th>
-                                        <th>鄉鎮市區</th>
-                                        <th>村里</th>
-                                        <th>所得中位數</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>台北市</td>
-                                        <td>內湖區</td>
-                                        <td>寶湖里</td>
-                                        <td>124.0萬</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>台北市</td>
-                                        <td>文山區</td>
-                                        <td>政大里</td>
-                                        <td>123.6萬</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>新北市</td>
-                                        <td>新店區</td>
-                                        <td>華城里</td>
-                                        <td>119.7萬</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>台北市</td>
-                                        <td>內湖區</td>
-                                        <td>金湖里</td>
-                                        <td>118.3萬</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>台北市</td>
-                                        <td>中山區</td>
-                                        <td>成功里</td>
-                                        <td>116.4萬</td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>台北市</td>
-                                        <td>內湖區</td>
-                                        <td>南湖里</td>
-                                        <td>112.0萬</td>
-                                    </tr>
-                                    <tr>
-                                        <td>7</td>
-                                        <td>台北市</td>
-                                        <td>大安區</td>
-                                        <td>光明里</td>
-                                        <td>106.9萬</td>
-                                    </tr>
-                                    <tr>
-                                        <td>8</td>
-                                        <td>台北市</td>
-                                        <td>南港區</td>
-                                        <td>重陽里</td>
-                                        <td>106.5萬</td>
-                                    </tr>
-                                    <tr>
-                                        <td>9</td>
-                                        <td>台北市</td>
-                                        <td>大安區</td>
-                                        <td>龍門里</td>
-                                        <td>105.7萬</td>
-                                    </tr>
-                                    <tr>
-                                        <td>10</td>
-                                        <td>台北市</td>
-                                        <td>大安區</td>
-                                        <td>福住里</td>
-                                        <td>105.1萬</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <p style="font-size: 0.7rem;">資料來源：103年所得稅統計資料</p>
-                            <hr class="narrowonly">
-                        </div>
-                        <div>
-                            <p>被網友戲稱為天龍國的台北市大安區，印象中向來是有錢人才住得起的地方，也被認為應該是台灣平均收入最高的一群，若將年度家戶所得依各村里中位數排出前十名，大安區雖然無法拔得頭籌，卻囊括了十名中的七、九、十名，區內各里也都在台北市的前段班。</p>
-                            <h3>位於市郊的領先群組</h3>
-                            <p>前五名中的文山區政大里、新店區華城里及內湖區金湖里均是相對市郊、環山抱翠，聚集了不少喜歡清幽的有錢人。</p>
-                            <h3>明星學區長青不衰</h3>
-                            <p>其他入榜的村里均位於市區，鄰近明星學區、醫院、科技公司聚集處，內湖區寶湖里鄰近三總、國防醫學院，中山區成功里即明水路一帶，著名的大直水岸第一排就座落於此，大安區光明里臨中正紀念堂，為明星學校中正國中學區，南港區重陽里也臨河，近南港軟體園區，內湖區南湖里在哈拉影城後方，中正區新營里為中正紀念堂、羅斯福路及杭州南路所夾三角地區，也是中正國中學區，龍門里則被大安森林公園、台大、名校龍門國中所環繞，福住里在金華國中、大安森林公園旁。</p>
-                            <blockquote>
-                                <h4>為什麼使用中位數</h4>
-                                <p>中位數是將原始資料排序後，位於正中間（50%）的數值。在所得資料中，平均數常常被少數高所得的極端值拉高，使得平均數有時難以衡量一個群體的大致收入樣貌，所以我們採用中位數，以求貼近一般的所得水準。</p>
-                            </blockquote>
-                        </div>
-                        </section>
             </div>
             <div class="section">
                 <div id="map">
@@ -404,168 +288,151 @@ input:checked + .sliderround:before {
             </div>
             <div class="section">
                 <section class="main-content">
-                    <h2>一道圍牆，兩個世界</h2>
-                    <p>民生東路四段巷內，台北市隨處可見的五到七樓高華廈住宅群中，有幾棟並不特別華麗大氣、卻由高聳圍牆、濃密樹蔭與監視器所環繞的半新大樓，森嚴的戒備與低調外觀平添了神秘感。</p>
-                    <p>這些大樓位於松山區東昌里。財稅中心公布的各村里所得總額統計數字，或可提供一些線索：</p>
+                    <h2>A world divided by the wall</h2>
+                    <p>Among the ordinary five-to-seven-floor apartment buildings which are common in Taipei, there are several buildings hidden in high walls and surrounded by tall bushy trees in a lane of Mingsheng East Road. It looks mysterious.</p>
+                    <p>These buildings are located in Dongcheng Village, Songshan Dist. The data from Financial Data Center reveals some clues:</p>
                     <table id="no-more-tables">
                         <thead>
                             <tr>
-                                <th>區域</th>
-                                <th>村里</th>
-                                <th>區域所得總額</th>
-                                <th>納稅單位</th>
-                                <th>平均</th>
-                                <th>第一分位數</th>
-                                <th>中位數</th>
-                                <th>第三分位數</th>
-                                <th>標準差</th>
+                                <th>District</th>
+                                <th>Village</th>
+                                <th>Total Income of the Village</th>
+                                <th>Tax Unit</th>
+                                <th>Average</th>
+                                <th>First Quartile</th>
+                                <th>Midian</th>
+                                <th>Third Quartile</th>
+                                <th>Standard Deviation</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td data-title="區域">松山區</td>
-                                <td data-title="村里">東昌里</td>
-                                <td data-title="區域所得總額">983657萬</td>
-                                <td data-title="納稅單位">917</td>
-                                <td data-title="平均">1072.7萬</td>
-                                <td data-title="第一分位數">47.4萬</td>
-                                <td data-title="中位數">93.6萬</td>
-                                <td data-title="第三分位數">181.6萬</td>
-                                <td  data-title="標準差">261760.57</td>
+                                <td data-title="District">Songshan</td>
+                                <td data-title="Village">Dongcheng</td>
+                                <td data-title="Total Income of the Village">9836m</td>
+                                <td data-title="Tax Unit">917</td>
+                                <td data-title="Average">1.07m</td>
+                                <td data-title="First Quartile">0.47m</td>
+                                <td data-title="Midian">0.9m</td>
+                                <td data-title="Third Quartile">1.8m</td>
+                                <td  data-title="Standard Deviation">261760.57</td>
                             </tr>
                         </tbody>
                     </table>
                     <blockquote>
-                        <h4>稅收資料的單位</h4>
-                        <p>因為稅籍資料以報稅單位為最小單位，我們無法得知究竟人們是單獨報稅、夫妻報稅或是整個家庭一起報稅，但我們可以將每個報稅單位視為一組共同生活的小群體，想像他們的收入及支出是共用的。</p>
+                        <h4>Tax Unit</h4>
+                        <p>A group of individuals who pays tax as a unit, usually are parents and children or spouses. One can pay tax alone. Our data is based on tax units. Hence, we don't know the income comes from one person or is the total of many family members. We can consider a tax unit is a co-living group and people in the group share the income and expenditure.</p>
                     </blockquote>
-                    <p>將所有資料從最小到最大排序，依序找出排在 25%、50% 及 75% 位置的資料，這就是第一分位數、中位數和第三分位數的概念。從所得總額的資料中，我們可以知道排序在收入最低 0-25% 的東昌里設籍家戶／居民，年度所得介於 0-47.4 萬間。中位數 93.6 萬，位於台北市 456 個里的第 37 名，屬於前段班，但絕無擠進前十名的機會。即使是位於整個里 75% 的高收入族群，年度所得也只在 181.6 萬，排名台北市第 59。</p>
-                    <h2>圍牆內的天文數字</h2>
-                    <p>乍看之下，東昌里只是一個收入屬於台北市前段班的普通村里。</p>
-                    <p>然而，松山區東昌里整個區域的平均年度所得總額，卻長期盤踞北市、甚至全台的第一名寶座。103 年度的統計中，這個數字是驚人的 1072.7 萬。</p>
-                    <p><b>遠高於中位數、甚至是第三分位數數倍的平均數，暗示著東昌里的 917 個納稅單位中，有一位或多位納稅人，有著天文數字般的所得總額。</b></p>
-                    <p>我們可以嘗試做個簡單的估計：假設 0-25% 的人收入都是 47.4 萬、25-50% 的人收入都是 93.6 萬，50-75% 的人收入都是 181.6 萬，剩下的 75-100% 收入設定個 2000 萬好了，再用整區所得總額 983657 萬，減掉前面估計出的所得總額，再除以我們設定的納稅單位數量，來看看這些拉高平均的納稅單位，年度所得總額到底有多高。</p>
-                    <h3>假設 1：10 個超高收入納稅單位</h3>
+                    <p>Ordering all tax units in Dongcheng Village from small to large, and finding the record exactly in the 25%, 50%, and 75% percentile, that's how we get the first quartile, median and third quartile.</p>
+                    <p>From the data above, we know the residents of Dongcheng Village in 0-25% percentile earn 0-0.5 million NTD (0-1.7k USD) yearly. The median income of Dongcheng Village is 0.9 million NTD (30k USD). It ranks 37 out of 456 villages in Taipei. It looks nice, but not the top ones. The third quantile is 1.8 million NTD (60k USD), ranked 59, still far from the top tiers.</p>
+                    <h2>The Insane Amount of Income in the Wall</h2>
+                    <p>Dongcheng Village seems ordinary - as the buildings surrounded by trees are - in income distribution in Taipei.</p>
+                    <p>However, the average income of Dongcheng Village has been long occupied the top 1 in Taipei, even in Taiwan, for years. In the 2014 statistics, the number is amazing 10.7 million NTD (0.36 million USD).</p>
+                    <p><b>The average income of Dongcheng Village is far from its median, also much higher in times than its third quantile, suggests that there are one or more taxpayers earn an insane amount of money yearly.</b></p>
+                    <p>We can give a simple estimate of the amount. Let's assume 0-25% quantiles all earn 0.5 million NTD (1.7k USD), 25-50% all earn 0.9 million NTD (30k USD), and 50-75% all earn 1.8 million NTD (60k USD). For the rest 75-100% we don't have a statistics to follow, let's say all earn 20 million NTD (0.67 million USD). Then we have the total income of the village minus the previously assumed amount of income and divide by a pre-set tax unit numbers. Finally, we can get the annual income of these super-earners.</p>
+                    <h3>Assumption 1: 10 hyper income tax units</h3>
                     <table id="no-more-tables">
                         <thead>
                             <tr>
-                            	<th>所得族群</br>假設所得總額</th>
-                                <th>25%</br>47.4萬</th>
-                                <th>50%</br>93.6萬</th>
-                                <th>75%</br>181.6萬</th>
-                                <th>100%</br>2000萬</th>
-                                <th>超高收入納稅單位</th>
+                            	<th>Income Group</br>Assumed Income</th>
+                                <th>25%</br>0.47m</th>
+                                <th>50%</br>0.9m</th>
+                                <th>75%</br>1.8m</th>
+                                <th>100%</br>20m</th>
+                                <th>Hyper Income Units</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td data-title="所得族群">單位數</td>
+                                <td data-title="Income Group">Units</td>
                                 <td data-title="25%">230</td>
                                 <td data-title="50%">230</td>
                                 <td data-title="75%">230</td>
                                 <td data-title="100%">217</td>
-                                <td data-title="超高收入">10</td>
+                                <td data-title="Hyper Income Units">10</td>
                             </tr>
                             <tr>
-                                <td data-title="所得族群">分組所得總額</td>
-                                <td data-title="25%">10971萬</td>
-                                <td data-title="50%">21528萬</td>
-                                <td data-title="75%">41768萬</td>
-                                <td data-title="100%">434000萬</td>
-                                <td data-title="超高收入">475399萬</td>
+                                <td data-title="Income Group">Group Total Income</td>
+                                <td data-title="25%">110m</td>
+                                <td data-title="50%">215m</td>
+                                <td data-title="75%">418m</td>
+                                <td data-title="100%">4340m</td>
+                                <td data-title="Hyper Income">4754m</td>
                             </tr>
                             <tr>
-                            	<td data-title="超高收入"><b>平均每單位所得總額</b></td>
+                            	<td data-title="Hyper Income Units"><b>Average Income of Each Unit</b></td>
                             	<td></td>
                             	<td></td>
                             	<td></td>
                             	<td></td>
-                            	<td><font color="#558C89">約 4 億 7 千萬</font></td>
+                            	<td><font color="#558C89">~470m</font></td>
                             </tr>
                         </tbody>
                     </table>
-                    <h3>假設 2：50 個超高收入納稅單位</h3>
+                    <h3>Assumption 2: 50 hyper income tax units</h3>
                     <table id="no-more-tables">
                         <thead>
                             <tr>
-                            	<th>所得族群</br>假設所得總額</th>
-                                <th>25%</br>47.4萬</th>
-                                <th>50%</br>93.6萬</th>
-                                <th>75%</br>181.6萬</th>
-                                <th>100%</br>2000萬</th>
-                                <th>超高收入納稅單位</th>
+                            	<th>Income Group</br>Assumed Income</th>
+                                <th>25%</br>0.47m</th>
+                                <th>50%</br>0.9m</th>
+                                <th>75%</br>1.8m</th>
+                                <th>100%</br>20m</th>
+                                <th>Hyper Income Units</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td data-title="所得族群">單位數</td>
+                                <td data-title="Income Group">Units</td>
                                 <td data-title="25%">230</td>
                                 <td data-title="50%">230</td>
                                 <td data-title="75%">230</td>
                                 <td data-title="100%">177</td>
-                                <td data-title="超高收入">50</td>
+                                <td data-title="Hyper Income Units">50</td>
                             </tr>
                             <tr>
-                                <td data-title="所得族群">分組所得總額</td>
-                                <td data-title="25%">10971萬</td>
-                                <td data-title="50%">21528萬</td>
-                                <td data-title="75%">41768萬</td>
-                                <td data-title="100%">354000萬</td>
-                                <td data-title="超高收入">555399萬</td>
+                                <td data-title="Income Group">Group Total Income</td>
+                                <td data-title="25%">110m</td>
+                                <td data-title="50%">215m</td>
+                                <td data-title="75%">418m</td>
+                                <td data-title="100%">3540m</td>
+                                <td data-title="Hyper Income Units">5554m</td>
                             </tr>
                             <tr>
-                            	<td data-title="超高收入"><b>平均每單位所得總額</b></td>
+                            	<td data-title="Hyper Income Units"><b>Average Income of Each Unit</b></td>
                             	<td></td>
                             	<td></td>
                             	<td></td>
                             	<td></td>
-                            	<td><font color="#558C89">約 1 億 1 千萬</font></td>
+                            	<td><font color="#558C89">~110m</font></td>
                             </tr>
                         </tbody>
                     </table>
-                    <p>從上面的估計中可以發現，這些神秘的大戶每年至少有上億的收入。由於我們已經非常高估其他人的所得，神秘大戶的報稅收入，應該會比剛剛估算的數字更多一些。如果仔細觀察數字的分布，還可發現，整個東昌里其他納稅單位的全部所得加起來，可能還比大戶們的所得少一些。</p>
-                    <h2>有錢的鄰居在哪裡</h2>
-                    <p>像這樣在同一個區域內，所得分配有巨大差異的狀況，到底有多少呢？</p>
+                    <p>As a result, the mysterious super-earners have an annual income of at least 100 million NTD (3 million USD). The real number should be more since we overestimate others' income. If looking into the numbers in details, we can find the total income of other tax units would be slightly fewer than the super-earners.</p>
+                    <h2>Where is the wealthy neighborhood?</h2>
+                    <p>How many villages in Taipei having the similarly huge income inequality?</p>
                     <div id="chart1">
                     </div>
-                    <p>圖 1：區域內部所得分配差異</p>
-                    <p>在圖 1 中，我們繪出平均所得總額前十名的村里的各項統計數字，稍微觀察一下這些平均數遠高於中位數、甚至第三分位數的區域，分別是哪些村里，差距又有多大。不過除了長據第一的松山區東昌里，因為位於敦化北路台塑總部後方，據傳是台塑集團王永在家族的居住地之外，其他的村里我們暫時找不到資料，足以解釋造成平均數飆高的原因。</p>
+                    <p>Figure 1. Income Inequality Within District</p>
+                    <p>In figure 1, we plot the statistics of top 10 villages in average income. We can see what these villages are and how far its average from its median and third quantile.</p>
                     <h2>10%？1%？0.1%？</h2>
-                    <p>我們或可想像，一般印象中的大安區、或者一開始的中位數前十名各里，住著台灣／雙北地區排名 10% 左右的有錢人，但超高平均數呈現出的，可能是 1%、甚至 0.1% 的有錢人。有錢人在哪裡？這是一個大家都好奇的問題。藉由地圖和統計資料的觀察，我們嘗試描繪高所得人群的空間分布。</p>
-                    <p>不過，在想了解有錢人生活的好奇心之外，我們或許可以提出更多問題：有錢人的收入穩定嗎？他們的收入來源和一般人有什麼差別？這些差別，有沒有可能告訴我們什麼？接下來，我們會嘗試使用稅務資料繼續研究這些問題，如果發現了有趣的結果，再和大家分享。</p>
+                    <p>We may imagine, the commonly thought wealthy districts, such as Daan Dist in the central of Taipei, gathered top 10% wealthy people, to be specific, top 10% earners. The villages with super high average income, have the top 1% wealthy people. Where the rich guys live? This is a question everyone curious about. Through map and statistics, we try to understand the geographical distribution of high-income people.</p>
+                    <p>Besides the curiosity about how rich people's lives are, we have more questions based on the explorations above: Is wealth people's income stable? What's the difference between their income sources and average people's? Do these differences tell us anything? In the following research, we will continue to explore these questions through financial and tax open data. If anything interesting found, we will keep sharing.</p>
                 </section>
-            <!--
-            <div class="section">
-            <section class="main-content">
-            <h1>我是h1</h1>
-            <h2>我是h2</h2>
-            <h3>我是h3</h3>
-            <h4>我是h4</h4>
-            <h5>我是h5</h5>
-            <p>我是p</p>
-            <pre><code>我是code</code></pre>
-            <blockquote>
-            <h4>我是小框框標題</h4>
-            <p>我是小框框內容</p>
-            </blockquote>
-            </section>
-            </div>
-            -->
                 <section class="main-content">
                 	<hr>
-                    <h3>互動地圖：雙北所得大解密</h3>
-                    <p>將台北市、新北市 103 年所得稅統計資料各村里綜合所得稅所得總額中位數畫成熱圖，顏色越粉紅，所得稅中位數越高，顏色越綠，該村里所得稅中位數越低。中位數僅能大致窺見區域分布差異，無法完全衡量實際分布，也無法顯示出家戶內部的所得差異。未設籍在居住地的人口也無法被計入。</p>
-                    <p>另所得稅統計資料處理過程繁複，需時較久，目前資料僅釋出至 103 年度，故以 103 年度資料討論及作圖。</p>
-                    <h3>資料來源</h3>
-                    所得稅統計資料：103 年／<a href="http://www.fia.gov.tw/ct.asp?xItem=3451&ctNode=668&mp=1">財政部財政資訊中心</a> <a href="https://github.com/leeneil">、@leeneil</a> 在 <a href="https://github.com/cicadatatw>@cicadatatw">@cicadatatw</a> 的 <a href="https://github.com/cicadatatw/taiwan-income-by-village"> pdf/csv 轉檔</a></br>
-                    101 年／<a href="http://data.gov.tw/">政府資料開放平台</a> <a href="http://data.gov.tw/node/17983">台北市</a>、<a href="http://data.gov.tw/node/17975">新北市</a></br>
-                    捷運站點位置： <a href="https://github.com/repeat" class="user-mention">@repeat</a> 的 <a href="https://github.com/repeat/taipei-metro-stations">taipei-metro-stations</a>
-                    <h3>延伸自</h3>
-                    <a href="http://missmoss.github.io/taipei-mrt-viz/">台北捷運一日進出站流量</a></br>
+                    <h3>Interactive Map: Taipei's Income Distribution</h3>
+                    <p>A heat map of 2014 median annual income of villages in Taipei and New Taipei City. The pinker the color is, the higher the median income is. The more green, the lower the median income. The median statistics merely tell us a general view of the geographical distribution. It cannot show the complete distribution among all households. It cannot reveal the differences in households. The residents who didn't register can be counted in neither.</p>
+                    <p>The tax data released by Financial Data Center always takes long to processed and checked so it usually delays for two years. This project was originally developed in 2016 and used the updated data at that time, which is 2014 data. The distribution changes hugely in recent years, we will try to explore and share new findings when we get some!</p>
+                    <h3>Data Sources</h3>
+                    Tax Data: </br>2014／<a href="http://www.fia.gov.tw/ct.asp?xItem=3451&ctNode=668&mp=1">Financial Data Center of Minstry of Finance</a> <a href="https://github.com/leeneil">、@leeneil</a> at <a href="https://github.com/cicadatatw>@cicadatatw">@cicadatatw</a>'s <a href="https://github.com/cicadatatw/taiwan-income-by-village"> pdf/csv convertion</a></br>
+                    2012／<a href="http://data.gov.tw/">Open Data Gov Taiwan</a>: <a href="http://data.gov.tw/node/17983">Taipei</a>、<a href="http://data.gov.tw/node/17975">New Taipei</a></br>
+                    MRT Station Location: <a href="https://github.com/repeat" class="user-mention">@repeat</a>  <a href="https://github.com/repeat/taipei-metro-stations">taipei-metro-stations</a>
+                    <h3>Derived from</h3>
+                    <a href="http://missmoss.github.io/taipei-mrt-viz/">A Day in Taipei Metro</a></br>
                     <footer class="site-footer">
-                        <span class="site-footer-owner"><a href="https://github.com/missmoss/taipei-stat-mrt">雙北所得分布地圖</a> 由 <a href="https://github.com/missmoss"> @missmoss</a> 製作。</span>
-                        <!--<span class="site-footer-credits">The front photo is via courtesy of <a href="https://www.flickr.com/photos/lipon/11730442194/">liponan</a>.</span>-->
-                        <span class="site-footer-credits">本頁面是 <a href="https://pages.github.com">GitHub Pages</a> ，修改自由 <a href="https://twitter.com/jasonlong">Jason Long</a> 製作的 <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a>。特別感謝 Miss Monday、務熙學長、鴨鴨、有有、南哥、Kn、白經濟作者群在製作過程的討論與協助。</span>
+                        <span class="site-footer-owner"><a href="https://github.com/missmoss/taipei-stat-mrt">Taipei Income Map</a> is produced by <a href="https://github.com/missmoss"> @missmoss</a></span>
+                        <span class="site-footer-credits">This page is a <a href="https://pages.github.com">GitHub Pages</a> which is edited from <a href="https://twitter.com/jasonlong">Jason Long</a>'s <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a>。Special thanks to Miss Monday、Wu-Hsi、Duckling、Yoyo、Nan、Kn、TalkEcon authors for help and discussion in project development.</span>
                     </footer>
                     
                 </section>
@@ -587,7 +454,7 @@ input:checked + .sliderround:before {
                         var loadedSection = $(this);
 
                         //using index
-                        if ( index === 4 && firstTime === false ) {
+                        if ( index === 3 && firstTime === false ) {
                             firstTime = true;
                             storyTeller();
                         }
@@ -595,7 +462,7 @@ input:checked + .sliderround:before {
                     onLeave: function(index, nextIndex, direction){
                         if ( index === 1 ) {
                             directionArrow.remove();
-                        } else if ( index === 4 ) {
+                        } else if ( index === 3 ) {
                             exit = true;
                             distname.style("opacity", 0);
                             tooltip.style("opacity", 0);
@@ -611,12 +478,6 @@ input:checked + .sliderround:before {
             var northEast = L.latLng(25.3,122),
             southWest = L.latLng(24.7,121.258),
             bounds = L.latLngBounds(southWest, northEast);
-            
-            /* Hydda.Base MAP 
-            var layer = L.tileLayer('http://{s}.tile.openstreetmap.se/hydda/base/{z}/{x}/{y}.png', {
-    attribution: 'Tiles courtesy of <a href="http://openstreetmap.se/" target="_blank">OpenStreetMap Sweden</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-});
-            */
 
             /* CARTODB BASEMAP */
             var carto = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
@@ -674,7 +535,7 @@ input:checked + .sliderround:before {
             .attr("y", 0)
             .attr("fill", "#d0d0d0")
             .style("font-size", "1rem")
-            .text("往下滑動到下一頁")
+            .text("Scroll Down to Next Page")
             .transition()
             .duration(500)
             .attr("y", 17);
@@ -686,7 +547,7 @@ input:checked + .sliderround:before {
         var title = d3.select("#map").append("div")
         .attr("class", "title");
         
-        title.text("雙北所得地圖");
+        title.text("Taipei Income Map");
         
         var legend = d3.select("#map").append("div")
         .attr("class", "legend");
@@ -698,7 +559,7 @@ input:checked + .sliderround:before {
         .append("div")
         .append("label")
         .attr("class", "switch")
-        .text("　　　捷運線");
+        .text("　　　MRT Line");
         
         label1.append("input")
         .attr("type", "checkbox")
@@ -711,7 +572,7 @@ input:checked + .sliderround:before {
         .append("div")
         .append("label")
         .attr("class", "switch")
-        .text("　　　捷運站點");
+        .text("　　　MRT Station");
         
         label2.append("input")
         .attr("type", "checkbox")
@@ -723,7 +584,7 @@ input:checked + .sliderround:before {
         .append("div")
         .append("label")
         .attr("class", "switch")
-        .text("　　　衛星地圖");
+        .text("　　　Satellite");
         
         label3.append("input")
         .attr("type", "checkbox")
@@ -792,14 +653,14 @@ input:checked + .sliderround:before {
             
             var rectWidth = 27;
             
-            legend = legend.append("svg");
+            legend = legend.append("svg").attr("width", rectWidth*12);
             
             legend.append("text")
             .attr("x", 5)
             .attr("y", 18)
             .attr("fill", "#6C6C6C")
             .style("font-size", 14)
-            .text("雙北各里年度家戶所得中位數");
+            .text("Median Annual Income of Village in Taipei");
             
             legend.selectAll(".legend")
             .data(legendData)
@@ -820,14 +681,14 @@ input:checked + .sliderround:before {
             .attr("x", function(d,i) { return 5+rectWidth*i; })
             .attr("y", 50)
             .attr("fill", "#6C6C6C")
-            .text(function(d) { return d/10;});
+            .text(function(d) { return d/1000;});
             
             legend.append("text")
             .attr("text-anchor", "start")
-            .attr("x", rectWidth*10+5)
+            .attr("x", rectWidth*10+3)
             .attr("y", 49)
             .attr("fill", "#6C6C6C")
-            .text("萬元");   
+            .text("m NTD");   
             
             var transform = d3.geo.transform({point: projectPoint}),
             path = d3.geo.path().projection(transform);
@@ -864,7 +725,7 @@ input:checked + .sliderround:before {
                     tooltip.text(function () {
                         return d.properties.TOWN+'\n'+
                         d.properties.VILLAGE+'\n'+
-                        numberWithCommas(d.properties.INCOME_MEDIAN)+',000 元';
+                        numberWithCommas(d.properties.INCOME_MEDIAN)+',000 NTD';
                     })
                     .style("left", (d3.event.pageX) + "px")
                     .style("top", (d3.event.pageY - 28) + "px");
@@ -878,7 +739,7 @@ input:checked + .sliderround:before {
                     tooltip.text(function () {
                         return d.properties.TOWN+'\n'+
                         d.properties.VILLAGE+'\n'+
-                        numberWithCommas(d.properties.INCOME_MEDIAN)+',000 元';
+                        numberWithCommas(d.properties.INCOME_MEDIAN)+',000 NTD';
                     })
                     .style("left", (d3.event.pageX) + "px")
                     .style("top", (d3.event.pageY - 28) + "px");
@@ -1042,7 +903,7 @@ input:checked + .sliderround:before {
             .attr("class", "station-name")
             .attr("id", function(d) { return d.id; })
             .attr("fill", "black")
-            .style("font-size", 6)
+            .style("font-size", 10)
             .text(function(d) { return d.name; } )
             .style("opacity", 0);
             
@@ -1082,16 +943,12 @@ input:checked + .sliderround:before {
             r = $.Deferred();
 
             var storyData = [
-            { type: 0, pan: [25.0656575,121.5896828], selector: "sub", target: "寶湖里", text: "第一名  台北市內湖區寶湖里\n家戶所得中位數：124.0 萬\n類型：別墅社區\n學校：內湖國中、三民國中\n房價：別墅 3 千萬至 5 千萬\n交通：國道 1 號、環東大道"},
-            { type: 0, pan: [24.9896,121.59], selector: "sub", target: "政大里", text: "第二名  台北市文山區政大里\n家戶所得中位數：123.6 萬\n類型：別墅社區\n學校：政大實小、政大附中\n房價：透天厝總價 4 千萬、電梯大樓每坪 70 多萬元\n交通：國道 3 號、信義支線" },
-           { type: 0, pan: [24.9263674,121.4975], selector: "sub", target: "華城里", text: "第三名  新北市新店區華城里\n家戶所得中位數：119.7 萬\n類型：別墅社區\n學校：康橋中小學\n房價：別墅 3 千萬至 5 千萬\n交通：國道 3 號、環河快速道路" },
-            { type: 2, pan: [25.045,121.547], center: [[25.0292997,121.5030736], [25.0263064,121.5263363], [25.0645017,121.4959642], [25.0601717,121.5417976], [25.0287132,121.5548065], [25.0294912,121.4803741]], selector: "dist", target: ["中正區", "大安區", "大同區", "松山區", "信義區", "萬華區"], text: "台北市中心區域的中正、大安、大同、松山、信義，以及周邊的萬華等區內部顏色較相近，相對而言區域內較為均值。" },
-            { type: 1, pan: [25.045,121.547], center: [25.0263064,121.5263363], selector: "dist", target: "大安區", text: "大安區雖然沒有在村里排名拔得頭籌，整體收入都還是在雙北的前段班。" },
-            { type: 3, pan: [25.045,121.547], center: [[24.991582, 121.572439], [25.088473, 121.593980], [25.06,121.532]], selector: "dist", target: ["文山區", "內湖區", "中山區"], text: "周圍的文山區、內湖區、中山區則有部分村里一枝獨秀的狀況，區域內部較不平均。" },
-            { type: 3, pan: [25.045,121.547], center: [[25.036521, 121.606516], [25.110375, 121.543105], [25.1531443,121.4833168]], selector: "dist", target: ["南港區", "士林區", "北投區"], text: "士林、北投、南港則是在河堤、山區，與仍有開發問題的社子島有相對較低的所得。" },
-            { type: 3, pan: [25.045,121.547], center: [[24.935879, 121.532208], [24.990909, 121.493024], [25.008994, 121.519721], [25.014647, 121.457957], [25.074577, 121.660210]], selector: "dist", target: ["新店區", "中和區", "永和區", "板橋區", "汐止區"], text: "新北市普遍所得較高的地區則是大家所熟悉與台北市緊密相連的新店區、中永和區、板橋區、汐止區。" },
-            { type: 3, pan: [25.045,121.547], center: [[25.186485, 121.457590], [25.097718, 121.357951], [24.968029, 121.400650], [24.904097, 121.399486]], selector: "dist", target: ["淡水區", "林口區", "樹林區", "三峽區"], text: "另外淡水區，以及西邊的林口區長庚醫院周邊，以及西南邊位於三峽、樹林的台北大學特區亦是所得較高的區域。" },
-            { type: 0, pan: [25.045,121.547], center: [25.0263064,121.5263363], selector: "none", target: "", text: "接下來，換你自由探索地圖囉！" }
+            { type: 0, pan: [25.0656575,121.5896828], selector: "sub", target: "寶湖里", text: "#1 Baohu Village, Neihu, Taipei\nMedian Income: 1.24m NTD (41.3k USD)\nMajor Property: Villa House\nHousing Price: Villa 30-50m NTD (1-1.6m USD)"},
+            { type: 0, pan: [24.9896,121.59], selector: "sub", target: "政大里", text: "#2  Chengda Village, Wenshan, Taipei\nMedian Income: 1.23m NTD (41k USD)\nMajor Property: Villa House\nHousing Price: House 40m NTD (1.3m USD),\n Apartment 0.7m NTD(23k USD)/35.6 sq ft" },
+           { type: 0, pan: [24.9263674,121.4975], selector: "sub", target: "華城里", text: "#3 Huacheng Village, Xindian, New Taipei City\nMedian Income：1.2m NTD (40k USD)\nMajor Property: Villa House\nHousing Price: Villa 30-50m NTD (1-1.6m USD)" },
+            { type: 2, pan: [25.045,121.547], center: [[25.0292997,121.5030736], [25.0263064,121.5263363], [25.0645017,121.4959642], [25.0601717,121.5417976], [25.0287132,121.5548065], [25.0294912,121.4803741]], selector: "dist", target: ["中正區", "大安區", "大同區", "松山區", "信義區", "萬華區"], text: "In the central area of Taipei, Zongcheng, Daan, Datong, Songshan and Xinyi District have a relatively consistent color within the district. It means the income distribution is comparatively even in the district." },
+            { type: 3, pan: [25.045,121.547], center: [[24.991582, 121.572439], [25.088473, 121.593980], [25.06,121.532]], selector: "dist", target: ["文山區", "內湖區", "中山區"], text: "Wenshan, Neihu and Zongshan District have one or few villages with distinctly high median income, suggests that inequality within the district." },
+            { type: 0, pan: [25.045,121.547], center: [25.0263064,121.5263363], selector: "none", target: "", text: "Now, it's your time exploring the map!" }
             ]  
 
             function storyLine() {
@@ -1123,36 +980,6 @@ input:checked + .sliderround:before {
 
                 story.text(text);
 
-                var nextBtn = story.append("svg")
-                    .attr("id", "next")
-                    .append("path")
-                    .attr("class", "btn")
-                    .attr("d", "m0,0L7,0L21,50L7,100L0,100L14,50z")
-                    .attr("fill", "#d0d0d0")
-                    .on("mouseover", function(){
-                        d3.select(this)
-                        .attr("fill", "#74AFAD");
-                    })
-                    .on("mouseout", function(){
-                        d3.select(this)
-                        .attr("fill", "#d0d0d0");
-                    });
-
-                var backBtn = story.append("svg")
-                .attr("id", "back")
-                .append("path")
-                .attr("class", "btn")
-                .attr("d", "m30,0L23,0L9,50L23,100L30,100L16,50z")
-                .attr("fill", "#d0d0d0")
-                .on("mouseover", function(){
-                    d3.select(this)
-                    .attr("fill", "#74AFAD");
-                })
-                .on("mouseout", function(){
-                    d3.select(this)
-                    .attr("fill", "#d0d0d0");
-                });
-
                 var exitBtn = story.append("svg")
                 .attr("id", "exit")
                 .append("path")
@@ -1180,19 +1007,11 @@ input:checked + .sliderround:before {
                 });
 
                 if (i === storyData.length-1) {
-                    nextBtn.style("opacity", 0);
-                    backBtn.on("click", function() { clickBack(); } );
                     interactive();
                     setTimeout(function() {
                         distname.remove();
                         story.style("opacity", 0);
                     }, 4000);
-                } else if (i === 0) {
-                    nextBtn.on("click", function() { clickNext(); } );
-                    backBtn.attr("opacity", 0);
-                } else {
-                    nextBtn.on("click", function() { clickNext(); } );
-                    backBtn.on("click", function() { clickBack(); } );
                 }
 
                 function type0() {
@@ -1431,83 +1250,83 @@ input:checked + .sliderround:before {
         var subdistdata = [
 		  {
 		    "dist": "松山區",
-		    "subdist": "東昌里",
-		    "mean": 1072.7,
-		    "median": 93.6,
-		    "q1": 47.4,
-		    "q3": 181.6
+		    "subdist": "Dongcheng",
+		    "mean": 10.7,
+		    "median": 0.94,
+		    "q1": 0.47,
+		    "q3": 1.82
 		  },
 		  {
 		    "dist": "信義區",
-		    "subdist": "興隆里",
-		    "mean": 908.3,
-		    "median": 80.6,
-		    "q1": 36.8,
-		    "q3": 189.5
+		    "subdist": "Xinlong",
+		    "mean": 9.08,
+		    "median": 0.81,
+		    "q1": 0.37,
+		    "q3": 1.90
 		  },
 		  {
 		    "dist": "士林區",
-		    "subdist": "菁山里",
-		    "mean": 610.4,
-		    "median": 64.6,
-		    "q1": 38.8,
-		    "q3": 107.6
+		    "subdist": "Chingshan",
+		    "mean": 6.10,
+		    "median": 0.65,
+		    "q1": 0.39,
+		    "q3": 1.08
 		  },
 		  {
 		    "dist": "士林區",
-		    "subdist": "永福里",
-		    "mean": 595.3,
-		    "median": 78.8,
-		    "q1": 42.2,
-		    "q3": 170
+		    "subdist": "Yongfu",
+		    "mean": 5.95,
+		    "median": 0.79,
+		    "q1": 0.42,
+		    "q3": 1.70
 		  },
 		  {
 		    "dist": "士林區",
-		    "subdist": "新安里",
-		    "mean": 578.5,
-		    "median": 64.4,
-		    "q1": 34,
-		    "q3": 143
+		    "subdist": "Hsinan",
+		    "mean": 5.79,
+		    "median": 0.64,
+		    "q1": 0.34,
+		    "q3": 1.43
 		  },
 		  {
 		    "dist": "中正區",
-		    "subdist": "東門里",
-		    "mean": 543.1,
-		    "median": 88.7,
-		    "q1": 45.8,
-		    "q3": 189
+		    "subdist": "Dongmen",
+		    "mean": 5.43,
+		    "median": 0.89,
+		    "q1": 0.46,
+		    "q3": 1.89
 		  },
 		  {
 		    "dist": "大安區",
-		    "subdist": "民輝里",
-		    "mean": 430.7,
-		    "median": 94,
-		    "q1": 44.2,
-		    "q3": 210.3
+		    "subdist": "Minhui",
+		    "mean": 4.31,
+		    "median": 0.94,
+		    "q1": 0.44,
+		    "q3": 2.10
 		  },
 		  {
 		    "dist": "松山區",
-		    "subdist": "福成里",
-		    "mean": 416.2,
-		    "median": 90.8,
-		    "q1": 42.9,
-		    "q3": 188.2
+		    "subdist": "Fucheng",
+		    "mean": 4.16,
+		    "median": 0.91,
+		    "q1": 0.43,
+		    "q3": 1.88
 		  },
 		  {
 		    "dist": "信義區",
-		    "subdist": "安康里",
-		    "mean": 415.4,
-		    "median": 99.4,
-		    "q1": 47,
-		    "q3": 218
+		    "subdist": "Ankan",
+		    "mean": 4.15,
+		    "median": 0.99,
+		    "q1": 0.47,
+		    "q3": 2.18
 		  },
 		  {
 		    "dist": "中山區",
-		    "subdist": "新福里",
-		    "mean": 409.6,
-		    "median": 62.4,
-		    "q1": 35.1,
-		    "q3": 116.2
+		    "subdist": "Hsinfu",
+		    "mean": 4.10,
+		    "median": 0.62,
+		    "q1": 0.35,
+		    "q3": 1.16
 		  }
 		]
 
@@ -1518,7 +1337,7 @@ input:checked + .sliderround:before {
         .attr("width", chart1width)
         .attr("height", chart1height)
         .append("g")
-        .attr("transform", "translate(" + chart1width*0.08 + "," + chart1height*0.01 + ")");
+        .attr("transform", "translate(" + chart1width*0.03 + "," + chart1height*0.01 + ")");
 
         var x = d3.scale.ordinal()
         .domain(subdistdata.map(function(a) { return a.subdist; }))
@@ -1568,7 +1387,7 @@ input:checked + .sliderround:before {
         .attr("fill", "#558C89")
         .style("font-weight", 400)
         .attr("transform", "rotate(-90)")
-        .text("年度所得總額（單位：萬元）");
+        .text("Annual Income(Unit: m NTD)");
 
         chart1.selectAll(".mean")
 		.data(subdistdata)
@@ -1670,10 +1489,10 @@ input:checked + .sliderround:before {
 		.on("mouseout", chart1mouseout);
 
 		var color = [
-		{"name": "平均數", "color": "#EB7F00"},
-		{"name": "第三分位數", "color": "#225378"},
-		{"name": "中位數", "color": "#1595A3"},
-		{"name": "第一分位數", "color": "#ACF0F2"},
+		{"name": "Average", "color": "#EB7F00"},
+		{"name": "Third Quartile", "color": "#225378"},
+		{"name": "Median", "color": "#1595A3"},
+		{"name": "First Quartile", "color": "#ACF0F2"},
 		]
 
 		var chart1legend = chart1.selectAll(".chart1legend")
@@ -1708,7 +1527,6 @@ input:checked + .sliderround:before {
 			d3.selectAll("#tt"+d.subdist)
 			.style("opacity", 0);
 		}
-
 
         </script>
     </body>

@@ -1,263 +1,262 @@
 <!DOCTYPE html>
 <html lang="en-us">
     <head>
-        <meta charset="UTF-8">
-            <title>Interactive Map: Taipei's Income Distribution</title>
-            <style>
-                #map{ width: 100%; height: 100vh;}
-                div {
-                    font-family: "Noto Sans TC", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;;
-                }
-                div.legend {
-                    position: absolute;
-                    text-align: left;
-                    width: 330px;
-                    height: 60px;
-                    left: 5%;
-                    top: 79px;
-                    padding: 2px;
-                    font: 12px "Noto Sans TC";
-                    background: rgba(255,255,255,0.6);
-                    border: 0px;
-                    border-radius: 4px;
-                    pointer-events: none;
-                }
-            div.title {
-                position: absolute;
-                text-align: left;
-                color: #558C89;
-                font-size: 1.5rem;
-                left: 5%;
-                top: 10px;
-                padding: 10px;
-                border: 0px;
-                border-radius: 4px;
-                background: rgba(255,255,255,0.6);
-            }
-            div.tooltip {
-                position: absolute;
-                text-align: center;
-                width: 100px;
-                height: 50px;
-                padding: 5.5px 2px;
-                font: 14px sans-serif;
-                background: white;
-                border: 0px;
-                border-radius: 5px;
-                pointer-events: none;
-            }
-            div#mapcontrol {
-                position: absolute;
-                text-align: left;
-                left: 5%;
-                top: 143px;
-                font-size: 0.7rem;
-                width: 6.5rem;
-                padding: 0.01rem;
-                border: 0px;
-                border-radius: 4px;
-                background: rgba(255,255,255,0.6);
-                white-space: pre;
-            }
-            div.story {
-                position: absolute;
-                text-align: left;
-                left: 50%;
-                -ms-transform: translateX(-50%);
-                -webkit-transform: translate(-50%,0);
-                transform: translate(-50%,0);
-                bottom: 5rem;
-                width: 18rem;
-                height: 7.5rem;
-                padding: 0.55rem 1rem;
-                font-size: 0.75rem;
-                background: rgba(255,255,255,0.75);
-                border: 0px;
-                border-radius: 8px;
-                white-space: pre;
-            }
-            div.distname {
-                position: absolute;
-                text-align: center;
-                width: 5rem;
-                height: 1.3rem;
-                padding: 0.05rem;
-                font-size: 0.8rem;
-                background: rgba(255,255,255,0.75);
-                border: 0px;
-                border-radius: 2px;
-            }
-            .arrow {
-                position: absolute;
-                left: 45%;
-                -ms-transform: translateX(-50%);
-                -webkit-transform: translate(-50%,0);
-                transform: translate(-50%,0);
-                bottom: 0.5rem;
-                width: 5rem;
-                height: 2rem;    
-            }
-            #exit {
-                position: absolute;
-                right: 6px;
-                top: 4px;
-                width: 15px;
-                height: 15px;
-            }
-            #boxplot {
-                width: 30%;
-                height: 90%;
-            }
-            #side {
-                max-width: 50%;
-                float:left;
-                margin-right:2%;
-            }
-			.axis path,
-			.axis line {
-			  fill: none;
-			  stroke: #000;
-			  shape-rendering: crispEdges;
-			}
-            .chart1legend text {
-            	font-weight: 400;
-                font-size: 0.7rem;
-            }
-            .meantext, .mediantext, .q1text, .q3text {
-            	font-weight: 400;
-                font-size: 0.7rem;
-                opacity: 0;
-            }
-            @media screen and (min-width: 64em) {
-                #side {
-                    max-width: 50%; }
-                #chart1 {
-                    width: 60vw;
-                    height: 45vh;}
-                .x.axis text {
-	                font-weight: 400;
-	                font-size: 0.7rem;
-	            }
-	            .y.axis text {
-	                font-weight: 400;
-	                font-size: 0.8rem;
-	            } }
-            @media screen and (min-width: 42em) and (max-width: 64em) {
-                #side {
-                    max-width: 100%;
-                    clear: left;  }
-                #chart1 {
-                    width: 100vw;
-                    height: 45vh;
-                    clear: left;  }
-                .x.axis text {
-	                font-weight: 400;
-	                font-size: 0.5rem;
-	            }
-	            .y.axis text {
-	                font-weight: 400;
-	                font-size: 0.6rem;
-	            } }
-	            
-            @media screen and (max-width: 42em) {
-                #side {
-                    max-width: 100%;
-                    min-width: 100%;
-                    clear: left; }
-                #chart1 {
-                    width: 100vw;
-                    height: 45vh;
-                    clear: left; }
-                .x.axis text {
-	                font-weight: 400;
-	                font-size: 0.5rem;
-	            }
-	            .y.axis text {
-	                font-weight: 400;
-	                font-size: 0.6rem;
-	            } }  
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-81478188-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-/* The switch - the box around the slider */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 1.6rem;
-  height: 0.8rem;
-}
+  gtag('config', 'UA-81478188-1');
+    </script>
+    <meta charset="UTF-8">
+    <title>Interactive Map: Taipei's Income Distribution</title>
+    <style>
+        #map{ width: 100%; height: 100vh;}
+        div {
+            font-family: "Noto Sans TC", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;;
+        }
+        div.legend {
+            position: absolute;
+            text-align: left;
+            width: 330px;
+            height: 60px;
+            left: 5%;
+            top: 79px;
+            padding: 2px;
+            font: 12px "Noto Sans TC";
+            background: rgba(255,255,255,0.6);
+            border: 0px;
+            border-radius: 4px;
+            pointer-events: none;
+        }
+    div.title {
+        position: absolute;
+        text-align: left;
+        color: #558C89;
+        font-size: 1.5rem;
+        left: 5%;
+        top: 10px;
+        padding: 10px;
+        border: 0px;
+        border-radius: 4px;
+        background: rgba(255,255,255,0.6);
+    }
+    div.tooltip {
+        position: absolute;
+        text-align: center;
+        width: 100px;
+        height: 50px;
+        padding: 5.5px 2px;
+        font: 14px sans-serif;
+        background: white;
+        border: 0px;
+        border-radius: 5px;
+        pointer-events: none;
+    }
+    div#mapcontrol {
+        position: absolute;
+        text-align: left;
+        left: 5%;
+        top: 143px;
+        font-size: 0.7rem;
+        width: 6.5rem;
+        padding: 0.01rem;
+        border: 0px;
+        border-radius: 4px;
+        background: rgba(255,255,255,0.6);
+        white-space: pre;
+    }
+    div.story {
+        position: absolute;
+        text-align: left;
+        left: 50%;
+        -ms-transform: translateX(-50%);
+        -webkit-transform: translate(-50%,0);
+        transform: translate(-50%,0);
+        bottom: 5rem;
+        width: 18rem;
+        height: 7.5rem;
+        padding: 0.55rem 1rem;
+        font-size: 0.75rem;
+        background: rgba(255,255,255,0.75);
+        border: 0px;
+        border-radius: 8px;
+        white-space: pre;
+    }
+    div.distname {
+        position: absolute;
+        text-align: center;
+        width: 5rem;
+        height: 1.3rem;
+        padding: 0.05rem;
+        font-size: 0.8rem;
+        background: rgba(255,255,255,0.75);
+        border: 0px;
+        border-radius: 2px;
+    }
+    .arrow {
+        position: absolute;
+        left: 45%;
+        -ms-transform: translateX(-50%);
+        -webkit-transform: translate(-50%,0);
+        transform: translate(-50%,0);
+        bottom: 0.5rem;
+        width: 5rem;
+        height: 2rem;    
+    }
+    #exit {
+        position: absolute;
+        right: 6px;
+        top: 4px;
+        width: 15px;
+        height: 15px;
+    }
+    #boxplot {
+        width: 30%;
+        height: 90%;
+    }
+    #side {
+        max-width: 50%;
+        float:left;
+        margin-right:2%;
+    }
+	.axis path,
+	.axis line {
+	  fill: none;
+	  stroke: #000;
+	  shape-rendering: crispEdges;
+	}
+    .chart1legend text {
+    	font-weight: 400;
+        font-size: 0.7rem;
+    }
+    .meantext, .mediantext, .q1text, .q3text {
+    	font-weight: 400;
+        font-size: 0.7rem;
+        opacity: 0;
+    }
+    @media screen and (min-width: 64em) {
+        #side {
+            max-width: 50%; }
+        #chart1 {
+            width: 60vw;
+            height: 45vh;}
+        .x.axis text {
+            font-weight: 400;
+            font-size: 0.7rem;
+        }
+        .y.axis text {
+            font-weight: 400;
+            font-size: 0.8rem;
+        } }
+    @media screen and (min-width: 42em) and (max-width: 64em) {
+        #side {
+            max-width: 100%;
+            clear: left;  }
+        #chart1 {
+            width: 100vw;
+            height: 45vh;
+            clear: left;  }
+        .x.axis text {
+            font-weight: 400;
+            font-size: 0.5rem;
+        }
+        .y.axis text {
+            font-weight: 400;
+            font-size: 0.6rem;
+        } }
+        
+    @media screen and (max-width: 42em) {
+        #side {
+            max-width: 100%;
+            min-width: 100%;
+            clear: left; }
+        #chart1 {
+            width: 100vw;
+            height: 45vh;
+            clear: left; }
+        .x.axis text {
+            font-weight: 400;
+            font-size: 0.5rem;
+        }
+        .y.axis text {
+            font-weight: 400;
+            font-size: 0.6rem;
+        } }  
 
-/* Hide default HTML checkbox */
-.switch input {display:none;}
+    /* The switch - the box around the slider */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 1.6rem;
+      height: 0.8rem;
+    }
 
-/* The slider */
-.sliderround {
-  position: absolute;
-  cursor: pointer;
-  top:  0.2rem; 
-  left:  0.15rem; 
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-  border-radius: 1rem;
-}
+    /* Hide default HTML checkbox */
+    .switch input {display:none;}
 
-.sliderround:before {
-  position: absolute;
-  content: "";
-  height: 0.65rem;
-  width: 0.65rem;
-  left: 0.0008rem;
-  bottom: 0.015rem;
-  background-color: white;
-    -webkit-transition: .4s;
-  transition: .4s;
-  border-radius: 50%;
-}
+    /* The slider */
+    .sliderround {
+      position: absolute;
+      cursor: pointer;
+      top:  0.2rem; 
+      left:  0.15rem; 
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+      border-radius: 1rem;
+    }
 
-input:checked + .sliderround {
-  background-color: #74AFAD;
-}
+    .sliderround:before {
+      position: absolute;
+      content: "";
+      height: 0.65rem;
+      width: 0.65rem;
+      left: 0.0008rem;
+      bottom: 0.015rem;
+      background-color: white;
+        -webkit-transition: .4s;
+      transition: .4s;
+      border-radius: 50%;
+    }
 
-input:focus + .sliderround {
-  box-shadow: 0 0 1px #74AFAD;
-}
+    input:checked + .sliderround {
+      background-color: #74AFAD;
+    }
 
-input:checked + .sliderround:before {
-  -webkit-transform: translateX(0.9rem);
-  -ms-transform: translateX(0.9rem);
-  transform: translateX(0.9rem);
-}
-            </style>
-            <meta name="viewport" content="width=device-width, initial-scale=1"/>
-            <meta property="og:image" content="https://raw.githubusercontent.com/missmoss/taipei-stat-mrt/gh-pages/front.png"/>
-            <meta property="og:description" content="On two sides of a wall, the residents' incomes can differ by ten times. This map reveals the geographical distribution of how much people earn in Taipei."/>
-            <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen"/>
-            <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' 'type='text/css'/>
-            <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen"/>
-            <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen"/>
-            <link rel="stylesheet" href="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.css" />
-            <link rel="stylesheet" type="text/css" href="stylesheets/jquery.fullPage.css" />
-            <script src="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.js"></script>
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
-            <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-            <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-            <script src="https://d3js.org/d3.v3.min.js"></script>
-            <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-            <script type="text/javascript" src="stylesheets/scrolloverflow.min.js"></script>
-            <script type="text/javascript" src="stylesheets/jquery.fullPage.js"></script>
-            <script>
-                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-            
-            ga('create', 'UA-81478188-1', 'auto');
-            ga('send', 'pageview');
-            
-                </script>
-            </head>
+    input:focus + .sliderround {
+      box-shadow: 0 0 1px #74AFAD;
+    }
+
+    input:checked + .sliderround:before {
+      -webkit-transform: translateX(0.9rem);
+      -ms-transform: translateX(0.9rem);
+      transform: translateX(0.9rem);
+    }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta property="og:image" content="https://raw.githubusercontent.com/missmoss/taipei-stat-mrt/gh-pages/front.png"/>
+    <meta property="og:description" content="On two sides of a wall, the residents' incomes can differ by ten times. This map reveals the geographical distribution of how much people earn in Taipei."/>
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen"/>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' 'type='text/css'/>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen"/>
+    <link rel="stylesheet" href="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/jquery.fullPage.css" />
+    <script src="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="stylesheets/scrolloverflow.min.js"></script>
+    <script type="text/javascript" src="stylesheets/jquery.fullPage.js"></script>
+    </head>
     
     <body>
         <div id="fullpage">
